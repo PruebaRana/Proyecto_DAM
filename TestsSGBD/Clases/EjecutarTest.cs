@@ -193,12 +193,12 @@ namespace TestsSGBD.Clases
                 ResultadoHilo lResultadoHilo = new ResultadoHilo();
                 lResultadoHilo.Cantidad = i;
 
-                DatosBase lDatos = DatosBaseFactory.CreateInstance(aConector);
-                lDatos.Open();
+                //DatosBase lDatos = DatosBaseFactory.CreateInstance(aConector);
+                //lDatos.Open();
 
                 LanzarSentencias(aBloque.Sentencias, lResultadoHilo, aResultadoConexion.Tipo, aConector);
 
-                lDatos.Close();
+                //lDatos.Close();
 
                 aResultadoConexion.Hilos.Add(lResultadoHilo);
             }
@@ -230,9 +230,19 @@ namespace TestsSGBD.Clases
                 }
             }
 
+            DatosBase lDBGenerico = DatosBaseFactory.CreateInstance(aConector);
             for (int i = 0; i < lsCantidadHilos; i++)
             {
-                DatosBase lDB = DatosBaseFactory.CreateInstance(aConector);
+                DatosBase lDB;
+                if ((aTipo & ResultadoConexion.TipoConexion.BLOQUE) == ResultadoConexion.TipoConexion.BLOQUE)
+                {
+                    lDB = lDBGenerico;
+                }
+                else
+                {
+                    lDB = DatosBaseFactory.CreateInstance(aConector);
+                }
+                //DatosBase lDB = DatosBaseFactory.CreateInstance(aConector);
                 lListaTareas[i] = new TareaSentencias(lSentencias[i], aTipo, lDB);
                 
                 Task lTarea = new Task(lListaTareas[i].LanzarConsultas);
@@ -243,10 +253,25 @@ namespace TestsSGBD.Clases
 
             Task.WaitAll(lTask);
 
+            //Liberar recursos
+            int liNumeroErrores = 0;
+            foreach (TareaSentencias lItem in lListaTareas)
+            {
+                liNumeroErrores += lItem.NumeroErrores;
+                lItem.Dispose();
+            }
+            if ((aTipo & ResultadoConexion.TipoConexion.BLOQUE) == ResultadoConexion.TipoConexion.BLOQUE)
+            {
+                lDBGenerico.Close();
+            }
+
+
+
             lCrono.Stop();
             aResultadoHilo.Tiempo = lCrono.ElapsedMilliseconds;
             GC.Collect();
             GC.GetTotalMemory(true);
+
         }
 
     }

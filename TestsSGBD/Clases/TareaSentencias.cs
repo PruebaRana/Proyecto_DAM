@@ -39,6 +39,13 @@ namespace TestsSGBD.Clases
             get { return _Task; }
             set { _Task = value; }
         }
+
+        private int _NumeroErrores;
+        public int NumeroErrores
+        {
+            get { return _NumeroErrores; }
+            set { _NumeroErrores = value; }
+        }
         #endregion
 
         #region Constructores
@@ -81,21 +88,46 @@ namespace TestsSGBD.Clases
 
         public void LanzarConsultas()
         {
-            this._Datos.Open();
+            //try
+            //{
+            //    this._Datos.Open();
+            //}
+            //catch (Exception ex)
+            //{
 
+            //}
+            int liErrores = 0;
             foreach (Sentencia lSentencia in this._Sentencias)
             {
-                DataTable lDataTable = this._Datos.ObtenerDataTable(lSentencia.SQL);
-                int lCantidadRegistros = lDataTable.Rows.Count;
+                try
+                {
+                    DataTable lDataTable = this._Datos.ObtenerDataTable(lSentencia.SQL);
+                    if (lDataTable == null)
+                    {
+                        Log.EscribeLog("UPS !!!", "TareaSentencias.LanzarConsultas", Log.Tipo.ERROR);
+                    }
+                    else
+                    {
+                        int lCantidadRegistros = lDataTable.Rows.Count;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    liErrores++;
+                    // Incrementar contador errores
+                    // Log.EscribeLog("Error [" + ex.Message + "]", "TareaSentencias.LanzarConsultas", Log.Tipo.ERROR);
+                }
+
 
                 if ((this._Tipo & ResultadoConexion.TipoConexion.SENTENCIA) == ResultadoConexion.TipoConexion.SENTENCIA)
                 {
                     this._Datos.Close();
-                    this._Datos.Open();
+                    //this._Datos.Open();
                 }
             }
-            
-            this._Datos.Close();
+
+            this._NumeroErrores = liErrores;
+            //this._Datos.Close();
         }
     }
 }
