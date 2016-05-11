@@ -105,14 +105,33 @@ namespace TestsSGBD.Clases
             {
                 try
                 {
-                    DataTable lDataTable = this._Datos.ObtenerDataTable(lSentencia.SQL);
-                    if (lDataTable == null)
+                    string lTipo = lSentencia.SQL.Substring(0, 6);
+                    if (lTipo == "insert")
                     {
-                        Log.EscribeLog("UPS !!!", "TareaSentencias.LanzarConsultas", Log.Tipo.ERROR);
+                        int liId = this._Datos.EjecutarNonQueryYObtenerLastId(lSentencia.SQL);
+                    }
+                    else if (lTipo == "update" || lTipo == "delete")
+                    {
+                        int lCantidadRegistros = this._Datos.EjecutarEscalar(lSentencia.SQL);
                     }
                     else
                     {
-                        int lCantidadRegistros = lDataTable.Rows.Count;
+                        if (lSentencia.SQL.Contains(" count("))
+                        {
+                            int lCantidadRegistros = this._Datos.EjecutarCount(lSentencia.SQL);
+                        }
+                        else
+                        {
+                            DataTable lDataTable = this._Datos.ObtenerDataTable(lSentencia.SQL);
+                            if (lDataTable == null)
+                            {
+                                Log.EscribeLog("UPS !!!", "TareaSentencias.LanzarConsultas", Log.Tipo.ERROR);
+                            }
+                            else
+                            {
+                                int lCantidadRegistros = lDataTable.Rows.Count;
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
