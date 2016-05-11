@@ -243,7 +243,7 @@ namespace TestsSGBD.Clases
                     lDB = DatosBaseFactory.CreateInstance(aConector);
                 }
                 //DatosBase lDB = DatosBaseFactory.CreateInstance(aConector);
-                lListaTareas[i] = new TareaSentencias(lSentencias[i], aTipo, lDB);
+                lListaTareas[i] = new TareaSentencias(lSentencias[i], aTipo, lDB, aConector);
                 
                 Task lTarea = new Task(lListaTareas[i].LanzarConsultas);
                 lListaTareas[i].Task = lTarea;
@@ -264,11 +264,10 @@ namespace TestsSGBD.Clases
             {
                 lDBGenerico.Close();
             }
-
-
-
+            
             lCrono.Stop();
             aResultadoHilo.Tiempo = lCrono.ElapsedMilliseconds;
+            aResultadoHilo.Errores = liNumeroErrores;
             GC.Collect();
             GC.GetTotalMemory(true);
 

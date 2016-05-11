@@ -23,6 +23,14 @@ namespace TestsSGBD.Clases
             get { return _Tiempo; }
             set { _Tiempo = value; }
         }
+
+        private int _Errores;
+        [XmlAttribute("Errores")]
+        public int Errores
+        {
+            get { return _Errores; }
+            set { _Errores = value; }
+        }
         #endregion
 
         #region Constructores, comparadores, clone
@@ -34,11 +42,13 @@ namespace TestsSGBD.Clases
         {
             this._Cantidad = aItem._Cantidad;
             this._Tiempo = aItem._Tiempo;
+            this._Errores = aItem._Errores;
         }
-        public ResultadoHilo(int aiCantidad, int aiHilos, int aiTiempo)
+        public ResultadoHilo(int aiCantidad, int aiTiempo, int aiErrores)
         {
             this._Cantidad = aiCantidad;
             this._Tiempo = aiTiempo;
+            this._Errores = aiErrores;
         }
         #endregion
 
@@ -46,9 +56,9 @@ namespace TestsSGBD.Clases
         public ResultadoHilo Clone()
         {
             ResultadoHilo lItem = new ResultadoHilo();
-
             lItem._Cantidad = this._Cantidad;
             lItem._Tiempo = this._Tiempo;
+            lItem._Errores = this._Errores;
             return lItem;
         }
         #endregion
@@ -70,7 +80,7 @@ namespace TestsSGBD.Clases
             }
 
             // Return true if the fields match:
-            return (this._Cantidad == p._Cantidad && this._Tiempo == p._Tiempo);
+            return (this._Cantidad == p._Cantidad && this._Tiempo == p._Tiempo && this._Errores == p._Errores);
         }
 
         public bool Equals(ResultadoHilo p)
@@ -82,7 +92,7 @@ namespace TestsSGBD.Clases
             }
 
             // Return true if the fields match:
-            return (this._Cantidad == p._Cantidad && this._Tiempo == p._Tiempo);
+            return (this._Cantidad == p._Cantidad && this._Tiempo == p._Tiempo && this._Errores == p._Errores);
         }
 
         public static bool operator ==(ResultadoHilo a, ResultadoHilo b)
@@ -100,7 +110,7 @@ namespace TestsSGBD.Clases
             }
 
             // Return true if the fields match:
-            return (a._Cantidad == b._Cantidad && a._Tiempo == b._Tiempo);
+            return (a._Cantidad == b._Cantidad && a._Tiempo == b._Tiempo && a._Errores == b._Errores);
         }
 
         public static bool operator !=(ResultadoHilo a, ResultadoHilo b)

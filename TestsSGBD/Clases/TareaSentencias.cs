@@ -46,14 +46,18 @@ namespace TestsSGBD.Clases
             get { return _NumeroErrores; }
             set { _NumeroErrores = value; }
         }
+
+        private Conector _Conector;
         #endregion
 
         #region Constructores
-        public TareaSentencias(List<Sentencia> aSentencias, ResultadoConexion.TipoConexion aTipo, DatosBase aDatos)
+        public TareaSentencias(List<Sentencia> aSentencias, ResultadoConexion.TipoConexion aTipo, DatosBase aDatos, Conector aConector)
         {
             this._Sentencias = aSentencias;
             this._Tipo = aTipo;
             this._Datos = aDatos;
+            this._Conector = aConector;
+
         }
         #endregion
 
@@ -122,6 +126,7 @@ namespace TestsSGBD.Clases
                 if ((this._Tipo & ResultadoConexion.TipoConexion.SENTENCIA) == ResultadoConexion.TipoConexion.SENTENCIA)
                 {
                     this._Datos.Close();
+                    this._Datos = DatosBaseFactory.CreateInstance(this._Conector);
                     //this._Datos.Open();
                 }
             }
