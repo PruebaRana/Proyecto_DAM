@@ -12,15 +12,6 @@
 
 
 
-#
-[ANNOTATION:
-
-BY 'PruebaRana'
-ON '2016-05-12T08:35:00'P
-NOTE: 'En que apartado podría explicar los cambios que he ido haciendo sobre la marcha por mejoras o deficiencias encontradas ¿???'
-NOTE: ''
-NOTE: '']
-
 Autor: **Jaime Aguilá Sánchez**
 Ciclo Desarrollo de Aplicaciones Multiplataforma
 Memoria del Proyecto de DAM
@@ -29,15 +20,7 @@ Tutor individual: Alfredo Oltra
 
 ### Índice
 
-1.
-#
-[ANNOTATION:
-
-BY 'PruebaRana'
-ON '2016-05-12T07:25:00'P
-NOTE: 'Desarrollarlo mas'
-NOTE: '']
-Introducción
+1. Introducción
 
 Este proyecto surge como una propuesta de la profesora Cristina Ausina, con un enfoque más genérico como una aplicación para poder probar distintos Sistemas Gestores de Bases de Datos (SGBD) centrándonos sobre todo en poder compararlos entre sí, SGBD SQL, NoSQL, y ORMs.
 
@@ -45,44 +28,19 @@ Viendo la dificultad en poder hacer comparaciones entre sistemas que no comparte
 
 Lo que si tenía sentido era centrarnos en los SGBD de tipo SQL, y no solo para compararlos entre ellos, sino para poder comparar distintos conectores y distintas consultas de un mismo SGBD.
 
-1.
-  1. 1.Tipo
-#
-[ANNOTATION:
-
-BY 'PruebaRana'
-ON '2016-05-12T07:25:00'P
-NOTE: 'Esplicar que es un conector, que es ODBC que es ADO.NET']
-conector
+1. 1.Tipo conector
 
 En muchas ocasiones nos hemos encontrado con aplicaciones, tanto de escritorio como aplicaciones Web, en las que la conexión con la base de datos se realiza mediante conexión ODBC, siendo el SGBD MySQL, Oracle o incluso SQL Server, teniendo estos SGBD conectores nativos para casi todos los lenguajes, y siempre nos ha surgido la duda, realmente merecerá la pena el realizar los cambios necesarios para usar un conector nativo en vez de usarlo de tipo ODBC, en algunos lenguajes los cambios entre uno, u otro tipo, son menores y dependiendo de cómo este desarrollada la aplicación, podemos tener el cambio realizado con una mínima inversión.
 
 Pero siempre nos queda la duda de si este cambio habrá merecido realmente la pena, o simplemente es un cambio anecdótico.
 
-1.
-  1. 2.Apertura y cierre de
-#
-[ANNOTATION:
-
-BY 'PruebaRana'
-ON '2016-05-12T07:26:00'P
-NOTE: 'Hablar sobre la importancia de la reutilización de recursos.']
-conexiones
+1. 2.Apertura y cierre de conexiones
 
 En otro caso, nos encontramos ante una aplicación Web legada, nos ponen en antecedentes comentándonos que es una aplicación desarrollada en PHP, que en un principio usaba MySQL pero que con el tiempo tuvieron que migrarla a Oracle, ya que MySQL no era capaz de soportar el tráfico y que incluso determinadas partes más pesadas, tuvieron que migrarlas de PHP en Apache, a Java en Tomcat ya que continuaban teniendo problemas.
 
 Revisando el código, se descubre que los desarrolladores anteriores en cada método que necesitaban lanzar una consulta a la base de datos, previamente abrían la conexión, y al acabar el método cerraban dicha conexión, si una página necesitaba obtener los datos de varias tablas, y los métodos iban llamando a otros métodos, se iban realizando aperturas de conexiones en cascada a la base de datos, llegando en algunos casos a que la misma petición de un cliente tuviera entre 20 y 30 conexiones abiertas.
 
-1.
-  1. 3.Campos de ordenación y
-#
-[ANNOTATION:
-
-BY 'PruebaRana'
-ON '2016-05-12T07:27:00'P
-NOTE: 'Explicar con mas detalle los problemas a la hora de realizar WHEREs y ORDER BY con campos no indexados, etc etc'
-NOTE: '']
-filtros
+1. 3.Campos de ordenación y filtros
 
 En otros casos, desarrollamos la aplicación en base a unas especificaciones, todo parece funcionar correctamente, la llevamos a producción, el cliente comienza a usarla, y ocurren estas dos situaciones:
 
@@ -94,17 +52,7 @@ En estos casos, puede ser algo muy sencillo de solucionar, generando los índice
 
 En cualquiera de los casos, poder contar con una aplicación que nos permita lanzan una batería de consultas sobre una base de datos, guardarnos los resultados y poder repetir el proceso conforme vayamos realizando cambios, para poder en base a estas medidas tomadas, saber si los cambios son beneficiosos.
 
-1.
-  1. 4.Diferentes sentencias SQL con mismos
-#
-[ANNOTATION:
-
-BY 'PruebaRana'
-ON '2016-05-12T07:30:00'P
-NOTE: 'Explicar casos concretos de SQL con varios LEFT JOINs y formas distintas de  reordenarlos']
-resultados
-
-
+1. 4.Diferentes sentencias SQL con mismos resultados
 
 1. Objetivos
   1. 1.Objetivos
@@ -127,7 +75,6 @@ A nivel personal, con el proyecto se busca:
 - Aprender a usar los Test Unitarios dentro de un proyecto de .NET
 - Obtener una aplicación que nos permita mayor flexibilidad a la hora de tomar decisiones sobre el resultado de determinadas consultas.
 
-1.
   1. 2.Planificación
 
 
@@ -310,14 +257,7 @@ Wiki4 para cada proyecto
 -
 Administración de Issues5
 
-1.
-#
-[ANNOTATION:
-
-BY 'PruebaRana'
-ON '2016-05-12T07:37:00'P
-NOTE: 'Desarrollarlo mas']
-Implementación
+1. Implementación
   1. 1.Metodología
 
 Para el desarrollo del proyecto, se ha optado por usar metodologías agiles, dado que las metodologías tradicionales (Métrica 3, Cascada, en V) son muy rígidas frente a los cambios, se deben seguir unas políticas y normas muy estrictas, y obligan a ceñirse al análisis inicial del desarrollo.
@@ -331,18 +271,7 @@ Se ha partido de un análisis genérico, para a continuación ir realizando cada
 3.
 4.
   1. 1.
-    1. 1.1.Metodología
-#
-[ANNOTATION:
-
-BY 'PruebaRana'
-ON '2016-05-12T08:23:00'P
-NOTE: 'Explicar el ciclo Test / implementacion / refactorización.'
-NOTE: ''
-NOTE: 'Explicar la importancia de los test y de la refactorización'
-NOTE: ''
-NOTE: '']
-mixta
+    1. 1.1.Metodología mixta
 
 Dado que prácticamente todos los roles los hemos acaparado, no tenía mucho sentido seguir una metodología ágil al pie de la letra, ya que las reuniones de equipo (clientes, programadores, analistas) no tenían sentido, así que hemos acabado realizando una mezcla entre XP (extreme programing) y Agile.
 
@@ -357,28 +286,10 @@ Dado que prácticamente todos los roles los hemos acaparado, no tenía mucho sen
 Aunque no hemos seguido una metodología totalmente TDD (Test-Driven Development) desarrollo guiado por pruebas, sí que hemos querido apoyarnos en los test unitarios, para poder realizar los procesos de refactorización teniendo mayor seguridad.
 
 1.
-  1. 2.Programación orientada a
-#
-[ANNOTATION:
-
-BY 'PruebaRana'
-ON '2016-05-12T07:40:00'P
-NOTE: 'Explicar en que consiste, y poner un ejemplo de código de un objeto '
-NOTE: ''
-NOTE: '']
-objetos
+  1. 2.Programación orientada a objetos
 
 1.
-  1. 3.Patrones de
-#
-[ANNOTATION:
-
-BY 'PruebaRana'
-ON '2016-05-12T07:40:00'P
-NOTE: 'Explicar que son y para que sirven.'
-NOTE: ''
-NOTE: 'Poner un ejemplo de código donde lo este usando.']
-diseño
+  1. 3.Patrones de diseño
 
 1.
   1. 4.GUI
@@ -415,38 +326,7 @@ Exponer también que ha quedado pendiente la realización de un asistente que ge
 
 Aclarar que lo que ha quedado pendiente, no ha sido por desconocimiento sino por falta de tiempo ya que es un trabajo limitado a una cantidad de horas y que lo que ha quedado fuera pueden ser mejoras para implemente en el futuro, ya que el código es libre y de acceso público en github.
 
-1.
-#
-[ANNOTATION:
-
-BY 'PruebaRana'
-ON '2016-05-12T08:22:00'P
-NOTE: 'No me gusta nada el vocabulario que genera Word, asi que me lo dejare para el final y lo gwenerare a mano.']
-Vocabulario
-
-Apache, 3
-
-Java, 3
-
-MySQL, 3
-
-NoSQL, 3
-
-ODBC, 3
-
-Oracle, 3
-
-ORM, 3
-
-PHP, 3
-
-SGBD, 3
-
-SQL, 3
-
-SQL Server, 3
-
-Tomcat, 3
+1. Vocabulario
 
 1. Anexos
 
