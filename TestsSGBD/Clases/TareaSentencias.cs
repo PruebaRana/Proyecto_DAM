@@ -106,6 +106,7 @@ namespace TestsSGBD.Clases
                 try
                 {
                     string lTipo = lSentencia.SQL.Substring(0, 6);
+                    lTipo = lTipo.ToLower();
                     if (lTipo == "insert")
                     {
                         int liId = this._Datos.EjecutarNonQueryYObtenerLastId(lSentencia.SQL);
@@ -140,13 +141,11 @@ namespace TestsSGBD.Clases
                     // Incrementar contador errores
                     // Log.EscribeLog("Error [" + ex.Message + "]", "TareaSentencias.LanzarConsultas", Log.Tipo.ERROR);
                 }
-
-
+                
                 if ((this._Tipo & ResultadoConexion.TipoConexion.SENTENCIA) == ResultadoConexion.TipoConexion.SENTENCIA)
                 {
                     this._Datos.Close();
                     this._Datos = DatosBaseFactory.CreateInstance(this._Conector);
-                    //this._Datos.Open();
                 }
             }
 
