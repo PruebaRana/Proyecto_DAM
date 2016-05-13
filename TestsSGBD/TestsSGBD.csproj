@@ -102,7 +102,7 @@
     <Compile Include="Clases\Conector.cs" />
     <Compile Include="Clases\Conectores.cs" />
     <Compile Include="Clases\DatosBaseFactory.cs" />
-    <Compile Include="Clases\EjecutarTest.cs" />
+    <Compile Include="Clases\EjecucionTest.cs" />
     <Compile Include="Clases\ResultadoHilo.cs" />
     <Compile Include="Clases\ResultadoConexion.cs" />
     <Compile Include="Clases\ResultadoBloque.cs" />

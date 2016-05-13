@@ -155,7 +155,7 @@ namespace TestsSGBD
             if (liAncho >= 403)
             {
                 lItem.Tag = lItem.Width;
-                liAncho -= (185);
+                liAncho -= (205);
                 lItem.Columns[0].Width = liAncho;
             }
         }
@@ -198,7 +198,9 @@ namespace TestsSGBD
                 int liSQLs = lItem.Sentencias.Count;
                 string lsHilos = lItem.Hilos_Inicio + "-" + lItem.Hilos_Fin + "/" + lItem.Hilos_Step;
                 string lsBloques = lItem.Conexion.ToString().Replace("BLOQUE", "B").Replace("HILO", "H").Replace("SENTENCIA", "S");
-                int liRepeticones = ((lItem.Hilos_Fin - lItem.Hilos_Inicio) + 1) / lItem.Hilos_Step;
+
+                int liCantidad = 0 + (lItem.Conexion.HasFlag(Bloque.TipoConexion.BLOQUE) ? 1 : 0) + (lItem.Conexion.HasFlag(Bloque.TipoConexion.HILO) ? 1 : 0) + (lItem.Conexion.HasFlag(Bloque.TipoConexion.SENTENCIA) ? 1 : 0);
+                int liRepeticones = (((lItem.Hilos_Fin - lItem.Hilos_Inicio) + 1) / lItem.Hilos_Step) * liCantidad;
 
                 addBloque(aListView, lItem.Nombre, liSQLs, lsHilos, lsBloques, liRepeticones);
             }

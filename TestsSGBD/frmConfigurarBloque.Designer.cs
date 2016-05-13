@@ -303,6 +303,7 @@
             this.btnAsistente.TabIndex = 20;
             this.btnAsistente.Text = "Asistente";
             this.btnAsistente.UseVisualStyleBackColor = false;
+            this.btnAsistente.Visible = false;
             this.btnAsistente.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
             this.btnAsistente.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
             // 

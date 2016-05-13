@@ -7,7 +7,7 @@ using System.Data;
 
 namespace TestsSGBD.Clases
 {
-    public class EjecutarTest : IDisposable
+    public class EjecucionTest : IDisposable
     {
         #region Propiedades
         private bool disposed = false;
@@ -39,24 +39,12 @@ namespace TestsSGBD.Clases
             get { return _EnProceso; }
         }
 
-        CancellationTokenSource _TokenSource;
+        private CancellationTokenSource _TokenSource;
         #endregion
 
         #region Constructores, comparadores, clone
         #region Constructores
-        public EjecutarTest()
-        {
-            this._Conectores = new List<Conector>();
-            this._Test = new Test();
-            this._Resultados = new List<ResultadoTest>();
-        }
-        public EjecutarTest(EjecutarTest aItem)
-        {
-            this._Conectores = aItem._Conectores;
-            this._Test = aItem._Test;
-            this._Resultados = aItem._Resultados;
-        }
-        public EjecutarTest(List<Conector> aConectores, Test aTest)
+        public EjecucionTest(List<Conector> aConectores, Test aTest)
         {
             this._Conectores = aConectores;
             this._Test = aTest;
@@ -84,7 +72,7 @@ namespace TestsSGBD.Clases
             }
         }
 
-        ~EjecutarTest()
+        ~EjecucionTest()
         {
             Dispose(false);
         }

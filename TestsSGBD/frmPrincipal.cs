@@ -17,7 +17,7 @@ namespace TestsSGBD
         private Conectores _Conectores;
         private Tests _Tests;
 
-        EjecutarTest _EjecutarTest;
+        EjecucionTest _EjecutarTest;
         #endregion
 
         public frmPrincipal()
@@ -490,8 +490,10 @@ namespace TestsSGBD
             lTest.RutaXML = Config.RutaConfiguraciones + @"\Primer test.XML";
             lTest.LoadXML(lTest.RutaXML);
             
-            this._EjecutarTest = new EjecutarTest(lConectores.Conector, lTest);
+            this._EjecutarTest = new EjecucionTest(lConectores.Conector, lTest);
             this._EjecutarTest.Ejecutar();
+
+
         }
 
         private void btnComprobar_Click(object sender, EventArgs e)

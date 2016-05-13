@@ -180,13 +180,12 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Nombre";
-            this.columnHeader1.Width = 200;
+            this.columnHeader1.Width = 180;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "SQLs";
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader2.Width = 40;
             // 
             // columnHeader3
             // 
@@ -288,13 +287,12 @@
             // columnHeader6
             // 
             this.columnHeader6.Text = "Nombre";
-            this.columnHeader6.Width = 200;
+            this.columnHeader6.Width = 180;
             // 
             // columnHeader10
             // 
             this.columnHeader10.Text = "SQLs";
             this.columnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader10.Width = 40;
             // 
             // columnHeader11
             // 
@@ -437,13 +435,12 @@
             // columnHeader7
             // 
             this.columnHeader7.Text = "Nombre";
-            this.columnHeader7.Width = 200;
+            this.columnHeader7.Width = 180;
             // 
             // columnHeader13
             // 
             this.columnHeader13.Text = "SQLs";
             this.columnHeader13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader13.Width = 40;
             // 
             // columnHeader8
             // 
@@ -504,13 +501,12 @@
             // columnHeader16
             // 
             this.columnHeader16.Text = "Nombre";
-            this.columnHeader16.Width = 200;
+            this.columnHeader16.Width = 180;
             // 
             // columnHeader17
             // 
             this.columnHeader17.Text = "SQLs";
             this.columnHeader17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader17.Width = 40;
             // 
             // columnHeader18
             // 
