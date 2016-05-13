@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace TestsSGBD.Clases
 {
@@ -48,16 +49,19 @@ namespace TestsSGBD.Clases
         }
 
         private Conector _Conector;
+        private CancellationToken _CT;
         #endregion
 
         #region Constructores
-        public TareaSentencias(List<Sentencia> aSentencias, ResultadoConexion.TipoConexion aTipo, DatosBase aDatos, Conector aConector)
+        public TareaSentencias(List<Sentencia> aSentencias, ResultadoConexion.TipoConexion aTipo, DatosBase aDatos, Conector aConector, CancellationToken aCT)
         {
+            this._CT = aCT;
             this._Sentencias = aSentencias;
             this._Tipo = aTipo;
             this._Datos = aDatos;
             this._Conector = aConector;
-
+            // Registrar la llamada a Dispose si alguien activa el token de cancelar.            
+            // this._CT.Register(() => { this.Dispose(); });
         }
         #endregion
 
@@ -105,6 +109,13 @@ namespace TestsSGBD.Clases
             {
                 try
                 {
+                    if (this._CT.IsCancellationRequested)
+                    {
+                        // Alguien ha cancelado la ejecucion salir
+                        this.Dispose();
+                        return;
+                    }
+
                     string lTipo = lSentencia.SQL.Substring(0, 6);
                     lTipo = lTipo.ToLower();
                     if (lTipo == "insert")

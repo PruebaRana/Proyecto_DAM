@@ -7,9 +7,11 @@ using System.Data;
 
 namespace TestsSGBD.Clases
 {
-    public class EjecutarTest
+    public class EjecutarTest : IDisposable
     {
         #region Propiedades
+        private bool disposed = false;
+
         private List<Conector> _Conectores;
         public List<Conector> Conectores
         {
@@ -30,6 +32,14 @@ namespace TestsSGBD.Clases
             get { return _Resultados; }
             set { _Resultados = value; }
         }
+
+        private bool _EnProceso;
+        public bool EnProceso
+        {
+            get { return _EnProceso; }
+        }
+
+        CancellationTokenSource _TokenSource;
         #endregion
 
         #region Constructores, comparadores, clone
@@ -53,143 +63,209 @@ namespace TestsSGBD.Clases
             this._Resultados = new List<ResultadoTest>();
         }
         #endregion
+
+        #region Dispose
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // dispose-only, i.e. non-finalizable logic
+                    this._Conectores.Clear();
+                    this._Conectores = null;
+                    this._Test.Dispose();
+                    this._Test = null;
+                    this._Resultados.Clear();
+                    this._Resultados = null;
+                }
+                // shared cleanup logic
+                disposed = true;
+            }
+        }
+
+        ~EjecutarTest()
+        {
+            Dispose(false);
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
         #endregion
 
         public void Ejecutar()
         {
-            foreach (Conector lConector in this._Conectores)
-            {
-                ResultadoTest lNuevoResultadoTest = new ResultadoTest();
-                lNuevoResultadoTest.Conector = lConector;
-                lNuevoResultadoTest.Fecha = DateTime.Now;
-                lNuevoResultadoTest.Nombre = "Resultado_" + this._Test.Nombre + "_" + lNuevoResultadoTest.Fecha.ToString("yyyyMMdd_HHmmss");
+            this._TokenSource = new CancellationTokenSource();
+            Task lTaskTest = new Task(ProcesarTest);
+            lTaskTest.Start();
 
-                // Comenzamos por la seccion de Creacion.
-                foreach (Bloque lBloqueCreacion in this._Test.Creacion.Bloque)
-                {
-                    foreach (Sentencia lSentencia in lBloqueCreacion.Sentencias)
-                    {
+            // Registrar la llamada a Dispose si alguien activa el token de cancelar.            
+            //this._CT.Register(() => { this.Dispose(); });
+        }
+        public void CancelarEjecucion()
+        {
+            this._TokenSource.Cancel();
 
-                    }
-                }
-
-                // Insercion
-                lNuevoResultadoTest.Insercion = new ResultadoSeccion();
-                foreach (Bloque lBloque in this._Test.Insercion.Bloque)
-                {
-                    //
-                    ResultadoBloque lResultadoBloque = new ResultadoBloque();
-                    lResultadoBloque.Nombre = lBloque.Nombre;
-                    lResultadoBloque.NumeroSentencias = lBloque.Sentencias.Count;
-
-                    if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
-                    {
-                        ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                        lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.BLOQUE;
-                        LanzarBloque(lBloque, lResultadoConexion, lConector);
-                        lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                    }
-
-                    if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
-                    {
-                        ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                        lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.HILO;
-                        LanzarBloque(lBloque, lResultadoConexion, lConector);
-                        lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                    }
-
-                    if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
-                    {
-                        ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                        lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.SENTENCIA;
-                        LanzarBloque(lBloque, lResultadoConexion, lConector);
-                        lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                    }
-
-                    lNuevoResultadoTest.Insercion.Bloque.Add(lResultadoBloque);
-                }
-
-                // Consulta
-                lNuevoResultadoTest.Consulta = new ResultadoSeccion();
-                foreach (Bloque lBloque in this._Test.Consulta.Bloque)
-                {
-                    //
-                    ResultadoBloque lResultadoBloque = new ResultadoBloque();
-                    lResultadoBloque.Nombre = lBloque.Nombre;
-                    lResultadoBloque.NumeroSentencias = lBloque.Sentencias.Count;
-
-                    if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
-                    {
-                        ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                        lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.BLOQUE;
-                        LanzarBloque(lBloque, lResultadoConexion, lConector);
-                        lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                    }
-
-                    if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
-                    {
-                        ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                        lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.HILO;
-                        LanzarBloque(lBloque, lResultadoConexion, lConector);
-                        lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                    }
-
-                    if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
-                    {
-                        ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                        lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.SENTENCIA;
-                        LanzarBloque(lBloque, lResultadoConexion, lConector);
-                        lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                    }
-
-                    lNuevoResultadoTest.Consulta.Bloque.Add(lResultadoBloque);
-                }
-
-                // Borrado
-                lNuevoResultadoTest.Borrado = new ResultadoSeccion();
-                foreach (Bloque lBloque in this._Test.Borrado.Bloque)
-                {
-                    //
-                    ResultadoBloque lResultadoBloque = new ResultadoBloque();
-                    lResultadoBloque.Nombre = lBloque.Nombre;
-                    lResultadoBloque.NumeroSentencias = lBloque.Sentencias.Count;
-
-                    if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
-                    {
-                        ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                        lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.BLOQUE;
-                        LanzarBloque(lBloque, lResultadoConexion, lConector);
-                        lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                    }
-
-                    if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
-                    {
-                        ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                        lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.HILO;
-                        LanzarBloque(lBloque, lResultadoConexion, lConector);
-                        lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                    }
-
-                    if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
-                    {
-                        ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                        lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.SENTENCIA;
-                        LanzarBloque(lBloque, lResultadoConexion, lConector);
-                        lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                    }
-
-                    lNuevoResultadoTest.Borrado.Bloque.Add(lResultadoBloque);
-                }
-
-                lNuevoResultadoTest.SaveXML();
-                GC.GetTotalMemory(true);
-            }
         }
 
+        private void ProcesarTest()
+        {
+            try
+            {
+                this._EnProceso = true;
+                foreach (Conector lConector in this._Conectores)
+                {
+                    ResultadoTest lNuevoResultadoTest = new ResultadoTest();
+                    lNuevoResultadoTest.Conector = lConector;
+                    lNuevoResultadoTest.Fecha = DateTime.Now;
+                    lNuevoResultadoTest.Nombre = "Resultado_" + this._Test.Nombre + "_" + lNuevoResultadoTest.Fecha.ToString("yyyyMMdd_HHmmss");
+
+                    // Comenzamos por la seccion de Creacion.
+                    foreach (Bloque lBloqueCreacion in this._Test.Creacion.Bloque)
+                    {
+                        foreach (Sentencia lSentencia in lBloqueCreacion.Sentencias)
+                        {
+
+                        }
+                    }
+
+                    // Insercion
+                    lNuevoResultadoTest.Insercion = new ResultadoSeccion();
+                    foreach (Bloque lBloque in this._Test.Insercion.Bloque)
+                    {
+                        //
+                        ResultadoBloque lResultadoBloque = new ResultadoBloque();
+                        lResultadoBloque.Nombre = lBloque.Nombre;
+                        lResultadoBloque.NumeroSentencias = lBloque.Sentencias.Count;
+
+                        if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
+                        {
+                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.BLOQUE;
+                            LanzarBloque(lBloque, lResultadoConexion, lConector);
+                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                        }
+
+                        if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
+                        {
+                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.HILO;
+                            LanzarBloque(lBloque, lResultadoConexion, lConector);
+                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                        }
+
+                        if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
+                        {
+                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.SENTENCIA;
+                            LanzarBloque(lBloque, lResultadoConexion, lConector);
+                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                        }
+
+                        lNuevoResultadoTest.Insercion.Bloque.Add(lResultadoBloque);
+                    }
+
+                    // Consulta
+                    lNuevoResultadoTest.Consulta = new ResultadoSeccion();
+                    foreach (Bloque lBloque in this._Test.Consulta.Bloque)
+                    {
+                        //
+                        ResultadoBloque lResultadoBloque = new ResultadoBloque();
+                        lResultadoBloque.Nombre = lBloque.Nombre;
+                        lResultadoBloque.NumeroSentencias = lBloque.Sentencias.Count;
+
+                        if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
+                        {
+                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.BLOQUE;
+                            LanzarBloque(lBloque, lResultadoConexion, lConector);
+                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                        }
+
+                        if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
+                        {
+                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.HILO;
+                            LanzarBloque(lBloque, lResultadoConexion, lConector);
+                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                        }
+
+                        if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
+                        {
+                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.SENTENCIA;
+                            LanzarBloque(lBloque, lResultadoConexion, lConector);
+                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                        }
+
+                        lNuevoResultadoTest.Consulta.Bloque.Add(lResultadoBloque);
+                    }
+
+                    // Borrado
+                    lNuevoResultadoTest.Borrado = new ResultadoSeccion();
+                    foreach (Bloque lBloque in this._Test.Borrado.Bloque)
+                    {
+                        //
+                        ResultadoBloque lResultadoBloque = new ResultadoBloque();
+                        lResultadoBloque.Nombre = lBloque.Nombre;
+                        lResultadoBloque.NumeroSentencias = lBloque.Sentencias.Count;
+
+                        if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
+                        {
+                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.BLOQUE;
+                            LanzarBloque(lBloque, lResultadoConexion, lConector);
+                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                        }
+
+                        if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
+                        {
+                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.HILO;
+                            LanzarBloque(lBloque, lResultadoConexion, lConector);
+                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                        }
+
+                        if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
+                        {
+                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.SENTENCIA;
+                            LanzarBloque(lBloque, lResultadoConexion, lConector);
+                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                        }
+
+                        lNuevoResultadoTest.Borrado.Bloque.Add(lResultadoBloque);
+                    }
+
+                    lNuevoResultadoTest.SaveXML();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                string ll = ex.Message;
+
+            }
+            finally
+            {
+                GC.GetTotalMemory(true);
+                this._EnProceso = false;
+            }
+        }
         private void LanzarBloque(Bloque aBloque, ResultadoConexion aResultadoConexion, Conector aConector)
         {
             for (int i = aBloque.Hilos_Inicio; i <= aBloque.Hilos_Fin; i += aBloque.Hilos_Step)
             {
+                if (this._TokenSource.IsCancellationRequested)
+                {
+                    // Alguien ha cancelado la ejecucion salir
+                    this.Dispose();
+                    this._TokenSource.Token.ThrowIfCancellationRequested();
+                }
+
                 ResultadoHilo lResultadoHilo = new ResultadoHilo();
                 lResultadoHilo.Cantidad = i;
 
@@ -243,7 +319,7 @@ namespace TestsSGBD.Clases
                     lDB = DatosBaseFactory.CreateInstance(aConector);
                 }
                 //DatosBase lDB = DatosBaseFactory.CreateInstance(aConector);
-                lListaTareas[i] = new TareaSentencias(lSentencias[i], aTipo, lDB, aConector);
+                lListaTareas[i] = new TareaSentencias(lSentencias[i], aTipo, lDB, aConector, this._TokenSource.Token);
                 
                 Task lTarea = new Task(lListaTareas[i].LanzarConsultas);
                 lListaTareas[i].Task = lTarea;
@@ -270,7 +346,6 @@ namespace TestsSGBD.Clases
             aResultadoHilo.Errores = liNumeroErrores;
             GC.Collect();
             GC.GetTotalMemory(true);
-
         }
 
     }

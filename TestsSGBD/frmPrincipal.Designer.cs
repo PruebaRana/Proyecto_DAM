@@ -63,6 +63,9 @@
             this.pnlTests = new System.Windows.Forms.Panel();
             this.lblTests = new System.Windows.Forms.Label();
             this.sysTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.btnEjecutar = new System.Windows.Forms.Button();
+            this.btnComprobar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.PanelMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.pnlCentral.SuspendLayout();
@@ -196,9 +199,9 @@
             // 
             // pnlCentral
             // 
+            this.pnlCentral.Controls.Add(this.pnlTests);
             this.pnlCentral.Controls.Add(this.pnlConfiguracion);
             this.pnlCentral.Controls.Add(this.pnlInformes);
-            this.pnlCentral.Controls.Add(this.pnlTests);
             this.pnlCentral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCentral.Location = new System.Drawing.Point(150, 0);
             this.pnlCentral.Name = "pnlCentral";
@@ -454,6 +457,9 @@
             // 
             // pnlTests
             // 
+            this.pnlTests.Controls.Add(this.btnCancelar);
+            this.pnlTests.Controls.Add(this.btnComprobar);
+            this.pnlTests.Controls.Add(this.btnEjecutar);
             this.pnlTests.Controls.Add(this.lblTests);
             this.pnlTests.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTests.Location = new System.Drawing.Point(0, 0);
@@ -484,6 +490,42 @@
             this.sysTrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("sysTrayIcon.Icon")));
             this.sysTrayIcon.Text = "Test SGBD";
             this.sysTrayIcon.Click += new System.EventHandler(this.sysTrayIcon_Click);
+            // 
+            // btnEjecutar
+            // 
+            this.btnEjecutar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEjecutar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEjecutar.Location = new System.Drawing.Point(230, 144);
+            this.btnEjecutar.Name = "btnEjecutar";
+            this.btnEjecutar.Size = new System.Drawing.Size(75, 23);
+            this.btnEjecutar.TabIndex = 13;
+            this.btnEjecutar.Text = "Ejecutar";
+            this.btnEjecutar.UseVisualStyleBackColor = true;
+            this.btnEjecutar.Click += new System.EventHandler(this.btnEjecutar_Click);
+            // 
+            // btnComprobar
+            // 
+            this.btnComprobar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnComprobar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnComprobar.Location = new System.Drawing.Point(230, 173);
+            this.btnComprobar.Name = "btnComprobar";
+            this.btnComprobar.Size = new System.Drawing.Size(75, 23);
+            this.btnComprobar.TabIndex = 14;
+            this.btnComprobar.Text = "Comprobar";
+            this.btnComprobar.UseVisualStyleBackColor = true;
+            this.btnComprobar.Click += new System.EventHandler(this.btnComprobar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.Location = new System.Drawing.Point(342, 144);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 15;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // frmPrincipal
             // 
@@ -551,6 +593,9 @@
         private System.Windows.Forms.ListView lvTests;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnComprobar;
+        private System.Windows.Forms.Button btnEjecutar;
     }
 }
 

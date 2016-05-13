@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using TestsSGBD.Clases;
 using TestsSGBD.MisCS;
+using System.Threading;
 
 namespace TestsSGBD
 {
@@ -15,6 +16,8 @@ namespace TestsSGBD
 
         private Conectores _Conectores;
         private Tests _Tests;
+
+        EjecutarTest _EjecutarTest;
         #endregion
 
         public frmPrincipal()
@@ -28,26 +31,11 @@ namespace TestsSGBD
             sysTrayIcon.Visible = false;
             this._CurrentState = this.WindowState;
 
-            //lvConectores_Resize(sender, e);
-            //lvTests_Resize(sender, e);
-
             // Crear las carpetas si no existen
             if (!Directory.Exists(Config.RutaConfiguraciones))
             {
                 Utiles.CheckFolder(Config.RutaConfiguraciones);
             }
-            
-            // Pruebas
-            Conectores lConectores = new Conectores(Config.RutaConfiguraciones + @"\Conectores.xml");
-            lConectores.LoadXML();
-
-            Test lTest = new Test();
-            lTest.RutaXML = Config.RutaConfiguraciones + @"\Primer test.XML";
-            lTest.LoadXML(lTest.RutaXML);
-
-            EjecutarTest lEjecutarTest = new EjecutarTest(lConectores.Conector, lTest);
-            lEjecutarTest.Ejecutar();
-
         }
 
         #region Metodos para el control de la ventana
@@ -488,6 +476,53 @@ namespace TestsSGBD
             }
         }
         #endregion
+
+
+
+
+        private void btnEjecutar_Click(object sender, EventArgs e)
+        {
+            // Pruebas
+            Conectores lConectores = new Conectores(Config.RutaConfiguraciones + @"\Conectores.xml");
+            lConectores.LoadXML();
+
+            Test lTest = new Test();
+            lTest.RutaXML = Config.RutaConfiguraciones + @"\Primer test.XML";
+            lTest.LoadXML(lTest.RutaXML);
+            
+            this._EjecutarTest = new EjecutarTest(lConectores.Conector, lTest);
+            this._EjecutarTest.Ejecutar();
+        }
+
+        private void btnComprobar_Click(object sender, EventArgs e)
+        {
+            string lsMsg="";
+            //bool lsw = (this._TokenSource != null && this._TokenSource.IsCancellationRequested) ? true : false;
+            if (this._EjecutarTest != null && this._EjecutarTest.EnProceso)
+            {
+                lsMsg = "El test esta en ejecucion.";
+            }
+            else
+            {
+                lsMsg = "No se esta ejecutando.";
+            }
+
+            MessageBox.Show(lsMsg, "", MessageBoxButtons.OK);
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            if (this._EjecutarTest != null)
+            {
+                if (this._EjecutarTest.EnProceso)
+                {
+                    this._EjecutarTest.CancelarEjecucion();
+                    this._EjecutarTest.Dispose();
+                    this._EjecutarTest = null;
+                }
+
+            }
+        }
 
     }
 }
