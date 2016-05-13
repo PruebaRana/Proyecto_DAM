@@ -75,5 +75,58 @@ namespace TestsSGBD.MisCS
 
             return lsRespuesta;
         }
+
+        public static string PintaMemoria(long alMem)
+        {
+            string lsRes = "";
+            double lTemp = (double)alMem;
+
+            if (lTemp > 1024)
+            {
+                lTemp = lTemp / 1024;
+                if (lTemp > 1024)
+                {
+                    lTemp = lTemp / 1024;
+                    if (lTemp > 1024)
+                    {
+                        lTemp = lTemp / 1024;
+                        if (lTemp > 1024)
+                        {
+                            lsRes = lTemp.ToString("#,###.##") + "Tb.";
+                        }
+                        else
+                        {
+                            lsRes = lTemp.ToString("#,###.##") + "Gb.";
+                        }
+                    }
+                    else
+                    {
+                        lsRes = lTemp.ToString("#,###.##") + "Mb.";
+                    }
+                }
+                else
+                {
+                    lsRes = lTemp.ToString("#,##0.##") + "Kb.";
+                }
+            }
+            else
+            {
+                lsRes = lTemp.ToString("#,##0") + "bytes.";
+            }
+
+            return lsRes;
+        }
+
+    }
+
+    public class ComboboxItem
+    {
+        public string Text { get; set; }
+        public object Value { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 }

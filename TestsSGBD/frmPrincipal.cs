@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using TestsSGBD.Clases;
 using TestsSGBD.MisCS;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace TestsSGBD
 {
@@ -118,10 +119,11 @@ namespace TestsSGBD
             {
                 case "btnConfiguracion":
                     pnlConfiguracion.Visible = true;
-                    CargarConectoresOTest();
+                    CargarSeccionConfiguracion();
                     break;
                 case "btnTests":
                     pnlTests.Visible = true;
+                    CargarSeccionTest();
                     break;
                 case "btnInformes":
                     pnlInformes.Visible = true;
@@ -131,9 +133,9 @@ namespace TestsSGBD
 
         private void tabConfiguracion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarConectoresOTest();
+            CargarSeccionConfiguracion();
         }
-        private void CargarConectoresOTest()
+        private void CargarSeccionConfiguracion()
         {
             switch (tabConfiguracion.SelectedTab.Name)
             {
@@ -147,9 +149,14 @@ namespace TestsSGBD
                     break;
             }
         }
+        private void CargarSeccionTest()
+        {
+            lvConectoresTest_Resize(null, null);
+            CargarDatosSeccionTests();
+        }
         #endregion
 
-        #region Configuracion Conectores
+        #region Seccion Configuracion Conectores
         private void lvConectores_Resize(object sender, EventArgs e)
         {
             if (lvConectores.Width.ToString() == lvConectores.Tag.ToString())
@@ -301,7 +308,7 @@ namespace TestsSGBD
         }
         #endregion
 
-        #region Configuracion Tests
+        #region Seccion Configuracion Test
         private void lvTests_Resize(object sender, EventArgs e)
         {
             if (lvTests.Width.ToString() == lvTests.Tag.ToString())
@@ -479,37 +486,88 @@ namespace TestsSGBD
 
 
 
+        #region Seccion Tests
+        private void lvConectoresTest_Resize(object sender, EventArgs e)
+        {
+            if (lvConectoresTest.Width.ToString() == lvConectoresTest.Tag.ToString())
+            {
+                return;
+            }
+
+            int liAncho = lvConectoresTest.Width - 5;
+            if (liAncho >= 501)
+            {
+                lvConectoresTest.Tag = lvConectoresTest.Width;
+                liAncho -= (lvConectoresTest.Columns[0].Width + lvConectoresTest.Columns[1].Width);
+                lvConectoresTest.Columns[2].Width = liAncho;
+            }
+        }
+
+        private void CargarDatosSeccionTests()
+        {
+            lvConectoresTest.Items.Clear();
+            this._Conectores = new Conectores(Config.RutaConfiguraciones + @"\Conectores.xml");
+            this._Conectores.LoadXML();
+
+            foreach (Conector lItem in this._Conectores.Conector)
+            {
+                addConectoresTest(lItem.Nombre, lItem.Tipo, lItem.CadenaConexion);
+            }
+
+            cbTest.Items.Clear();
+            this._Tests = new Tests(Config.RutaConfiguraciones + @"\Tests.xml");
+            this._Tests.LoadXML();
+
+            foreach (TestInfo lItem in this._Tests.TestInfo)
+            {
+                cbTest.Items.Add( new ComboboxItem() { Text = lItem.Nombre, Value = lItem.File} );
+            }
+                        
+        }
+        private void addConectoresTest(string asNombre, string asTipo, string asCadena)
+        {
+            ListViewItem llvItem = new ListViewItem(asNombre);
+            llvItem.SubItems.Add(asTipo);
+            llvItem.SubItems.Add(asCadena);
+            lvConectoresTest.Items.Add(llvItem);
+        }
+
 
         private void btnEjecutar_Click(object sender, EventArgs e)
         {
-            // Pruebas
-            Conectores lConectores = new Conectores(Config.RutaConfiguraciones + @"\Conectores.xml");
-            lConectores.LoadXML();
-
+            List<Conector> lConectores = new List<Conector>();
             Test lTest = new Test();
-            lTest.RutaXML = Config.RutaConfiguraciones + @"\Primer test.XML";
+
+            // Comprobar que hay conectores y test seleccionados
+            if (lvConectoresTest.SelectedItems.Count > 0)
+            {
+                string lsNombre = lvConectoresTest.SelectedItems[0].Text;
+
+                //Obtene la tarea en cuestion de la lista
+                Conector lConector = obtenConector(lsNombre);
+                lConectores.Add( lConector );
+            }
+            if (lConectores.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar algun conector para realizar el test");
+                return;
+            }
+
+            if (cbTest.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar algun test que realizar");
+                return;
+            }
+
+            //lTest.RutaXML = Config.RutaConfiguraciones + @"\Primer test.XML";
+            lTest.RutaXML = ((ComboboxItem)cbTest.SelectedItem).Value.ToString();
             lTest.LoadXML(lTest.RutaXML);
-            
-            this._EjecutarTest = new EjecucionTest(lConectores.Conector, lTest);
+
+            this._EjecutarTest = new EjecucionTest(lConectores, lTest);
             this._EjecutarTest.Ejecutar();
 
-
-        }
-
-        private void btnComprobar_Click(object sender, EventArgs e)
-        {
-            string lsMsg="";
-            //bool lsw = (this._TokenSource != null && this._TokenSource.IsCancellationRequested) ? true : false;
-            if (this._EjecutarTest != null && this._EjecutarTest.EnProceso)
-            {
-                lsMsg = "El test esta en ejecucion.";
-            }
-            else
-            {
-                lsMsg = "No se esta ejecutando.";
-            }
-
-            MessageBox.Show(lsMsg, "", MessageBoxButtons.OK);
+            btnEjecutar.Enabled = false;
+            btnCancelar.Enabled = true;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -522,8 +580,45 @@ namespace TestsSGBD
                     this._EjecutarTest.Dispose();
                     this._EjecutarTest = null;
                 }
-
+                btnCancelar.Enabled = false;
+                btnEjecutar.Enabled = true;
             }
+        }
+        #endregion
+
+
+
+
+        private void timerRefresco_Tick(object sender, EventArgs e)
+        {
+            sbLabelMemoria.Text = Utiles.PintaMemoria(GC.GetTotalMemory(false));
+
+            if (this._EjecutarTest != null && this._EjecutarTest.EnProceso)
+            {
+                sbLabelEstadoTest.Text = "Se esta ejecutando un test.";
+            }
+            else
+            {
+                sbLabelEstadoTest.Text = "";
+            }
+            /*
+            if (this._CantidadTotal == 0)
+            {
+                sbLabel.Text = string.Empty;
+                sbProgressBar.Value = 0;
+                return;
+            }
+            string lsTxt = "Procesados " + this._CantidadProcesada + " de " + this._CantidadTotal;
+            sbLabel.Text = lsTxt;
+
+            sbProgressBar.Maximum = this._CantidadTotal;
+            int lI = this._CantidadProcesada;
+            if (lI > sbProgressBar.Maximum)
+            {
+                lI = sbProgressBar.Maximum;
+            }
+            sbProgressBar.Value = lI;
+            */
         }
 
     }
