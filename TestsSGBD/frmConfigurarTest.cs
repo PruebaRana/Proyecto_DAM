@@ -200,7 +200,7 @@ namespace TestsSGBD
                 string lsBloques = lItem.Conexion.ToString().Replace("BLOQUE", "B").Replace("HILO", "H").Replace("SENTENCIA", "S");
 
                 int liCantidad = 0 + (lItem.Conexion.HasFlag(Bloque.TipoConexion.BLOQUE) ? 1 : 0) + (lItem.Conexion.HasFlag(Bloque.TipoConexion.HILO) ? 1 : 0) + (lItem.Conexion.HasFlag(Bloque.TipoConexion.SENTENCIA) ? 1 : 0);
-                int liRepeticones = (((lItem.Hilos_Fin - lItem.Hilos_Inicio) + 1) / lItem.Hilos_Step) * liCantidad;
+                int liRepeticones = ( ( (lItem.Hilos_Fin - lItem.Hilos_Inicio) / lItem.Hilos_Step) + 1) * liCantidad;
 
                 addBloque(aListView, lItem.Nombre, liSQLs, lsHilos, lsBloques, liRepeticones);
             }

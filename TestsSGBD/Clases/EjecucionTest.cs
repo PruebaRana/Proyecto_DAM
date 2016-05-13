@@ -4,11 +4,18 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Data;
+using TestsSGBD.MisCS;
 
 namespace TestsSGBD.Clases
 {
     public class EjecucionTest : IDisposable
     {
+        #region Eventos y Delegados
+        public delegate void MyEventHandler(object m, MyEventArgs e);
+        // Evento para mandar mensajes hacia arriba            
+        public event MyEventHandler NotificarAccion;
+        #endregion
+
         #region Propiedades
         private bool disposed = false;
 
@@ -40,6 +47,16 @@ namespace TestsSGBD.Clases
         }
 
         private CancellationTokenSource _TokenSource;
+        private int _PasosTotales;
+        public int PasosTotales
+        {
+            get { return _PasosTotales; }
+        }
+        private int _PasosActual;
+        public int PasosActual
+        {
+            get { return _PasosActual; }
+        }
         #endregion
 
         #region Constructores, comparadores, clone
@@ -49,6 +66,36 @@ namespace TestsSGBD.Clases
             this._Conectores = aConectores;
             this._Test = aTest;
             this._Resultados = new List<ResultadoTest>();
+
+            this._PasosTotales = this.ContarRepeticionesTest() * this._Conectores.Count;
+            this._PasosActual = 0;
+        }
+
+        private int ContarRepeticionesTest()
+        {
+            int liCantidad = 0;
+            liCantidad += ContarRepeticionesListaBloques(this._Test.Creacion);
+            liCantidad += ContarRepeticionesListaBloques(this._Test.Insercion);
+            liCantidad += ContarRepeticionesListaBloques(this._Test.Consulta);
+            liCantidad += ContarRepeticionesListaBloques(this._Test.Borrado);
+
+            return liCantidad;
+        }
+        private int ContarRepeticionesListaBloques(Seccion aLista)
+        {
+            int liCantidad = 0;
+            foreach (Bloque lItem in aLista.Bloque)
+            {
+                liCantidad += ContarRepeticionesBloque(lItem);
+            }
+            return liCantidad;
+        }
+        private int ContarRepeticionesBloque(Bloque aBloque)
+        {
+            int liCantidad = 0 + (aBloque.Conexion.HasFlag(Bloque.TipoConexion.BLOQUE) ? 1 : 0) + (aBloque.Conexion.HasFlag(Bloque.TipoConexion.HILO) ? 1 : 0) + (aBloque.Conexion.HasFlag(Bloque.TipoConexion.SENTENCIA) ? 1 : 0);
+            int liRepeticones = ( ( (aBloque.Hilos_Fin - aBloque.Hilos_Inicio) / aBloque.Hilos_Step) + 1 ) * liCantidad;
+
+            return liRepeticones;
         }
         #endregion
 
@@ -112,6 +159,7 @@ namespace TestsSGBD.Clases
                     lNuevoResultadoTest.Nombre = "Resultado_" + this._Test.Nombre + "_" + lNuevoResultadoTest.Fecha.ToString("yyyyMMdd_HHmmss");
 
                     // Comenzamos por la seccion de Creacion.
+                    this.MandaAccion("Seccion Creacion");
                     foreach (Bloque lBloqueCreacion in this._Test.Creacion.Bloque)
                     {
                         foreach (Sentencia lSentencia in lBloqueCreacion.Sentencias)
@@ -239,6 +287,7 @@ namespace TestsSGBD.Clases
             }
             finally
             {
+                this.MandaAccion("Finaliza el test");
                 GC.GetTotalMemory(true);
                 this._EnProceso = false;
             }
@@ -253,6 +302,9 @@ namespace TestsSGBD.Clases
                     this.Dispose();
                     this._TokenSource.Token.ThrowIfCancellationRequested();
                 }
+
+                LanzarInformacionComienzoBloque("Bloque: " + aBloque.Nombre + ", hilos: " + i + " por " + aResultadoConexion.Tipo);
+                Thread.Sleep(200);
 
                 ResultadoHilo lResultadoHilo = new ResultadoHilo();
                 lResultadoHilo.Cantidad = i;
@@ -336,5 +388,17 @@ namespace TestsSGBD.Clases
             GC.GetTotalMemory(true);
         }
 
+        private void LanzarInformacionComienzoBloque(string asTexto)
+        {
+            this._PasosActual++;
+            MandaAccion(asTexto);
+        }
+        private void MandaAccion(string asTexto)
+        {
+            if (this.NotificarAccion != null)
+            {
+                this.NotificarAccion(this, new MyEventArgs(asTexto));
+            }
+        }
     }
 }

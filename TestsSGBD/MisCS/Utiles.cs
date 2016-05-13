@@ -119,6 +119,18 @@ namespace TestsSGBD.MisCS
 
     }
 
+    // Mi clase EventArgs que se usa desde los delegados
+    public class MyEventArgs : EventArgs
+    {
+        private string _Datos;
+        public MyEventArgs(string aDatos)
+        {
+            _Datos = aDatos;
+        }
+
+        public string Data { get { return _Datos; } }
+    }
+
     public class ComboboxItem
     {
         public string Text { get; set; }

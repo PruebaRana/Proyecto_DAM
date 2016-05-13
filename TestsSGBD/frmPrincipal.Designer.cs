@@ -74,6 +74,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbTest = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.sbInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.PanelMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.pnlCentral.SuspendLayout();
@@ -194,6 +195,7 @@
             this.statusStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sbLabelMemoria,
+            this.sbInfo,
             this.sbLabelEstadoTest});
             this.statusStrip1.Location = new System.Drawing.Point(150, 312);
             this.statusStrip1.Name = "statusStrip1";
@@ -205,7 +207,6 @@
             // 
             this.sbLabelMemoria.AutoSize = false;
             this.sbLabelMemoria.BackColor = System.Drawing.SystemColors.Control;
-            this.sbLabelMemoria.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.sbLabelMemoria.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.sbLabelMemoria.Name = "sbLabelMemoria";
             this.sbLabelMemoria.Size = new System.Drawing.Size(80, 17);
@@ -216,7 +217,8 @@
             this.sbLabelEstadoTest.AutoSize = false;
             this.sbLabelEstadoTest.BackColor = System.Drawing.SystemColors.Control;
             this.sbLabelEstadoTest.Name = "sbLabelEstadoTest";
-            this.sbLabelEstadoTest.Size = new System.Drawing.Size(150, 17);
+            this.sbLabelEstadoTest.Size = new System.Drawing.Size(300, 17);
+            this.sbLabelEstadoTest.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlCentral
             // 
@@ -612,6 +614,14 @@
             this.label2.TabIndex = 19;
             this.label2.Text = "Seleccione el test que desea ejecutar";
             // 
+            // sbInfo
+            // 
+            this.sbInfo.AutoSize = false;
+            this.sbInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.sbInfo.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.sbInfo.Name = "sbInfo";
+            this.sbInfo.Size = new System.Drawing.Size(60, 17);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -690,6 +700,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ToolStripStatusLabel sbInfo;
     }
 }
 

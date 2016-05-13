@@ -19,6 +19,7 @@ namespace TestsSGBD
         private Tests _Tests;
 
         EjecucionTest _EjecutarTest;
+        private string _sUltimoMensaje = "";
         #endregion
 
         public frmPrincipal()
@@ -522,7 +523,17 @@ namespace TestsSGBD
             {
                 cbTest.Items.Add( new ComboboxItem() { Text = lItem.Nombre, Value = lItem.File} );
             }
-                        
+
+            if (this._EjecutarTest != null && this._EjecutarTest.EnProceso)
+            {
+                btnEjecutar.Enabled = false;
+                btnCancelar.Enabled = true;
+            }
+            else
+            {
+                btnCancelar.Enabled = false;
+                btnEjecutar.Enabled = true;
+            }
         }
         private void addConectoresTest(string asNombre, string asTipo, string asCadena)
         {
@@ -565,6 +576,7 @@ namespace TestsSGBD
 
             this._EjecutarTest = new EjecucionTest(lConectores, lTest);
             this._EjecutarTest.Ejecutar();
+            this._EjecutarTest.NotificarAccion += new EjecucionTest.MyEventHandler(OnNotificarAccion);
 
             btnEjecutar.Enabled = false;
             btnCancelar.Enabled = true;
@@ -577,7 +589,9 @@ namespace TestsSGBD
                 if (this._EjecutarTest.EnProceso)
                 {
                     this._EjecutarTest.CancelarEjecucion();
+                    this._EjecutarTest.NotificarAccion -= new EjecucionTest.MyEventHandler(OnNotificarAccion);
                     this._EjecutarTest.Dispose();
+
                     this._EjecutarTest = null;
                 }
                 btnCancelar.Enabled = false;
@@ -595,11 +609,17 @@ namespace TestsSGBD
 
             if (this._EjecutarTest != null && this._EjecutarTest.EnProceso)
             {
-                sbLabelEstadoTest.Text = "Se esta ejecutando un test.";
+                //sbLabelEstadoTest.Text = "Se esta ejecutando un test.";
+                sbLabelEstadoTest.Text = _sUltimoMensaje;
+                sbInfo.Text = this._EjecutarTest.PasosActual + "/" + this._EjecutarTest.PasosTotales;
             }
             else
             {
                 sbLabelEstadoTest.Text = "";
+                sbInfo.Text = "";
+ 
+                btnCancelar.Enabled = false;
+                btnEjecutar.Enabled = true;
             }
             /*
             if (this._CantidadTotal == 0)
@@ -621,5 +641,12 @@ namespace TestsSGBD
             */
         }
 
+        #region Metodos que se llamaran desde el evento del objeto EjecucionTest
+        private void OnNotificarAccion(object sender, MyEventArgs e)
+        {
+            // Lanzar el evento de momento
+            _sUltimoMensaje = e.Data;
+        }
+        #endregion
     }
 }
