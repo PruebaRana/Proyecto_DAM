@@ -39,9 +39,17 @@
             this.lblSep3 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.sbLabelMemoria = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sbInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.sbLabelEstadoTest = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlCentral = new System.Windows.Forms.Panel();
             this.pnlTests = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbTest = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lvConectoresTest = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnEjecutar = new System.Windows.Forms.Button();
             this.lblTests = new System.Windows.Forms.Label();
@@ -67,14 +75,6 @@
             this.lblInformes = new System.Windows.Forms.Label();
             this.sysTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.timerRefresco = new System.Windows.Forms.Timer(this.components);
-            this.lvConectoresTest = new System.Windows.Forms.ListView();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbTest = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.sbInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.PanelMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.pnlCentral.SuspendLayout();
@@ -212,6 +212,14 @@
             this.sbLabelMemoria.Size = new System.Drawing.Size(80, 17);
             this.sbLabelMemoria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // sbInfo
+            // 
+            this.sbInfo.AutoSize = false;
+            this.sbInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.sbInfo.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.sbInfo.Name = "sbInfo";
+            this.sbInfo.Size = new System.Drawing.Size(60, 17);
+            // 
             // sbLabelEstadoTest
             // 
             this.sbLabelEstadoTest.AutoSize = false;
@@ -245,6 +253,72 @@
             this.pnlTests.Name = "pnlTests";
             this.pnlTests.Size = new System.Drawing.Size(534, 312);
             this.pnlTests.TabIndex = 14;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label2.Location = new System.Drawing.Point(13, 224);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(230, 19);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Seleccione el test que desea ejecutar";
+            // 
+            // cbTest
+            // 
+            this.cbTest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbTest.FormattingEnabled = true;
+            this.cbTest.Location = new System.Drawing.Point(12, 246);
+            this.cbTest.Name = "cbTest";
+            this.cbTest.Size = new System.Drawing.Size(506, 21);
+            this.cbTest.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label1.Location = new System.Drawing.Point(12, 89);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(377, 19);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Seleccione los conectores que desea usar para realizar el test";
+            // 
+            // lvConectoresTest
+            // 
+            this.lvConectoresTest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvConectoresTest.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.lvConectoresTest.FullRowSelect = true;
+            this.lvConectoresTest.GridLines = true;
+            this.lvConectoresTest.Location = new System.Drawing.Point(12, 112);
+            this.lvConectoresTest.Name = "lvConectoresTest";
+            this.lvConectoresTest.ShowGroups = false;
+            this.lvConectoresTest.Size = new System.Drawing.Size(506, 109);
+            this.lvConectoresTest.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvConectoresTest.TabIndex = 16;
+            this.lvConectoresTest.Tag = "501";
+            this.lvConectoresTest.UseCompatibleStateImageBehavior = false;
+            this.lvConectoresTest.View = System.Windows.Forms.View.Details;
+            this.lvConectoresTest.Resize += new System.EventHandler(this.lvConectoresTest_Resize);
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Nombre";
+            this.columnHeader6.Width = 200;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Tipo";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Cadena";
             // 
             // btnCancelar
             // 
@@ -547,80 +621,6 @@
             this.timerRefresco.Enabled = true;
             this.timerRefresco.Interval = 1000;
             this.timerRefresco.Tick += new System.EventHandler(this.timerRefresco_Tick);
-            // 
-            // lvConectoresTest
-            // 
-            this.lvConectoresTest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvConectoresTest.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8});
-            this.lvConectoresTest.FullRowSelect = true;
-            this.lvConectoresTest.GridLines = true;
-            this.lvConectoresTest.Location = new System.Drawing.Point(12, 112);
-            this.lvConectoresTest.Name = "lvConectoresTest";
-            this.lvConectoresTest.ShowGroups = false;
-            this.lvConectoresTest.Size = new System.Drawing.Size(506, 109);
-            this.lvConectoresTest.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lvConectoresTest.TabIndex = 16;
-            this.lvConectoresTest.Tag = "501";
-            this.lvConectoresTest.UseCompatibleStateImageBehavior = false;
-            this.lvConectoresTest.View = System.Windows.Forms.View.Details;
-            this.lvConectoresTest.Resize += new System.EventHandler(this.lvConectoresTest_Resize);
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Nombre";
-            this.columnHeader6.Width = 200;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Tipo";
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Cadena";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label1.Location = new System.Drawing.Point(12, 89);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(377, 19);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Seleccione los conectores que desea usar para realizar el test";
-            // 
-            // cbTest
-            // 
-            this.cbTest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbTest.FormattingEnabled = true;
-            this.cbTest.Location = new System.Drawing.Point(12, 246);
-            this.cbTest.Name = "cbTest";
-            this.cbTest.Size = new System.Drawing.Size(506, 21);
-            this.cbTest.TabIndex = 18;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label2.Location = new System.Drawing.Point(13, 224);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(230, 19);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Seleccione el test que desea ejecutar";
-            // 
-            // sbInfo
-            // 
-            this.sbInfo.AutoSize = false;
-            this.sbInfo.BackColor = System.Drawing.SystemColors.Control;
-            this.sbInfo.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
-            this.sbInfo.Name = "sbInfo";
-            this.sbInfo.Size = new System.Drawing.Size(60, 17);
             // 
             // frmPrincipal
             // 

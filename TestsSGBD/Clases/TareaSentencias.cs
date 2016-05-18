@@ -20,8 +20,8 @@ namespace TestsSGBD.Clases
             set { _Sentencias = value; }
         }
 
-        private ResultadoConexion.TipoConexion _Tipo;
-        public ResultadoConexion.TipoConexion Tipo
+        private ResultadoConexion.TipoApertura _Tipo;
+        public ResultadoConexion.TipoApertura Tipo
         {
             get { return _Tipo; }
             set { _Tipo = value; }
@@ -53,7 +53,7 @@ namespace TestsSGBD.Clases
         #endregion
 
         #region Constructores
-        public TareaSentencias(List<Sentencia> aSentencias, ResultadoConexion.TipoConexion aTipo, DatosBase aDatos, Conector aConector, CancellationToken aCT)
+        public TareaSentencias(List<Sentencia> aSentencias, ResultadoConexion.TipoApertura aTipo, DatosBase aDatos, Conector aConector, CancellationToken aCT)
         {
             this._CT = aCT;
             this._Sentencias = aSentencias;
@@ -153,7 +153,7 @@ namespace TestsSGBD.Clases
                     // Log.EscribeLog("Error [" + ex.Message + "]", "TareaSentencias.LanzarConsultas", Log.Tipo.ERROR);
                 }
                 
-                if ((this._Tipo & ResultadoConexion.TipoConexion.SENTENCIA) == ResultadoConexion.TipoConexion.SENTENCIA)
+                if ((this._Tipo & ResultadoConexion.TipoApertura.SENTENCIA) == ResultadoConexion.TipoApertura.SENTENCIA)
                 {
                     this._Datos.Close();
                     this._Datos = DatosBaseFactory.CreateInstance(this._Conector);

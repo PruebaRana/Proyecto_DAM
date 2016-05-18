@@ -8,7 +8,7 @@ namespace TestsSGBD.Clases
     [XmlRoot("ResultadoConexion", IsNullable = true, Namespace = @"https://pruebarana.dyndns-remote.com/CFGS/DAM")]
     public class ResultadoConexion : IDisposable, IEquatable<ResultadoConexion>
     {
-        public enum TipoConexion
+        public enum TipoApertura
         {
             BLOQUE = 1,
             HILO = 2,
@@ -17,9 +17,9 @@ namespace TestsSGBD.Clases
 
         #region Propiedades
         private bool disposed = false;
-        private TipoConexion _Tipo;
+        private TipoApertura _Tipo;
         [XmlAttribute("Tipo")]
-        public TipoConexion Tipo
+        public TipoApertura Tipo
         {
             get { return _Tipo; }
             set { _Tipo = value; }
@@ -38,7 +38,7 @@ namespace TestsSGBD.Clases
         #region Constructores
         public ResultadoConexion()
         {
-            this._Tipo = TipoConexion.BLOQUE;
+            this._Tipo = TipoApertura.BLOQUE;
             this._Hilos = new List<ResultadoHilo>();
         }
         public ResultadoConexion(ResultadoConexion aItem)
@@ -46,7 +46,7 @@ namespace TestsSGBD.Clases
             this._Tipo = aItem._Tipo;
             this._Hilos = aItem._Hilos;
         }
-        public ResultadoConexion(TipoConexion aTipo, List<ResultadoHilo> aHilos)
+        public ResultadoConexion(TipoApertura aTipo, List<ResultadoHilo> aHilos)
         {
             this._Tipo = aTipo;
             this._Hilos = aHilos;

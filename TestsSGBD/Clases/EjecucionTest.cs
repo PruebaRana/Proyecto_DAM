@@ -17,6 +17,11 @@ namespace TestsSGBD.Clases
         #endregion
 
         #region Propiedades
+        #region Patron Singleton
+        private static volatile EjecucionTest instance;
+        private static object syncRoot = new Object();
+        #endregion
+
         private bool disposed = false;
 
         private List<Conector> _Conectores;
@@ -61,7 +66,7 @@ namespace TestsSGBD.Clases
 
         #region Constructores, comparadores, clone
         #region Constructores
-        public EjecucionTest(List<Conector> aConectores, Test aTest)
+        private EjecucionTest(List<Conector> aConectores, Test aTest)
         {
             this._Conectores = aConectores;
             this._Test = aTest;
@@ -70,6 +75,23 @@ namespace TestsSGBD.Clases
             this._PasosTotales = this.ContarRepeticionesTest() * this._Conectores.Count;
             this._PasosActual = 0;
         }
+
+        //Metodo estático que devuelve una única instancia de "EjecucionTest" patron singleton
+        public static EjecucionTest GetInstance(List<Conector> aConectores, Test aTest)
+        {
+            if (instance == null)
+            {
+                lock (syncRoot)
+                {
+                    if (instance == null)
+                    {
+                        instance = new EjecucionTest(aConectores, aTest);
+                    }
+                }
+            }
+            return instance;
+        }
+
 
         private int ContarRepeticionesTest()
         {
@@ -131,8 +153,11 @@ namespace TestsSGBD.Clases
         #endregion
         #endregion
 
+        #region Ejecutar / Cancelar proceso
         public void Ejecutar()
         {
+            this._PasosActual = 0;
+
             this._TokenSource = new CancellationTokenSource();
             Task lTaskTest = new Task(ProcesarTest);
             lTaskTest.Start();
@@ -180,7 +205,7 @@ namespace TestsSGBD.Clases
                         if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
                         {
                             ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.BLOQUE;
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.BLOQUE;
                             LanzarBloque(lBloque, lResultadoConexion, lConector);
                             lResultadoBloque.Conexiones.Add(lResultadoConexion);
                         }
@@ -188,7 +213,7 @@ namespace TestsSGBD.Clases
                         if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
                         {
                             ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.HILO;
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.HILO;
                             LanzarBloque(lBloque, lResultadoConexion, lConector);
                             lResultadoBloque.Conexiones.Add(lResultadoConexion);
                         }
@@ -196,7 +221,7 @@ namespace TestsSGBD.Clases
                         if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
                         {
                             ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.SENTENCIA;
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.SENTENCIA;
                             LanzarBloque(lBloque, lResultadoConexion, lConector);
                             lResultadoBloque.Conexiones.Add(lResultadoConexion);
                         }
@@ -216,7 +241,7 @@ namespace TestsSGBD.Clases
                         if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
                         {
                             ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.BLOQUE;
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.BLOQUE;
                             LanzarBloque(lBloque, lResultadoConexion, lConector);
                             lResultadoBloque.Conexiones.Add(lResultadoConexion);
                         }
@@ -224,7 +249,7 @@ namespace TestsSGBD.Clases
                         if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
                         {
                             ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.HILO;
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.HILO;
                             LanzarBloque(lBloque, lResultadoConexion, lConector);
                             lResultadoBloque.Conexiones.Add(lResultadoConexion);
                         }
@@ -232,7 +257,7 @@ namespace TestsSGBD.Clases
                         if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
                         {
                             ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.SENTENCIA;
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.SENTENCIA;
                             LanzarBloque(lBloque, lResultadoConexion, lConector);
                             lResultadoBloque.Conexiones.Add(lResultadoConexion);
                         }
@@ -252,7 +277,7 @@ namespace TestsSGBD.Clases
                         if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
                         {
                             ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.BLOQUE;
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.BLOQUE;
                             LanzarBloque(lBloque, lResultadoConexion, lConector);
                             lResultadoBloque.Conexiones.Add(lResultadoConexion);
                         }
@@ -260,7 +285,7 @@ namespace TestsSGBD.Clases
                         if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
                         {
                             ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.HILO;
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.HILO;
                             LanzarBloque(lBloque, lResultadoConexion, lConector);
                             lResultadoBloque.Conexiones.Add(lResultadoConexion);
                         }
@@ -268,7 +293,7 @@ namespace TestsSGBD.Clases
                         if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
                         {
                             ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoConexion.SENTENCIA;
+                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.SENTENCIA;
                             LanzarBloque(lBloque, lResultadoConexion, lConector);
                             lResultadoBloque.Conexiones.Add(lResultadoConexion);
                         }
@@ -321,7 +346,7 @@ namespace TestsSGBD.Clases
             GC.GetTotalMemory(true);
         }
 
-        private void LanzarSentencias(List<Sentencia> aSentencias, ResultadoHilo aResultadoHilo, ResultadoConexion.TipoConexion aTipo, Conector aConector)
+        private void LanzarSentencias(List<Sentencia> aSentencias, ResultadoHilo aResultadoHilo, ResultadoConexion.TipoApertura aTipo, Conector aConector)
         {
             Stopwatch lCrono = new Stopwatch();
             lCrono.Start();
@@ -350,7 +375,7 @@ namespace TestsSGBD.Clases
             for (int i = 0; i < lsCantidadHilos; i++)
             {
                 DatosBase lDB;
-                if ((aTipo & ResultadoConexion.TipoConexion.BLOQUE) == ResultadoConexion.TipoConexion.BLOQUE)
+                if ((aTipo & ResultadoConexion.TipoApertura.BLOQUE) == ResultadoConexion.TipoApertura.BLOQUE)
                 {
                     lDB = lDBGenerico;
                 }
@@ -376,7 +401,7 @@ namespace TestsSGBD.Clases
                 liNumeroErrores += lItem.NumeroErrores;
                 lItem.Dispose();
             }
-            if ((aTipo & ResultadoConexion.TipoConexion.BLOQUE) == ResultadoConexion.TipoConexion.BLOQUE)
+            if ((aTipo & ResultadoConexion.TipoApertura.BLOQUE) == ResultadoConexion.TipoApertura.BLOQUE)
             {
                 lDBGenerico.Close();
             }
@@ -387,6 +412,8 @@ namespace TestsSGBD.Clases
             GC.Collect();
             GC.GetTotalMemory(true);
         }
+        #endregion
+
 
         private void LanzarInformacionComienzoBloque(string asTexto)
         {

@@ -67,7 +67,6 @@ namespace TestsSGBD.Clases
 			}
 			return lsRes;
 		}
-
 		public static DateTime ObtenFecha(string asFecha, string asFormato = "dd/MM/yyyy H:mm:ss")
 		{
 			DateTime lFecha = new DateTime();
@@ -88,7 +87,6 @@ namespace TestsSGBD.Clases
 			}
 			return lFecha;
 		}
-
 		public static int ObtenNumero(string asItem)
 		{
 			int liItem = 0;

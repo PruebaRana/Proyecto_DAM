@@ -552,11 +552,15 @@ namespace TestsSGBD
             // Comprobar que hay conectores y test seleccionados
             if (lvConectoresTest.SelectedItems.Count > 0)
             {
-                string lsNombre = lvConectoresTest.SelectedItems[0].Text;
+                int liCantidadConectores = lvConectoresTest.SelectedItems.Count;
+                for (int i = 0; i < liCantidadConectores; i++)
+                {
+                    string lsNombre = lvConectoresTest.SelectedItems[i].Text;
 
-                //Obtene la tarea en cuestion de la lista
-                Conector lConector = obtenConector(lsNombre);
-                lConectores.Add( lConector );
+                    //Obtene la tarea en cuestion de la lista
+                    Conector lConector = obtenConector(lsNombre);
+                    lConectores.Add(lConector);
+                }
             }
             if (lConectores.Count == 0)
             {
@@ -574,7 +578,7 @@ namespace TestsSGBD
             lTest.RutaXML = ((ComboboxItem)cbTest.SelectedItem).Value.ToString();
             lTest.LoadXML(lTest.RutaXML);
 
-            this._EjecutarTest = new EjecucionTest(lConectores, lTest);
+            this._EjecutarTest = EjecucionTest.GetInstance(lConectores, lTest);
             this._EjecutarTest.Ejecutar();
             this._EjecutarTest.NotificarAccion += new EjecucionTest.MyEventHandler(OnNotificarAccion);
 
