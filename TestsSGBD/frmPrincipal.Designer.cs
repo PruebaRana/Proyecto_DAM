@@ -75,6 +75,7 @@
             this.lblInformes = new System.Windows.Forms.Label();
             this.sysTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.timerRefresco = new System.Windows.Forms.Timer(this.components);
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.PanelMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.pnlCentral.SuspendLayout();
@@ -337,8 +338,10 @@
             // 
             this.btnEjecutar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEjecutar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.helpProvider1.SetHelpString(this.btnEjecutar, "Ejecuta el test seleccionado sobre los conectores selecionados.");
             this.btnEjecutar.Location = new System.Drawing.Point(453, 277);
             this.btnEjecutar.Name = "btnEjecutar";
+            this.helpProvider1.SetShowHelp(this.btnEjecutar, true);
             this.btnEjecutar.Size = new System.Drawing.Size(75, 23);
             this.btnEjecutar.TabIndex = 13;
             this.btnEjecutar.Text = "Ejecutar";
@@ -703,6 +706,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ToolStripStatusLabel sbInfo;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
 
