@@ -652,5 +652,6 @@ namespace TestsSGBD
             _sUltimoMensaje = e.Data;
         }
         #endregion
+
     }
 }

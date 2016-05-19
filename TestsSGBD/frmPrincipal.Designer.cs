@@ -199,7 +199,7 @@
             this.sbLabelEstadoTest});
             this.statusStrip1.Location = new System.Drawing.Point(150, 312);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(534, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(544, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -236,7 +236,7 @@
             this.pnlCentral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCentral.Location = new System.Drawing.Point(150, 0);
             this.pnlCentral.Name = "pnlCentral";
-            this.pnlCentral.Size = new System.Drawing.Size(534, 312);
+            this.pnlCentral.Size = new System.Drawing.Size(544, 312);
             this.pnlCentral.TabIndex = 15;
             // 
             // pnlTests
@@ -251,7 +251,7 @@
             this.pnlTests.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTests.Location = new System.Drawing.Point(0, 0);
             this.pnlTests.Name = "pnlTests";
-            this.pnlTests.Size = new System.Drawing.Size(534, 312);
+            this.pnlTests.Size = new System.Drawing.Size(544, 312);
             this.pnlTests.TabIndex = 14;
             // 
             // label2
@@ -272,7 +272,7 @@
             this.cbTest.FormattingEnabled = true;
             this.cbTest.Location = new System.Drawing.Point(12, 246);
             this.cbTest.Name = "cbTest";
-            this.cbTest.Size = new System.Drawing.Size(506, 21);
+            this.cbTest.Size = new System.Drawing.Size(516, 21);
             this.cbTest.TabIndex = 18;
             // 
             // label1
@@ -299,7 +299,7 @@
             this.lvConectoresTest.Location = new System.Drawing.Point(12, 112);
             this.lvConectoresTest.Name = "lvConectoresTest";
             this.lvConectoresTest.ShowGroups = false;
-            this.lvConectoresTest.Size = new System.Drawing.Size(506, 109);
+            this.lvConectoresTest.Size = new System.Drawing.Size(516, 109);
             this.lvConectoresTest.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvConectoresTest.TabIndex = 16;
             this.lvConectoresTest.Tag = "501";
@@ -325,7 +325,7 @@
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.Enabled = false;
-            this.btnCancelar.Location = new System.Drawing.Point(348, 277);
+            this.btnCancelar.Location = new System.Drawing.Point(358, 277);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 15;
@@ -337,7 +337,7 @@
             // 
             this.btnEjecutar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEjecutar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEjecutar.Location = new System.Drawing.Point(443, 277);
+            this.btnEjecutar.Location = new System.Drawing.Point(453, 277);
             this.btnEjecutar.Name = "btnEjecutar";
             this.btnEjecutar.Size = new System.Drawing.Size(75, 23);
             this.btnEjecutar.TabIndex = 13;
@@ -355,7 +355,7 @@
             this.lblTests.Location = new System.Drawing.Point(0, 20);
             this.lblTests.Name = "lblTests";
             this.lblTests.Padding = new System.Windows.Forms.Padding(25, 0, 0, 5);
-            this.lblTests.Size = new System.Drawing.Size(534, 60);
+            this.lblTests.Size = new System.Drawing.Size(544, 60);
             this.lblTests.TabIndex = 0;
             this.lblTests.Text = "Tests";
             this.lblTests.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -367,7 +367,7 @@
             this.pnlConfiguracion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlConfiguracion.Location = new System.Drawing.Point(0, 0);
             this.pnlConfiguracion.Name = "pnlConfiguracion";
-            this.pnlConfiguracion.Size = new System.Drawing.Size(534, 312);
+            this.pnlConfiguracion.Size = new System.Drawing.Size(544, 312);
             this.pnlConfiguracion.TabIndex = 13;
             // 
             // tabConfiguracion
@@ -385,7 +385,7 @@
             this.tabConfiguracion.Padding = new System.Drawing.Point(24, 3);
             this.tabConfiguracion.SelectedIndex = 0;
             this.tabConfiguracion.ShowToolTips = true;
-            this.tabConfiguracion.Size = new System.Drawing.Size(528, 218);
+            this.tabConfiguracion.Size = new System.Drawing.Size(538, 218);
             this.tabConfiguracion.TabIndex = 13;
             this.tabConfiguracion.SelectedIndexChanged += new System.EventHandler(this.tabConfiguracion_SelectedIndexChanged);
             // 
@@ -400,7 +400,7 @@
             this.tabConectores.Margin = new System.Windows.Forms.Padding(30);
             this.tabConectores.Name = "tabConectores";
             this.tabConectores.Padding = new System.Windows.Forms.Padding(30);
-            this.tabConectores.Size = new System.Drawing.Size(520, 182);
+            this.tabConectores.Size = new System.Drawing.Size(530, 182);
             this.tabConectores.TabIndex = 0;
             this.tabConectores.Text = "Conectores";
             this.tabConectores.ToolTipText = "Lista de conectores de Bases de datos";
@@ -411,7 +411,7 @@
             this.btnDelConector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelConector.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelConector.Enabled = false;
-            this.btnDelConector.Location = new System.Drawing.Point(438, 67);
+            this.btnDelConector.Location = new System.Drawing.Point(448, 67);
             this.btnDelConector.Name = "btnDelConector";
             this.btnDelConector.Size = new System.Drawing.Size(75, 23);
             this.btnDelConector.TabIndex = 14;
@@ -424,7 +424,7 @@
             this.btnUpdConector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpdConector.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdConector.Enabled = false;
-            this.btnUpdConector.Location = new System.Drawing.Point(438, 40);
+            this.btnUpdConector.Location = new System.Drawing.Point(448, 40);
             this.btnUpdConector.Name = "btnUpdConector";
             this.btnUpdConector.Size = new System.Drawing.Size(75, 23);
             this.btnUpdConector.TabIndex = 13;
@@ -436,7 +436,7 @@
             // 
             this.btnAddConector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddConector.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddConector.Location = new System.Drawing.Point(438, 6);
+            this.btnAddConector.Location = new System.Drawing.Point(448, 6);
             this.btnAddConector.Name = "btnAddConector";
             this.btnAddConector.Size = new System.Drawing.Size(75, 23);
             this.btnAddConector.TabIndex = 12;
@@ -459,7 +459,7 @@
             this.lvConectores.MultiSelect = false;
             this.lvConectores.Name = "lvConectores";
             this.lvConectores.ShowGroups = false;
-            this.lvConectores.Size = new System.Drawing.Size(427, 167);
+            this.lvConectores.Size = new System.Drawing.Size(437, 167);
             this.lvConectores.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvConectores.TabIndex = 11;
             this.lvConectores.Tag = "435";
@@ -578,7 +578,7 @@
             this.lblConfiguracion.Location = new System.Drawing.Point(0, 20);
             this.lblConfiguracion.Name = "lblConfiguracion";
             this.lblConfiguracion.Padding = new System.Windows.Forms.Padding(25, 0, 0, 5);
-            this.lblConfiguracion.Size = new System.Drawing.Size(534, 60);
+            this.lblConfiguracion.Size = new System.Drawing.Size(544, 60);
             this.lblConfiguracion.TabIndex = 12;
             this.lblConfiguracion.Text = "Configuración";
             this.lblConfiguracion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -589,7 +589,7 @@
             this.pnlInformes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlInformes.Location = new System.Drawing.Point(0, 0);
             this.pnlInformes.Name = "pnlInformes";
-            this.pnlInformes.Size = new System.Drawing.Size(534, 312);
+            this.pnlInformes.Size = new System.Drawing.Size(544, 312);
             this.pnlInformes.TabIndex = 15;
             // 
             // lblInformes
@@ -602,18 +602,19 @@
             this.lblInformes.Location = new System.Drawing.Point(0, 20);
             this.lblInformes.Name = "lblInformes";
             this.lblInformes.Padding = new System.Windows.Forms.Padding(25, 0, 0, 5);
-            this.lblInformes.Size = new System.Drawing.Size(534, 60);
+            this.lblInformes.Size = new System.Drawing.Size(544, 60);
             this.lblInformes.TabIndex = 14;
             this.lblInformes.Text = "Informes";
             this.lblInformes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // sysTrayIcon
             // 
-            this.sysTrayIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
+            this.sysTrayIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.sysTrayIcon.BalloonTipText = "Prueba";
             this.sysTrayIcon.BalloonTipTitle = "ELOOOOOO";
             this.sysTrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("sysTrayIcon.Icon")));
             this.sysTrayIcon.Text = "Test SGBD";
+            this.sysTrayIcon.Visible = true;
             this.sysTrayIcon.Click += new System.EventHandler(this.sysTrayIcon_Click);
             // 
             // timerRefresco
@@ -627,10 +628,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(684, 334);
+            this.ClientSize = new System.Drawing.Size(694, 334);
             this.Controls.Add(this.pnlCentral);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.PanelMenu);
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(700, 320);
             this.Name = "frmPrincipal";
