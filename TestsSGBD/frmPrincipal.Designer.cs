@@ -42,17 +42,6 @@
             this.sbInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.sbLabelEstadoTest = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlCentral = new System.Windows.Forms.Panel();
-            this.pnlTests = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbTest = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lvConectoresTest = new System.Windows.Forms.ListView();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnEjecutar = new System.Windows.Forms.Button();
-            this.lblTests = new System.Windows.Forms.Label();
             this.pnlConfiguracion = new System.Windows.Forms.Panel();
             this.tabConfiguracion = new System.Windows.Forms.TabControl();
             this.tabConectores = new System.Windows.Forms.TabPage();
@@ -73,18 +62,29 @@
             this.lblConfiguracion = new System.Windows.Forms.Label();
             this.pnlInformes = new System.Windows.Forms.Panel();
             this.lblInformes = new System.Windows.Forms.Label();
+            this.pnlTests = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbTest = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lvConectoresTest = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnEjecutar = new System.Windows.Forms.Button();
+            this.lblTests = new System.Windows.Forms.Label();
             this.sysTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.timerRefresco = new System.Windows.Forms.Timer(this.components);
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.PanelMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.pnlCentral.SuspendLayout();
-            this.pnlTests.SuspendLayout();
             this.pnlConfiguracion.SuspendLayout();
             this.tabConfiguracion.SuspendLayout();
             this.tabConectores.SuspendLayout();
             this.tabTests.SuspendLayout();
             this.pnlInformes.SuspendLayout();
+            this.pnlTests.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelMenu
@@ -231,137 +231,14 @@
             // 
             // pnlCentral
             // 
+            this.pnlCentral.Controls.Add(this.pnlTests);
             this.pnlCentral.Controls.Add(this.pnlConfiguracion);
             this.pnlCentral.Controls.Add(this.pnlInformes);
-            this.pnlCentral.Controls.Add(this.pnlTests);
             this.pnlCentral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCentral.Location = new System.Drawing.Point(150, 0);
             this.pnlCentral.Name = "pnlCentral";
             this.pnlCentral.Size = new System.Drawing.Size(544, 312);
             this.pnlCentral.TabIndex = 15;
-            // 
-            // pnlTests
-            // 
-            this.pnlTests.Controls.Add(this.label2);
-            this.pnlTests.Controls.Add(this.cbTest);
-            this.pnlTests.Controls.Add(this.label1);
-            this.pnlTests.Controls.Add(this.lvConectoresTest);
-            this.pnlTests.Controls.Add(this.btnCancelar);
-            this.pnlTests.Controls.Add(this.btnEjecutar);
-            this.pnlTests.Controls.Add(this.lblTests);
-            this.pnlTests.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTests.Location = new System.Drawing.Point(0, 0);
-            this.pnlTests.Name = "pnlTests";
-            this.pnlTests.Size = new System.Drawing.Size(544, 312);
-            this.pnlTests.TabIndex = 14;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label2.Location = new System.Drawing.Point(13, 224);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(230, 19);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Seleccione el test que desea ejecutar";
-            // 
-            // cbTest
-            // 
-            this.cbTest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbTest.FormattingEnabled = true;
-            this.cbTest.Location = new System.Drawing.Point(12, 246);
-            this.cbTest.Name = "cbTest";
-            this.cbTest.Size = new System.Drawing.Size(516, 21);
-            this.cbTest.TabIndex = 18;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label1.Location = new System.Drawing.Point(12, 89);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(377, 19);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Seleccione los conectores que desea usar para realizar el test";
-            // 
-            // lvConectoresTest
-            // 
-            this.lvConectoresTest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvConectoresTest.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8});
-            this.lvConectoresTest.FullRowSelect = true;
-            this.lvConectoresTest.GridLines = true;
-            this.lvConectoresTest.Location = new System.Drawing.Point(12, 112);
-            this.lvConectoresTest.Name = "lvConectoresTest";
-            this.lvConectoresTest.ShowGroups = false;
-            this.lvConectoresTest.Size = new System.Drawing.Size(516, 109);
-            this.lvConectoresTest.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lvConectoresTest.TabIndex = 16;
-            this.lvConectoresTest.Tag = "501";
-            this.lvConectoresTest.UseCompatibleStateImageBehavior = false;
-            this.lvConectoresTest.View = System.Windows.Forms.View.Details;
-            this.lvConectoresTest.Resize += new System.EventHandler(this.lvConectoresTest_Resize);
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Nombre";
-            this.columnHeader6.Width = 200;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Tipo";
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Cadena";
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelar.Enabled = false;
-            this.btnCancelar.Location = new System.Drawing.Point(358, 277);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 15;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnEjecutar
-            // 
-            this.btnEjecutar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEjecutar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.helpProvider1.SetHelpString(this.btnEjecutar, "Ejecuta el test seleccionado sobre los conectores selecionados.");
-            this.btnEjecutar.Location = new System.Drawing.Point(453, 277);
-            this.btnEjecutar.Name = "btnEjecutar";
-            this.helpProvider1.SetShowHelp(this.btnEjecutar, true);
-            this.btnEjecutar.Size = new System.Drawing.Size(75, 23);
-            this.btnEjecutar.TabIndex = 13;
-            this.btnEjecutar.Text = "Ejecutar";
-            this.btnEjecutar.UseVisualStyleBackColor = true;
-            this.btnEjecutar.Click += new System.EventHandler(this.btnEjecutar_Click);
-            // 
-            // lblTests
-            // 
-            this.lblTests.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.lblTests.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTests.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTests.Location = new System.Drawing.Point(0, 20);
-            this.lblTests.Name = "lblTests";
-            this.lblTests.Padding = new System.Windows.Forms.Padding(25, 0, 0, 5);
-            this.lblTests.Size = new System.Drawing.Size(544, 60);
-            this.lblTests.TabIndex = 0;
-            this.lblTests.Text = "Tests";
-            this.lblTests.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlConfiguracion
             // 
@@ -610,6 +487,129 @@
             this.lblInformes.Text = "Informes";
             this.lblInformes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pnlTests
+            // 
+            this.pnlTests.Controls.Add(this.label2);
+            this.pnlTests.Controls.Add(this.cbTest);
+            this.pnlTests.Controls.Add(this.label1);
+            this.pnlTests.Controls.Add(this.lvConectoresTest);
+            this.pnlTests.Controls.Add(this.btnCancelar);
+            this.pnlTests.Controls.Add(this.btnEjecutar);
+            this.pnlTests.Controls.Add(this.lblTests);
+            this.pnlTests.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlTests.Location = new System.Drawing.Point(0, 0);
+            this.pnlTests.Name = "pnlTests";
+            this.pnlTests.Size = new System.Drawing.Size(544, 312);
+            this.pnlTests.TabIndex = 14;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label2.Location = new System.Drawing.Point(13, 224);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(230, 19);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Seleccione el test que desea ejecutar";
+            // 
+            // cbTest
+            // 
+            this.cbTest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbTest.FormattingEnabled = true;
+            this.cbTest.Location = new System.Drawing.Point(12, 246);
+            this.cbTest.Name = "cbTest";
+            this.cbTest.Size = new System.Drawing.Size(516, 21);
+            this.cbTest.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label1.Location = new System.Drawing.Point(12, 89);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(377, 19);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Seleccione los conectores que desea usar para realizar el test";
+            // 
+            // lvConectoresTest
+            // 
+            this.lvConectoresTest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvConectoresTest.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.lvConectoresTest.FullRowSelect = true;
+            this.lvConectoresTest.GridLines = true;
+            this.lvConectoresTest.Location = new System.Drawing.Point(12, 112);
+            this.lvConectoresTest.Name = "lvConectoresTest";
+            this.lvConectoresTest.ShowGroups = false;
+            this.lvConectoresTest.Size = new System.Drawing.Size(516, 109);
+            this.lvConectoresTest.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvConectoresTest.TabIndex = 16;
+            this.lvConectoresTest.Tag = "501";
+            this.lvConectoresTest.UseCompatibleStateImageBehavior = false;
+            this.lvConectoresTest.View = System.Windows.Forms.View.Details;
+            this.lvConectoresTest.Resize += new System.EventHandler(this.lvConectoresTest_Resize);
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Nombre";
+            this.columnHeader6.Width = 200;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Tipo";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Cadena";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.Enabled = false;
+            this.btnCancelar.Location = new System.Drawing.Point(358, 277);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 15;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnEjecutar
+            // 
+            this.btnEjecutar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEjecutar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.helpProvider1.SetHelpString(this.btnEjecutar, "Ejecuta el test seleccionado sobre los conectores selecionados.");
+            this.btnEjecutar.Location = new System.Drawing.Point(453, 277);
+            this.btnEjecutar.Name = "btnEjecutar";
+            this.helpProvider1.SetShowHelp(this.btnEjecutar, true);
+            this.btnEjecutar.Size = new System.Drawing.Size(75, 23);
+            this.btnEjecutar.TabIndex = 13;
+            this.btnEjecutar.Text = "Ejecutar";
+            this.btnEjecutar.UseVisualStyleBackColor = true;
+            this.btnEjecutar.Click += new System.EventHandler(this.btnEjecutar_Click);
+            // 
+            // lblTests
+            // 
+            this.lblTests.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.lblTests.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTests.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblTests.Location = new System.Drawing.Point(0, 20);
+            this.lblTests.Name = "lblTests";
+            this.lblTests.Padding = new System.Windows.Forms.Padding(25, 0, 0, 5);
+            this.lblTests.Size = new System.Drawing.Size(544, 60);
+            this.lblTests.TabIndex = 0;
+            this.lblTests.Text = "Tests";
+            this.lblTests.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // sysTrayIcon
             // 
             this.sysTrayIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
@@ -648,13 +648,13 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.pnlCentral.ResumeLayout(false);
-            this.pnlTests.ResumeLayout(false);
-            this.pnlTests.PerformLayout();
             this.pnlConfiguracion.ResumeLayout(false);
             this.tabConfiguracion.ResumeLayout(false);
             this.tabConectores.ResumeLayout(false);
             this.tabTests.ResumeLayout(false);
             this.pnlInformes.ResumeLayout(false);
+            this.pnlTests.ResumeLayout(false);
+            this.pnlTests.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

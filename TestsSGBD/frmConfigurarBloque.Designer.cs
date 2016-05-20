@@ -71,6 +71,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSentencias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSentencias.Location = new System.Drawing.Point(15, 83);
+            this.txtSentencias.MaxLength = 2147483646;
             this.txtSentencias.Multiline = true;
             this.txtSentencias.Name = "txtSentencias";
             this.txtSentencias.ScrollBars = System.Windows.Forms.ScrollBars.Both;

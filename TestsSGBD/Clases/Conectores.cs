@@ -155,18 +155,21 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            lswIdentico = true;
-            if (this._Conector.Count > 0 && this._Conector.Count == p._Conector.Count)
+            if (this._Conector.Count == p._Conector.Count)
             {
-                for (int i = 0; i < this._Conector.Count; i++)
+                lswIdentico = true;
+                if (this._Conector.Count > 0)
                 {
-                    lswIdentico = (this._Conector[i] != p._Conector[i]);
-                    if (lswIdentico)
+                    for (int i = 0; i < this._Conector.Count; i++)
                     {
-                        break;
+                        lswIdentico = (this._Conector[i] != p._Conector[i]);
+                        if (lswIdentico)
+                        {
+                            break;
+                        }
                     }
+                    lswIdentico = !lswIdentico;
                 }
-                lswIdentico = !lswIdentico;
             }
             // Return true if the fields match:
             return (this._RutaXML == p._RutaXML && lswIdentico);
@@ -181,18 +184,21 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            lswIdentico = true;
-            if (this._Conector.Count > 0 && this._Conector.Count == p._Conector.Count)
+            if (this._Conector.Count == p._Conector.Count)
             {
-                for (int i = 0; i < this._Conector.Count; i++)
+                lswIdentico = true;
+                if (this._Conector.Count > 0)
                 {
-                    lswIdentico = (this._Conector[i] != p._Conector[i]);
-                    if (lswIdentico)
+                    for (int i = 0; i < this._Conector.Count; i++)
                     {
-                        break;
+                        lswIdentico = (this._Conector[i] != p._Conector[i]);
+                        if (lswIdentico)
+                        {
+                            break;
+                        }
                     }
+                    lswIdentico = !lswIdentico;
                 }
-                lswIdentico = !lswIdentico;
             }
             // Return true if the fields match:
             return (this._RutaXML == p._RutaXML && lswIdentico);
@@ -213,18 +219,21 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            lswIdentico = true;
-            if (a._Conector.Count > 0 && a._Conector.Count == b._Conector.Count)
+            if (a._Conector.Count == b._Conector.Count)
             {
-                for (int i = 0; i < a._Conector.Count; i++)
+                lswIdentico = true;
+                if (a._Conector.Count > 0)
                 {
-                    lswIdentico = (a._Conector[i] != b._Conector[i]);
-                    if (lswIdentico)
+                    for (int i = 0; i < a._Conector.Count; i++)
                     {
-                        break;
+                        lswIdentico = (a._Conector[i] != b._Conector[i]);
+                        if (lswIdentico)
+                        {
+                            break;
+                        }
                     }
+                    lswIdentico = !lswIdentico;
                 }
-                lswIdentico = !lswIdentico;
             }
             // Return true if the fields match:
             return (a._RutaXML == b._RutaXML && lswIdentico);

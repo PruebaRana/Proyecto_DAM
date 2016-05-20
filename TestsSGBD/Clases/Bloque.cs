@@ -163,18 +163,21 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            lswIdentico = true;
-            if (this._Sentencias.Count > 0 && this._Sentencias.Count == p._Sentencias.Count)
+            if (this._Sentencias.Count == p._Sentencias.Count)
             {
-                for (int i = 0; i < this._Sentencias.Count; i++)
+                lswIdentico = true;
+                if (this._Sentencias.Count > 0)
                 {
-                    lswIdentico = (this._Sentencias[i] != p._Sentencias[i]);
-                    if (lswIdentico)
+                    for (int i = 0; i < this._Sentencias.Count; i++)
                     {
-                        break;
+                        lswIdentico = (this._Sentencias[i] != p._Sentencias[i]);
+                        if (lswIdentico)
+                        {
+                            break;
+                        }
                     }
+                    lswIdentico = !lswIdentico;
                 }
-                lswIdentico = !lswIdentico;
             }
             // Return true if the fields match:
             return (this._Nombre == p._Nombre && lswIdentico && this._Hilos_Inicio == p._Hilos_Inicio && this._Hilos_Fin == p._Hilos_Fin && this._Hilos_Step == p._Hilos_Step && this._Conexion == p._Conexion);
@@ -189,18 +192,21 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            lswIdentico = true;
-            if (this._Sentencias.Count > 0 && this._Sentencias.Count == p._Sentencias.Count)
+            if (this._Sentencias.Count == p._Sentencias.Count)
             {
-                for (int i = 0; i < this._Sentencias.Count; i++)
+                lswIdentico = true;
+                if (this._Sentencias.Count > 0)
                 {
-                    lswIdentico = (this._Sentencias[i] != p._Sentencias[i]);
-                    if (lswIdentico)
+                    for (int i = 0; i < this._Sentencias.Count; i++)
                     {
-                        break;
+                        lswIdentico = (this._Sentencias[i] != p._Sentencias[i]);
+                        if (lswIdentico)
+                        {
+                            break;
+                        }
                     }
+                    lswIdentico = !lswIdentico;
                 }
-                lswIdentico = !lswIdentico;
             }
             // Return true if the fields match:
             return (this._Nombre == p._Nombre && lswIdentico && this._Hilos_Inicio == p._Hilos_Inicio && this._Hilos_Fin == p._Hilos_Fin && this._Hilos_Step == p._Hilos_Step && this._Conexion == p._Conexion);
@@ -221,18 +227,21 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            lswIdentico = true;
-            if (a._Sentencias.Count > 0 && a._Sentencias.Count == b._Sentencias.Count)
+            if (a._Sentencias.Count == b._Sentencias.Count)
             {
-                for (int i = 0; i < a._Sentencias.Count; i++)
+                lswIdentico = true;
+                if (a._Sentencias.Count > 0)
                 {
-                    lswIdentico = (a._Sentencias[i] != b._Sentencias[i]);
-                    if (lswIdentico)
+                    for (int i = 0; i < a._Sentencias.Count; i++)
                     {
-                        break;
+                        lswIdentico = (a._Sentencias[i] != b._Sentencias[i]);
+                        if (lswIdentico)
+                        {
+                            break;
+                        }
                     }
+                    lswIdentico = !lswIdentico;
                 }
-                lswIdentico = !lswIdentico;
             }
             // Return true if the fields match:
             return (a._Nombre == b._Nombre && lswIdentico && a._Hilos_Inicio == b._Hilos_Inicio && a._Hilos_Fin == b._Hilos_Fin && a._Hilos_Step == b._Hilos_Step && a._Conexion == b._Conexion);
