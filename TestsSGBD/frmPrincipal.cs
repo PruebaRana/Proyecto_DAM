@@ -645,16 +645,22 @@ namespace TestsSGBD
         {
             if (this._EjecutarTest != null)
             {
-                if (this._EjecutarTest.EnProceso)
-                {
-                    this._EjecutarTest.CancelarEjecucion();
-                    this._EjecutarTest.NotificarAccion -= new EjecucionTest.MyEventHandler(OnNotificarAccion);
-                    this._EjecutarTest.Dispose();
+                CancelarTest();
 
-                    this._EjecutarTest = null;
-                }
                 btnCancelar.Enabled = false;
                 btnEjecutar.Enabled = true;
+            }
+        }
+
+        private void CancelarTest()
+        {
+            if (this._EjecutarTest.EnProceso)
+            {
+                this._EjecutarTest.CancelarEjecucion();
+                this._EjecutarTest.NotificarAccion -= new EjecucionTest.MyEventHandler(OnNotificarAccion);
+                this._EjecutarTest.Dispose();
+
+                this._EjecutarTest = null;
             }
         }
         #endregion
@@ -710,6 +716,18 @@ namespace TestsSGBD
 
         private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (this._EjecutarTest.EnProceso)
+            {
+                if (MessageBox.Show("Hay un test en ejecucion, esta seguro de cancelar el test y salir ?", "Test en ejecucion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                // cancelar y liberar el test
+                CancelarTest();
+            }
+
+            // Liberar el mutex
             if (this._Mutex != null)
             {
                 this._Mutex.ReleaseMutex();
