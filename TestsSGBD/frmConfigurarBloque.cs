@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using TestsSGBD.Clases;
 using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace TestsSGBD
 {
@@ -56,10 +57,15 @@ namespace TestsSGBD
             // Nombre
             lItem.Nombre = txtNombre.Text;
             // Sentencias
-            string[] lsSentencias = txtSentencias.Text.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            txtSentencias.Text = Regex.Replace(txtSentencias.Text, @"\s{2,}", " ");
+            string[] lsSentencias = txtSentencias.Text.Split(";".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             foreach (string lsItem in lsSentencias)
             {
-                lItem.Sentencias.Add(new Sentencia(lsItem));
+                string lsSQL = lsItem.Replace("  ", " ").Trim();
+                if (lsSQL.Length > 10)
+                {
+                    lItem.Sentencias.Add(new Sentencia(lsSQL + ";"));
+                }
             }
 
             lItem.Hilos_Inicio = DatosBase.ObtenNumero(udHilosInicio.Value.ToString());

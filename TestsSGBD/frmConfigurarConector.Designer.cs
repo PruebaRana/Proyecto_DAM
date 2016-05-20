@@ -37,6 +37,7 @@
             this.txtCadena = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
+            this.hpConector = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // btnAceptar
@@ -83,8 +84,10 @@
             this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.hpConector.SetHelpString(this.txtNombre, "Nombre descriptivo para identificar al conector.");
             this.txtNombre.Location = new System.Drawing.Point(15, 33);
             this.txtNombre.Name = "txtNombre";
+            this.hpConector.SetShowHelp(this.txtNombre, true);
             this.txtNombre.Size = new System.Drawing.Size(480, 23);
             this.txtNombre.TabIndex = 8;
             // 
@@ -113,9 +116,11 @@
             this.txtCadena.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCadena.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.hpConector.SetHelpString(this.txtCadena, "La cadena de conexion a la Base de Datos.");
             this.txtCadena.Location = new System.Drawing.Point(15, 143);
             this.txtCadena.Multiline = true;
             this.txtCadena.Name = "txtCadena";
+            this.hpConector.SetShowHelp(this.txtCadena, true);
             this.txtCadena.Size = new System.Drawing.Size(480, 52);
             this.txtCadena.TabIndex = 12;
             // 
@@ -134,11 +139,13 @@
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipo.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cmbTipo.FormattingEnabled = true;
+            this.hpConector.SetHelpString(this.cmbTipo, "Como se realizara la conexion con la base de datos, por ODBC o MySQL");
             this.cmbTipo.Items.AddRange(new object[] {
             "Conector ODBC",
             "Nativo MySQL"});
             this.cmbTipo.Location = new System.Drawing.Point(15, 85);
             this.cmbTipo.Name = "cmbTipo";
+            this.hpConector.SetShowHelp(this.cmbTipo, true);
             this.cmbTipo.Size = new System.Drawing.Size(142, 23);
             this.cmbTipo.TabIndex = 14;
             // 
@@ -159,6 +166,7 @@
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnCancelar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -182,5 +190,6 @@
         private System.Windows.Forms.TextBox txtCadena;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbTipo;
+        private System.Windows.Forms.HelpProvider hpConector;
     }
 }

@@ -322,6 +322,7 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtSentencias);
             this.Controls.Add(this.label2);
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
