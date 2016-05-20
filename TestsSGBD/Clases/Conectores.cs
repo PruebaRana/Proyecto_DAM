@@ -155,9 +155,9 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            if (this._Conector.Count == p._Conector.Count)
+            lswIdentico = true;
+            if (this._Conector.Count > 0 && this._Conector.Count == p._Conector.Count)
             {
-                lswIdentico = true;
                 for (int i = 0; i < this._Conector.Count; i++)
                 {
                     lswIdentico = (this._Conector[i] != p._Conector[i]);
@@ -181,9 +181,9 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            if (this._Conector.Count == p._Conector.Count)
+            lswIdentico = true;
+            if (this._Conector.Count > 0 && this._Conector.Count == p._Conector.Count)
             {
-                lswIdentico = true;
                 for (int i = 0; i < this._Conector.Count; i++)
                 {
                     lswIdentico = (this._Conector[i] != p._Conector[i]);
@@ -213,9 +213,9 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            if (a._Conector.Count == b._Conector.Count)
+            lswIdentico = true;
+            if (a._Conector.Count > 0 && a._Conector.Count == b._Conector.Count)
             {
-                lswIdentico = true;
                 for (int i = 0; i < a._Conector.Count; i++)
                 {
                     lswIdentico = (a._Conector[i] != b._Conector[i]);

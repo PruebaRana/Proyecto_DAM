@@ -73,6 +73,7 @@ namespace TestsSGBD.Clases
         #region Constructores
         public Bloque()
         {
+            this._Nombre = string.Empty;
             this._Hilos_Inicio = 1;
             this._Hilos_Fin = 1;
             this._Hilos_Step = 1;
@@ -162,9 +163,9 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            if (this._Sentencias.Count == p._Sentencias.Count)
+            lswIdentico = true;
+            if (this._Sentencias.Count > 0 && this._Sentencias.Count == p._Sentencias.Count)
             {
-                lswIdentico = true;
                 for (int i = 0; i < this._Sentencias.Count; i++)
                 {
                     lswIdentico = (this._Sentencias[i] != p._Sentencias[i]);
@@ -188,9 +189,9 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            if (this._Sentencias.Count == p._Sentencias.Count)
+            lswIdentico = true;
+            if (this._Sentencias.Count > 0 && this._Sentencias.Count == p._Sentencias.Count)
             {
-                lswIdentico = true;
                 for (int i = 0; i < this._Sentencias.Count; i++)
                 {
                     lswIdentico = (this._Sentencias[i] != p._Sentencias[i]);
@@ -220,9 +221,9 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            if (a._Sentencias.Count == b._Sentencias.Count)
+            lswIdentico = true;
+            if (a._Sentencias.Count > 0 && a._Sentencias.Count == b._Sentencias.Count)
             {
-                lswIdentico = true;
                 for (int i = 0; i < a._Sentencias.Count; i++)
                 {
                     lswIdentico = (a._Sentencias[i] != b._Sentencias[i]);

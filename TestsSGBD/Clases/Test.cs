@@ -10,6 +10,14 @@ namespace TestsSGBD.Clases
     [XmlRoot("Test", IsNullable = true, Namespace = @"https://pruebarana.dyndns-remote.com/CFGS/DAM")]
     public class Test : IDisposable, IEquatable<Test>
     {
+        public enum TipoSeccion
+        {
+            CREACION = 1,
+            INSERCION = 2,
+            CONSULTA = 3,
+            BORRADO = 4
+        };
+
         #region Propiedades
         private bool disposed = false; // to detect redundant calls
         private string _RutaXML;
@@ -65,6 +73,7 @@ namespace TestsSGBD.Clases
         #region Constructores
         public Test()
         {
+            this._Nombre = string.Empty;
             this._Creacion = new SeccionCreacion();
             this._Insercion = new Seccion();
             this._Consulta = new Seccion();

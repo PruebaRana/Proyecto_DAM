@@ -12,6 +12,8 @@ namespace TestsSGBD
         private Bloque _Item;
         private bool _Change;
         private bool _AllowClose;
+
+        private Test.TipoSeccion _Seccion;
         #endregion
 
         public frmConfigurarBloque()
@@ -22,27 +24,42 @@ namespace TestsSGBD
         }
 
         #region Metodos Accesibles desde fuera
-        public void CargarItem(Bloque aItem)
+        public void CargarItem(Bloque aItem, Test.TipoSeccion aSeccion)
         {
             this._Item = aItem == null ? new Bloque() : aItem;
+            this._Seccion = aSeccion;
 
-            if (aItem != null)
+            if (this._Seccion == Test.TipoSeccion.CREACION)
             {
-                // Nombre
-                txtNombre.Text = aItem.Nombre;
+                this._Item.Hilos_Inicio = 1;
+                this._Item.Hilos_Fin = 1;
+                this._Item.Hilos_Step = 1;
+                this._Item.Conexion = Bloque.TipoConexion.BLOQUE;
 
-                // Sentencias
-                txtSentencias.Text = aItem.SentenciasToString();
-
-                udHilosInicio.Value = aItem.Hilos_Inicio;
-                udHilosFin.Value = aItem.Hilos_Fin;
-                udHilosStep.Value = aItem.Hilos_Step;
-
-                chkBloque.Checked = ((aItem.Conexion & Bloque.TipoConexion.BLOQUE)==0)? false: true;
-                chkHilo.Checked = ((aItem.Conexion & Bloque.TipoConexion.HILO) == 0) ? false : true;
-                chkSentencia.Checked = ((aItem.Conexion & Bloque.TipoConexion.SENTENCIA) == 0) ? false : true;
+                udHilosInicio.Enabled = false;
+                udHilosFin.Enabled = false;
+                udHilosStep.Enabled = false;
+                chkBloque.Enabled = false;
+                chkHilo.Enabled = false;
+                chkSentencia.Enabled = false;
             }
 
+            if (this._Item != null)
+            {
+                // Nombre
+                txtNombre.Text = this._Item.Nombre;
+
+                // Sentencias
+                txtSentencias.Text = this._Item.SentenciasToString();
+
+                udHilosInicio.Value = this._Item.Hilos_Inicio;
+                udHilosFin.Value = this._Item.Hilos_Fin;
+                udHilosStep.Value = this._Item.Hilos_Step;
+
+                chkBloque.Checked = ((this._Item.Conexion & Bloque.TipoConexion.BLOQUE) == 0) ? false : true;
+                chkHilo.Checked = ((this._Item.Conexion & Bloque.TipoConexion.HILO) == 0) ? false : true;
+                chkSentencia.Checked = ((this._Item.Conexion & Bloque.TipoConexion.SENTENCIA) == 0) ? false : true;
+            }
         }
         public Bloque ObtenItem()
         {

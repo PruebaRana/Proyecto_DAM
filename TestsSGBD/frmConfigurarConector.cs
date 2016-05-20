@@ -25,16 +25,16 @@ namespace TestsSGBD
         {
             this._Item = aItem == null ? new Conector() : aItem;
 
-            if (aItem != null)
+            if (this._Item != null)
             {
                 // Nombre
-                txtNombre.Text = aItem.Nombre;
+                txtNombre.Text = this._Item.Nombre;
 
                 // Tipo
-                cmbTipo.SelectedIndex = aItem.Tipo == "ODBC"? 0: 1;
+                cmbTipo.SelectedIndex = this._Item.Tipo == "ODBC" ? 0 : 1;
 
                 // Cadena
-                txtCadena.Text = aItem.CadenaConexion;
+                txtCadena.Text = this._Item.CadenaConexion;
             }
 
         }

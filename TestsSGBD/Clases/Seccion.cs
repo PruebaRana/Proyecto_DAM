@@ -94,9 +94,9 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            if (this._Bloque.Count == p._Bloque.Count)
+            lswIdentico = true;
+            if (this._Bloque.Count  > 0 && this._Bloque.Count == p._Bloque.Count)
             {
-                lswIdentico = true;
                 for (int i = 0; i < this._Bloque.Count; i++)
                 {
                     lswIdentico = (this._Bloque[i] != p._Bloque[i]);
@@ -121,9 +121,9 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            if (this._Bloque.Count == p._Bloque.Count)
+            lswIdentico = true;
+            if (this._Bloque.Count > 0 && this._Bloque.Count == p._Bloque.Count)
             {
-                lswIdentico = true;
                 for (int i = 0; i < this._Bloque.Count; i++)
                 {
                     lswIdentico = (this._Bloque[i] != p._Bloque[i]);
@@ -154,9 +154,9 @@ namespace TestsSGBD.Clases
                 return false;
             }
 
-            if (a._Bloque.Count == b._Bloque.Count)
+            lswIdentico = true;
+            if (a._Bloque.Count > 0 && a._Bloque.Count == b._Bloque.Count)
             {
-                lswIdentico = true;
                 for (int i = 0; i < a._Bloque.Count; i++)
                 {
                     lswIdentico = (a._Bloque[i] != b._Bloque[i]);

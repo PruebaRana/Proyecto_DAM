@@ -37,6 +37,9 @@ namespace TestsSGBD.Clases
         #region Constructores
         public Conector()
         {
+            this._Nombre = string.Empty;
+            this._Tipo = "ODBC";
+            this._CadenaConexion = string.Empty;
         }
         public Conector(Conector aItem)
         {

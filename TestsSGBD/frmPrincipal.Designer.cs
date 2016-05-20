@@ -231,9 +231,9 @@
             // 
             // pnlCentral
             // 
-            this.pnlCentral.Controls.Add(this.pnlTests);
             this.pnlCentral.Controls.Add(this.pnlConfiguracion);
             this.pnlCentral.Controls.Add(this.pnlInformes);
+            this.pnlCentral.Controls.Add(this.pnlTests);
             this.pnlCentral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCentral.Location = new System.Drawing.Point(150, 0);
             this.pnlCentral.Name = "pnlCentral";
@@ -494,7 +494,7 @@
             this.tabTests.Location = new System.Drawing.Point(4, 32);
             this.tabTests.Name = "tabTests";
             this.tabTests.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTests.Size = new System.Drawing.Size(520, 182);
+            this.tabTests.Size = new System.Drawing.Size(530, 182);
             this.tabTests.TabIndex = 1;
             this.tabTests.Text = "Tests";
             this.tabTests.ToolTipText = "Lista de Test disponibles";

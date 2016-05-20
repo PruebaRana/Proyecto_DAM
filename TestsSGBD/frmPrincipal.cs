@@ -716,7 +716,7 @@ namespace TestsSGBD
 
         private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this._EjecutarTest.EnProceso)
+            if (this._EjecutarTest != null && this._EjecutarTest.EnProceso)
             {
                 if (MessageBox.Show("Hay un test en ejecucion, esta seguro de cancelar el test y salir ?", "Test en ejecucion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {

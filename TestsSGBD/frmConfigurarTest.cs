@@ -214,8 +214,8 @@ namespace TestsSGBD
             llvItem.SubItems.Add(aiRepeticiones.ToString());
             aListView.Items.Add(llvItem);
         }
-        
-        private void obtenBloqueYListView(object sender, out List<Bloque> aBloques, out ListView aListView)
+
+        private void obtenBloqueYListView(object sender, out List<Bloque> aBloques, out ListView aListView, out Test.TipoSeccion aSeccion)
         {
             switch (((Button)sender).Name)
             {
@@ -224,28 +224,33 @@ namespace TestsSGBD
                 case "btnDelCreacion":
                     aBloques = this._Item.Creacion.Bloque;
                     aListView = lvCreacion;
+                    aSeccion = Test.TipoSeccion.CREACION;
                     break;
                 case "btnAddInsercion":
                 case "btnUpdInsercion":
                 case "btnDelInsercion":
                     aBloques = this._Item.Insercion.Bloque;
                     aListView = lvInsercion;
+                    aSeccion = Test.TipoSeccion.INSERCION;
                     break;
                 case "btnAddConsulta":
                 case "btnUpdConsulta":
                 case "btnDelConsulta":
                     aBloques = this._Item.Consulta.Bloque;
                     aListView = lvConsulta;
+                    aSeccion = Test.TipoSeccion.CONSULTA;
                     break;
                 case "btnAddBorrado":
                 case "btnUpdBorrado":
                 case "btnDelBorrado":
                     aBloques = this._Item.Borrado.Bloque;
                     aListView = lvBorrado;
+                    aSeccion = Test.TipoSeccion.BORRADO;
                     break;
                 default:
                     aBloques = new List<Bloque>();
                     aListView = new ListView();
+                    aSeccion = Test.TipoSeccion.CREACION;
                     break;
             }
 
@@ -254,10 +259,11 @@ namespace TestsSGBD
         {
             List<Bloque> lItemBloque = new List<Bloque>();
             ListView lListView = new ListView();
-            obtenBloqueYListView(sender, out lItemBloque, out lListView);
+            Test.TipoSeccion lSeccion;
+            obtenBloqueYListView(sender, out lItemBloque, out lListView, out lSeccion);
 
             frmConfigurarBloque lForm = new frmConfigurarBloque();
-            lForm.CargarItem(null);
+            lForm.CargarItem(null, lSeccion);
             // Lo abro como dialogo, para que mantenga el foco
             lForm.ShowDialog();
             // Al volver,
@@ -278,7 +284,8 @@ namespace TestsSGBD
         {
             List<Bloque> lItemBloque = new List<Bloque>();
             ListView lListView = new ListView();
-            obtenBloqueYListView(sender, out lItemBloque, out lListView);
+            Test.TipoSeccion lSeccion;
+            obtenBloqueYListView(sender, out lItemBloque, out lListView, out lSeccion);
 
             if (lListView.SelectedItems.Count > 0)
             {
@@ -290,7 +297,7 @@ namespace TestsSGBD
                 Bloque lBloque = lItemBloque[liIndex];
 
                 frmConfigurarBloque lForm = new frmConfigurarBloque();
-                lForm.CargarItem(lBloque);
+                lForm.CargarItem(lBloque, lSeccion);
 
                 lForm.ShowDialog();
                 // Al volver,
@@ -307,7 +314,8 @@ namespace TestsSGBD
         {
             List<Bloque> lItemBloque = new List<Bloque>();
             ListView lListView = new ListView();
-            obtenBloqueYListView(sender, out lItemBloque, out lListView);
+            Test.TipoSeccion lSeccion;
+            obtenBloqueYListView(sender, out lItemBloque, out lListView, out lSeccion);
 
             if (lListView.SelectedItems.Count > 0)
             {
