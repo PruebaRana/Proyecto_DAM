@@ -6,12 +6,48 @@ using TestsSGBD.Clases;
 using TestsSGBD.MisCS;
 using System.Threading;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace TestsSGBD
 {
     public partial class frmPrincipal : Form
     {
+        [DllImport("user32.dll")]
+        private static extern int SetForegroundWindow(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        [DllImport("user32.dll")]
+        public static extern IntPtr FindWindow(string className, string windowTitle);
+//        [DllImport("user32.dll")]
+//        [return: MarshalAs(UnmanagedType.Bool)]
+//        static extern bool GetWindowPlacement(IntPtr hWnd, ref Windowplacement lpwndpl);
+        //private enum ShowWindowEnum
+        //{
+        //    Hide = 0,
+        //    ShowNormal = 1, ShowMinimized = 2, ShowMaximized = 3,
+        //    Maximize = 3, ShowNormalNoActivate = 4, Show = 5,
+        //    Minimize = 6, ShowMinNoActivate = 7, ShowNoActivate = 8,
+        //    Restore = 9, ShowDefault = 10, ForceMinimized = 11
+        //};
+        //private struct Windowplacement
+        //{
+        //    public int length;
+        //    public int flags;
+        //    public int showCmd;
+        //    public System.Drawing.Point ptMinPosition;
+        //    public System.Drawing.Point ptMaxPosition;
+        //    public System.Drawing.Rectangle rcNormalPosition;
+        //}
+
+        private const int SW_SHOWMAXIMIZED = 3;
+        private const int SW_SHOWNORMAL = 1;
+
+        
         #region Propiedades
+        // flag para indicar si esta aplicación ya cuenta con una instancia:
+        Mutex _Mutex;
+
         private FormWindowState _CurrentState;
         private string _Seccion;
 
@@ -24,7 +60,26 @@ namespace TestsSGBD
 
         public frmPrincipal()
         {
+            // flag para indicar si esta aplicación ya cuenta con una instancia:
+            bool appEnEjecucion;
+
+            // Mutex para tomar el control de la ejecución de esta
+            // aplicación por una única instancia:
+            _Mutex = new Mutex(true, "TestsSGBD", out appEnEjecucion);
+
             InitializeComponent();
+
+            if (!appEnEjecucion)
+            {
+                // La aplicación se haya en ejecución, La traemos al frente y cerramos esta
+                IntPtr wdwIntPtr = FindWindow(null, this.Text);
+                if (!wdwIntPtr.Equals(IntPtr.Zero))
+                {
+                    SetForegroundWindow(wdwIntPtr);
+                    ShowWindow(wdwIntPtr, SW_SHOWNORMAL);
+                }
+                this.Close();
+            }
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
@@ -652,6 +707,14 @@ namespace TestsSGBD
             _sUltimoMensaje = e.Data;
         }
         #endregion
+
+        private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this._Mutex != null)
+            {
+                this._Mutex.ReleaseMutex();
+            }
+        }
 
     }
 }

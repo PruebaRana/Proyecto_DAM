@@ -1,9 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
+using System.Runtime.InteropServices;
 
 namespace TestsSGBD.MisCS
 {
+
+
     class Utiles
     {
         public static bool CheckFolder(string asRuta, int aiEsFile = 0)
