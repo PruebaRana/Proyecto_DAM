@@ -16,7 +16,7 @@ namespace TestsSGBD
         public frmConfigurarConector()
         {
             InitializeComponent();
-            this._Item = new Conector();
+            this._Item = new Conector(); 
 
         }
 
