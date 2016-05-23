@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.hpConector = new System.Windows.Forms.HelpProvider();
+            this.btnComprobar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAceptar
@@ -149,6 +150,22 @@
             this.cmbTipo.Size = new System.Drawing.Size(142, 23);
             this.cmbTipo.TabIndex = 14;
             // 
+            // btnComprobar
+            // 
+            this.btnComprobar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnComprobar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnComprobar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnComprobar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnComprobar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnComprobar.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btnComprobar.Location = new System.Drawing.Point(149, 209);
+            this.btnComprobar.Name = "btnComprobar";
+            this.btnComprobar.Size = new System.Drawing.Size(89, 34);
+            this.btnComprobar.TabIndex = 15;
+            this.btnComprobar.Text = "Comprobar";
+            this.btnComprobar.UseVisualStyleBackColor = false;
+            this.btnComprobar.Click += new System.EventHandler(this.btnComprobar_Click);
+            // 
             // frmConfigurarConector
             // 
             this.AcceptButton = this.btnAceptar;
@@ -157,6 +174,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(508, 255);
+            this.Controls.Add(this.btnComprobar);
             this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.txtCadena);
             this.Controls.Add(this.label3);
@@ -191,5 +209,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.HelpProvider hpConector;
+        private System.Windows.Forms.Button btnComprobar;
     }
 }

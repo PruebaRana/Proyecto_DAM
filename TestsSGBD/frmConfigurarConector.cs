@@ -129,5 +129,27 @@ namespace TestsSGBD
         }
         #endregion
 
+
+        #region Metodos extra
+        private void btnComprobar_Click(object sender, EventArgs e)
+        {
+            string lsRes = "";
+            try
+            {
+                Conector lConector = new Conector(txtNombre.Text, cmbTipo.Text.Contains("ODBC") ? "ODBC" : "MySQL", txtCadena.Text);
+                DatosBase lDBGenerico = DatosBaseFactory.CreateInstance(lConector);
+
+                lDBGenerico.Open();
+                lDBGenerico.Close();
+
+                lsRes = "Se ha realizado la prueba con exito, todo correcto";
+                MessageBox.Show(lsRes, "Conector", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } catch(Exception ex)
+            {
+                lsRes = "No se ha prodido comprobar la conexion, error: " + ex.Message;
+                MessageBox.Show(lsRes, "Conector", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
     }
 }
