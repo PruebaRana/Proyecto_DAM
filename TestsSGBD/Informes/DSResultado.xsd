@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSResultado" targetNamespace="http://tempuri.org/DSResultado.xsd" xmlns:mstns="http://tempuri.org/DSResultado.xsd" xmlns="http://tempuri.org/DSResultado.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSResultado" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSResultado" msprop:Generator_UserDSName="DSResultado">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Bloques" msprop:Generator_TableClassName="BloquesDataTable" msprop:Generator_TableVarName="tableBloques" msprop:Generator_RowChangedName="BloquesRowChanged" msprop:Generator_TablePropName="Bloques" msprop:Generator_RowDeletingName="BloquesRowDeleting" msprop:Generator_RowChangingName="BloquesRowChanging" msprop:Generator_RowEvHandlerName="BloquesRowChangeEventHandler" msprop:Generator_RowDeletedName="BloquesRowDeleted" msprop:Generator_RowClassName="BloquesRow" msprop:Generator_UserTableName="Bloques" msprop:Generator_RowEvArgName="BloquesRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" />
+              <xs:element name="IdTest" msprop:Generator_ColumnVarNameInTable="columnIdTest" msprop:Generator_ColumnPropNameInRow="IdTest" msprop:Generator_ColumnPropNameInTable="IdTestColumn" msprop:Generator_UserColumnName="IdTest" type="xs:short" minOccurs="0" />
+              <xs:element name="NombreSeccion" msprop:Generator_ColumnVarNameInTable="columnNombreSeccion" msprop:Generator_ColumnPropNameInRow="NombreSeccion" msprop:Generator_ColumnPropNameInTable="NombreSeccionColumn" msprop:Generator_UserColumnName="NombreSeccion" type="xs:string" minOccurs="0" />
+              <xs:element name="NombreBloque" msprop:Generator_ColumnVarNameInTable="columnNombreBloque" msprop:Generator_ColumnPropNameInRow="NombreBloque" msprop:Generator_ColumnPropNameInTable="NombreBloqueColumn" msprop:Generator_UserColumnName="NombreBloque" type="xs:string" minOccurs="0" />
+              <xs:element name="NumeroSentencias" msprop:Generator_ColumnVarNameInTable="columnNumeroSentencias" msprop:Generator_ColumnPropNameInRow="NumeroSentencias" msprop:Generator_ColumnPropNameInTable="NumeroSentenciasColumn" msprop:Generator_UserColumnName="NumeroSentencias" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Test" msprop:Generator_TableClassName="TestDataTable" msprop:Generator_TableVarName="tableTest" msprop:Generator_RowChangedName="TestRowChanged" msprop:Generator_TablePropName="Test" msprop:Generator_RowDeletingName="TestRowDeleting" msprop:Generator_RowChangingName="TestRowChanging" msprop:Generator_RowEvHandlerName="TestRowChangeEventHandler" msprop:Generator_RowDeletedName="TestRowDeleted" msprop:Generator_RowClassName="TestRow" msprop:Generator_UserTableName="Test" msprop:Generator_RowEvArgName="TestRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_UserColumnName="Nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Tipo" msprop:Generator_ColumnVarNameInTable="columnTipo" msprop:Generator_ColumnPropNameInRow="Tipo" msprop:Generator_ColumnPropNameInTable="TipoColumn" msprop:Generator_UserColumnName="Tipo" type="xs:string" minOccurs="0" />
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Hilos" msprop:Generator_TableClassName="HilosDataTable" msprop:Generator_TableVarName="tableHilos" msprop:Generator_RowChangedName="HilosRowChanged" msprop:Generator_TablePropName="Hilos" msprop:Generator_RowDeletingName="HilosRowDeleting" msprop:Generator_RowChangingName="HilosRowChanging" msprop:Generator_RowEvHandlerName="HilosRowChangeEventHandler" msprop:Generator_RowDeletedName="HilosRowDeleted" msprop:Generator_RowClassName="HilosRow" msprop:Generator_UserTableName="Hilos" msprop:Generator_RowEvArgName="HilosRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdBloque" msprop:Generator_ColumnVarNameInTable="columnIdBloque" msprop:Generator_ColumnPropNameInRow="IdBloque" msprop:Generator_ColumnPropNameInTable="IdBloqueColumn" msprop:Generator_UserColumnName="IdBloque" type="xs:short" minOccurs="0" />
+              <xs:element name="TipoConexion" msprop:Generator_ColumnVarNameInTable="columnTipoConexion" msprop:Generator_ColumnPropNameInRow="TipoConexion" msprop:Generator_ColumnPropNameInTable="TipoConexionColumn" msprop:Generator_UserColumnName="TipoConexion" type="xs:string" minOccurs="0" />
+              <xs:element name="CantidadHilos" msprop:Generator_ColumnVarNameInTable="columnCantidadHilos" msprop:Generator_ColumnPropNameInRow="CantidadHilos" msprop:Generator_ColumnPropNameInTable="CantidadHilosColumn" msprop:Generator_UserColumnName="CantidadHilos" type="xs:short" minOccurs="0" />
+              <xs:element name="Tiempo" msprop:Generator_ColumnVarNameInTable="columnTiempo" msprop:Generator_ColumnPropNameInRow="Tiempo" msprop:Generator_ColumnPropNameInTable="TiempoColumn" msprop:Generator_UserColumnName="Tiempo" type="xs:int" minOccurs="0" />
+              <xs:element name="Errores" msprop:Generator_ColumnVarNameInTable="columnErrores" msprop:Generator_ColumnPropNameInRow="Errores" msprop:Generator_ColumnPropNameInTable="ErroresColumn" msprop:Generator_UserColumnName="Errores" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="HilosKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Bloques" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Test" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Hilos_Bloques" msdata:parent="Hilos" msdata:child="Bloques" msdata:parentkey="IdBloque" msdata:childkey="Id" msprop:Generator_UserChildTable="Bloques" msprop:Generator_ChildPropName="GetBloquesRows" msprop:Generator_UserRelationName="Hilos_Bloques" msprop:Generator_ParentPropName="HilosRow" msprop:Generator_RelationVarName="relationHilos_Bloques" msprop:Generator_UserParentTable="Hilos" />
+      <msdata:Relationship name="Bloques_Test" msdata:parent="Bloques" msdata:child="Test" msdata:parentkey="IdTest" msdata:childkey="Id" msprop:Generator_UserChildTable="Test" msprop:Generator_ChildPropName="GetTestRows" msprop:Generator_UserRelationName="Bloques_Test" msprop:Generator_ParentPropName="BloquesRow" msprop:Generator_RelationVarName="relationBloques_Test" msprop:Generator_UserParentTable="Bloques" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

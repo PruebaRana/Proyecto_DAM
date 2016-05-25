@@ -226,6 +226,7 @@ namespace TestsSGBD.Clases
                 //Configuracion.StringToObject(File.ReadAllText(asRutaXML), lConf);
                 this._RutaXML = asRutaXML;
                 this._Nombre = lItem.Nombre;
+                this._Conector = lItem.Conector;
                 this._Insercion = lItem._Insercion;
                 this._Consulta = lItem._Consulta;
                 this._Borrado = lItem._Borrado;
@@ -308,6 +309,12 @@ namespace TestsSGBD.Clases
         #endregion
         #endregion
 
+        #region Apertura de Informe
+        private void GenerarInforme()
+        {
+
+        }
+        #endregion
 
     }
 }

@@ -183,6 +183,7 @@ namespace TestsSGBD
                     break;
                 case "btnInformes":
                     pnlInformes.Visible = true;
+                    CargarSeccionInformes();
                     break;
             }
         }
@@ -210,7 +211,18 @@ namespace TestsSGBD
             lvConectoresTest_Resize(null, null);
             CargarDatosSeccionTests();
         }
+        private void CargarSeccionInformes()
+        {
+            lvInformes_Resize(null, null);
+            CargarComboInformes();
+        }
+
+        private void tabConfiguracion_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            CargarSeccionConfiguracion();
+        }
         #endregion
+
 
         #region Seccion Configuracion Conectores
         private void lvConectores_Resize(object sender, EventArgs e)
@@ -269,7 +281,6 @@ namespace TestsSGBD
                 CargarConectores();
             }
         }
-
         private void btnUpdConector_Click(object sender, EventArgs e)
         {
             if (lvConectores.SelectedItems.Count > 0)
@@ -303,23 +314,23 @@ namespace TestsSGBD
                 }
             }
         }
-
         private void btnDelConector_Click(object sender, EventArgs e)
         {
             if (lvConectores.SelectedItems.Count > 0)
             {
-                if (MessageBox.Show("Esta seguro de eliminar el conector ?", "Conector", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                if (MessageBox.Show("Esta seguro de eliminar el Conector ?", "Conector", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
                     return;
                 }
 
                 string lsNombre = lvConectores.SelectedItems[0].Text;
 
-                // Eliminarla de la lista
-                this._Conectores.Conector.Remove(obtenConector(lsNombre));
+                // Eliminarla de la lista y el fichero xml del Test
+                Conector lConector = obtenConector(lsNombre);
+                this._Conectores.Conector.Remove(lConector);
                 this._Conectores.SaveXML();
 
-                // recargar la lista
+                // Recargar el listado de tests
                 CargarConectores();
             }
         }
@@ -424,7 +435,6 @@ namespace TestsSGBD
                 CargarTests();
             }
         }
-
         private void btnUpdTest_Click(object sender, EventArgs e)
         {
             if (lvTests.SelectedItems.Count > 0)
@@ -466,7 +476,6 @@ namespace TestsSGBD
                 }
             }
         }
-
         private void btnDelTest_Click(object sender, EventArgs e)
         {
             if (lvTests.SelectedItems.Count > 0)
@@ -487,7 +496,6 @@ namespace TestsSGBD
 
                 // Recargar el listado de tests
                 CargarTests();
-
             }
         }
 
@@ -539,8 +547,6 @@ namespace TestsSGBD
             }
         }
         #endregion
-
-
 
         #region Seccion Tests
         private void lvConectoresTest_Resize(object sender, EventArgs e)
@@ -597,8 +603,7 @@ namespace TestsSGBD
             llvItem.SubItems.Add(asCadena);
             lvConectoresTest.Items.Add(llvItem);
         }
-
-
+        
         private void btnEjecutar_Click(object sender, EventArgs e)
         {
             List<Conector> lConectores = new List<Conector>();
@@ -665,6 +670,101 @@ namespace TestsSGBD
         }
         #endregion
 
+        #region Seccion Informes
+        private void lvInformes_Resize(object sender, EventArgs e)
+        {
+            if (lvInformes.Width.ToString() == lvInformes.Tag.ToString())
+            {
+                return;
+            }
+
+            int liAncho = lvInformes.Width - 5;
+            if (liAncho >= 425)
+            {
+                lvInformes.Tag = lvInformes.Width;
+                liAncho -= (lvInformes.Columns[1].Width + lvInformes.Columns[2].Width);
+                lvInformes.Columns[0].Width = liAncho;
+            }
+        }
+        
+        private void CargarComboInformes()
+        {
+            string[] filePaths = Directory.GetFiles(Config.RutaConfiguraciones, "Resultado_*.xml");
+
+            cbInformes.Items.Clear();
+
+            cbInformes.Items.Add(new ComboboxItem() { Text = "Todos", Value = "Todos"});
+            foreach (string lItem in filePaths)
+            {
+                string lsNombre = lItem.Replace(Config.RutaConfiguraciones + @"\Resultado_", "").Replace(".XML", "") ;
+                lsNombre = lsNombre.Substring(0, lsNombre.Length - 16);
+
+                cbInformes.Items.Add(new ComboboxItem() { Text = lsNombre, Value = lsNombre });
+            }
+            cbInformes.SelectedIndex = 0;
+        }
+
+        private void CargarLVInformes(object sender, EventArgs e)
+        {
+            // Obtener el elemento seleccionado del combo
+            if (cbInformes.SelectedItem == null)
+            {
+                cbInformes.SelectedIndex = 0;
+            }
+            string lsInformesAMostrar = ((ComboboxItem)cbInformes.SelectedItem).Value.ToString();
+            string lsFiltro = "Resultado_";
+
+            if (lsInformesAMostrar.ToLower() != "todos")
+            {
+                lsFiltro += lsInformesAMostrar;
+            }
+
+            string[] filePaths = Directory.GetFiles(Config.RutaConfiguraciones, lsFiltro + "*.xml");
+
+            lvInformes.Items.Clear();
+            foreach (string lItem in filePaths)
+            {
+                ResultadoTest lRT = new ResultadoTest();
+                lRT.LoadXML(lItem);
+                string lsNombre = lRT.Nombre.Substring(0, lRT.Nombre.Length - 16);
+                lsNombre = lsNombre.Replace("Resultado_", "");
+
+                addInforme(lItem, lsNombre, lRT.Fecha.ToString("dd/MM/yyyy HH:mm:ss"), lRT.Conector.Tipo);
+                lRT.Dispose();
+            }
+        }
+        private void addInforme(string asNombreCompleto, string asNombre, string asFecha, string asTipo)
+        {
+            ListViewItem llvItem = new ListViewItem(asNombre);
+            llvItem.Tag = asNombreCompleto;
+            llvItem.SubItems.Add(asTipo);
+            llvItem.SubItems.Add(asFecha);
+            lvInformes.Items.Add(llvItem);
+        }
+        
+        private void btnAbrirInforme_Click(object sender, EventArgs e)
+        {
+            // Comprobar que hay conectores y test seleccionados
+            if (lvInformes.SelectedItems.Count > 0)
+            {
+                int liCantidad = lvInformes.SelectedItems.Count;
+                for (int i = 0; i < liCantidad; i++)
+                {
+                    //string lsNombre = Config.RutaConfiguraciones + @"\" + lvInformes.SelectedItems[i].Tag.ToString();
+                    string lsNombre = lvInformes.SelectedItems[i].Tag.ToString();
+
+                    frmInforme lInforme = new frmInforme();
+                    lInforme.CargarResultado(lsNombre);
+
+                    lInforme.Show();
+                }
+            }
+            else
+            {
+
+            }
+        }
+        #endregion
 
 
 
@@ -733,6 +833,13 @@ namespace TestsSGBD
                 this._Mutex.ReleaseMutex();
             }
         }
+
+        private void CargarLVInformes()
+        {
+
+        }
+
+
 
     }
 }
