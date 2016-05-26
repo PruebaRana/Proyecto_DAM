@@ -29,6 +29,8 @@ namespace TestsSGBD
             this._Item = aItem == null ? new Bloque() : aItem;
             this._Seccion = aSeccion;
 
+            this.Text = "Configurar Bloque " + aSeccion;
+
             if (this._Seccion == Test.TipoSeccion.CREACION)
             {
                 this._Item.Hilos_Inicio = 1;
@@ -76,6 +78,7 @@ namespace TestsSGBD
             // Sentencias
             txtSentencias.Text = Regex.Replace(txtSentencias.Text, @"\s{2,}", " ");
             string[] lsSentencias = txtSentencias.Text.Split(";".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
             foreach (string lsItem in lsSentencias)
             {
                 string lsSQL = lsItem.Replace("  ", " ").Trim();
@@ -163,10 +166,43 @@ namespace TestsSGBD
 
         private bool validar()
         {
+            bool lswRes = true;
             //Montar un obj con los datos del form.
             Bloque lItem = ObtenBloque();
 
-            return lItem.Validar();
+            string lsSentenciasPermitidas = "";
+            switch (this._Seccion)
+            {
+                case Test.TipoSeccion.CREACION:
+                    lsSentenciasPermitidas = "create";
+                    break;
+                case Test.TipoSeccion.INSERCION:
+                    lsSentenciasPermitidas = "insertupdate";
+                    break;
+                case Test.TipoSeccion.CONSULTA:
+                    lsSentenciasPermitidas = "select";
+                    break;
+                case Test.TipoSeccion.BORRADO:
+                    lsSentenciasPermitidas = "delete";
+                    break;
+            }
+
+            foreach (Sentencia lSentencia in lItem.Sentencias)
+            {
+                // Comprobar que la sentencia es del tipo correcto para la seccion en cuestion.
+                string lsSentencia = lSentencia.SQL.Substring(0, 6).ToLower();
+                if (!lsSentenciasPermitidas.Contains(lsSentencia))
+                {
+                    lswRes = false;
+                    break;
+                }
+            }
+
+            if (lswRes)
+            {
+                lswRes = lItem.Validar();
+            }
+            return lswRes;
         }
         #endregion
 

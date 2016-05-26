@@ -82,6 +82,27 @@ namespace TestsSGBD
             }
         }
 
+        private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this._EjecutarTest != null && this._EjecutarTest.EnProceso)
+            {
+                if (MessageBox.Show("Hay un test en ejecucion, esta seguro de cancelar el test y salir ?", "Test en ejecucion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                // cancelar y liberar el test
+                CancelarTest();
+            }
+
+            // Liberar el mutex
+            if (this._Mutex != null)
+            {
+                this._Mutex.ReleaseMutex();
+            }
+        }
+
+
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             activarSeccion("btnConfiguracion");
@@ -813,26 +834,6 @@ namespace TestsSGBD
             _sUltimoMensaje = e.Data;
         }
         #endregion
-
-        private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (this._EjecutarTest != null && this._EjecutarTest.EnProceso)
-            {
-                if (MessageBox.Show("Hay un test en ejecucion, esta seguro de cancelar el test y salir ?", "Test en ejecucion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
-                {
-                    e.Cancel = true;
-                    return;
-                }
-                // cancelar y liberar el test
-                CancelarTest();
-            }
-
-            // Liberar el mutex
-            if (this._Mutex != null)
-            {
-                this._Mutex.ReleaseMutex();
-            }
-        }
 
         private void CargarLVInformes()
         {

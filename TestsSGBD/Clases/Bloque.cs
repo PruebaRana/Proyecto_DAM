@@ -270,7 +270,7 @@ namespace TestsSGBD.Clases
         {
             bool lRes = true;
 
-            if (string.IsNullOrEmpty(this.Nombre) || this.Sentencias.Count < 1 || this.Hilos_Inicio < 1 || (this.Hilos_Fin < 1 || this.Hilos_Fin < this.Hilos_Fin) || this.Hilos_Step < 1)
+            if (string.IsNullOrEmpty(this.Nombre) || this.Sentencias.Count < 1 || this.Hilos_Inicio < 1 || (this.Hilos_Fin < 1 || this.Hilos_Fin < this.Hilos_Inicio) || this.Hilos_Step < 1)
             {
                 lRes = false;
             }
