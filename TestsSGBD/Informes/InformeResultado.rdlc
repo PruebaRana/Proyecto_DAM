@@ -154,7 +154,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Left</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -163,6 +163,10 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <BottomBorder>
+                          <Style>Solid</Style>
+                          <Width>1.5pt</Width>
+                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -277,7 +281,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.23622in</Height>
+              <Height>0.07997in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -391,7 +395,7 @@
         </TablixRowHierarchy>
         <DataSetName>DSBloques</DataSetName>
         <Top>0.38806cm</Top>
-        <Height>4.51166cm</Height>
+        <Height>4.11477cm</Height>
         <Width>16.86687cm</Width>
         <Style>
           <Border>
@@ -400,13 +404,13 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2.08527in</Height>
+    <Height>1.77277in</Height>
     <Style />
   </Body>
   <Width>6.6405in</Width>
   <Page>
     <PageHeader>
-      <Height>2.30188cm</Height>
+      <Height>1.79917cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>

@@ -53,13 +53,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.60925in</Width>
+              <Width>0.48425in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.56758in</Width>
+              <Width>0.58841in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.50509in</Width>
+              <Width>0.45301in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -78,7 +78,7 @@
                               <Value>Hilos</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
+                                <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -112,7 +112,7 @@
                               <Value>Tiempo</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
+                                <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -143,7 +143,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Errores</Value>
+                              <Value>Error</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -185,7 +185,7 @@
                               <Value>=Fields!CantidadHilos.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
+                                <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
                             <TextRun>
@@ -306,7 +306,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>Conexión</Value>
+                            <Value>Conex</Value>
                             <Style>
                               <FontSize>8pt</FontSize>
                               <FontWeight>Bold</FontWeight>
@@ -356,7 +356,7 @@
                             <Value>=Fields!TipoConexion.Value</Value>
                             <Style>
                               <FontSize>8pt</FontSize>
-                              <FontWeight>Bold</FontWeight>
+                              <FontWeight>Normal</FontWeight>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -432,8 +432,10 @@
             </FilterValues>
           </Filter>
         </Filters>
+        <Top>7.51802cm</Top>
+        <Left>2.2225cm</Left>
         <Height>1.82146cm</Height>
-        <Width>4.27208cm</Width>
+        <Width>3.8752cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -691,7 +693,6 @@
             <VerticalAlign>Top</VerticalAlign>
           </Style>
         </ChartNoDataMessage>
-        <DataSetName>DSHilos</DataSetName>
         <Filters>
           <Filter>
             <FilterExpression>=Fields!IdBloque.Value</FilterExpression>
@@ -701,9 +702,8 @@
             </FilterValues>
           </Filter>
         </Filters>
-        <Left>4.64758cm</Left>
-        <Height>5.89958cm</Height>
-        <Width>8.39958cm</Width>
+        <Height>7.0776cm</Height>
+        <Width>16.92394cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -715,7 +715,7 @@
         </Style>
       </Chart>
     </ReportItems>
-    <Height>2.32267in</Height>
+    <Height>3.67696in</Height>
     <Style />
   </Body>
   <ReportParameters>
@@ -724,7 +724,7 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>5.13668in</Width>
+  <Width>6.66297in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

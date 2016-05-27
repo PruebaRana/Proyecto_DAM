@@ -127,7 +127,7 @@
             this.btnConfiguracion.Text = "Configuración";
             this.btnConfiguracion.UseVisualStyleBackColor = true;
             this.btnConfiguracion.Click += new System.EventHandler(this.btnSeccion_Click);
-            this.btnConfiguracion.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
+            this.btnConfiguracion.MouseEnter += new System.EventHandler(this.btnSeccion_MouseEnter);
             this.btnConfiguracion.MouseLeave += new System.EventHandler(this.btnSeccion_MouseLeave);
             // 
             // lblSep1
@@ -158,7 +158,7 @@
             this.btnTests.Text = "Tests";
             this.btnTests.UseVisualStyleBackColor = true;
             this.btnTests.Click += new System.EventHandler(this.btnSeccion_Click);
-            this.btnTests.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
+            this.btnTests.MouseEnter += new System.EventHandler(this.btnSeccion_MouseEnter);
             this.btnTests.MouseLeave += new System.EventHandler(this.btnSeccion_MouseLeave);
             // 
             // lblSep2
@@ -187,7 +187,7 @@
             this.btnInformes.Text = "Informes";
             this.btnInformes.UseVisualStyleBackColor = true;
             this.btnInformes.Click += new System.EventHandler(this.btnSeccion_Click);
-            this.btnInformes.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
+            this.btnInformes.MouseEnter += new System.EventHandler(this.btnSeccion_MouseEnter);
             this.btnInformes.MouseLeave += new System.EventHandler(this.btnSeccion_MouseLeave);
             // 
             // lblSep3

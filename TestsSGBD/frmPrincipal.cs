@@ -142,34 +142,41 @@ namespace TestsSGBD
         #region Metodos para los botones laterales
         private void btnSeccion_MouseLeave(object sender, EventArgs e)
         {
-            btnConfiguracion.BackColor = Color.FromArgb(64, 64, 64);
-            btnConfiguracion.ForeColor = Color.Silver;
-            btnTests.BackColor = Color.FromArgb(64, 64, 64);
-            btnTests.ForeColor = Color.Silver;
-            btnInformes.BackColor = Color.FromArgb(64, 64, 64);
-            btnInformes.ForeColor = Color.Silver;
+            ColorBotonDesactivado(btnConfiguracion);
+            ColorBotonDesactivado(btnTests);
+            ColorBotonDesactivado(btnInformes);
 
             Button lB = (Button)this.Controls.Find(this._Seccion, true)[0];
             if (lB != null)
             {
-                lB.BackColor = Color.FromArgb(64, 64, 64);
-                lB.ForeColor = Color.FromArgb(255, 153, 0);
+                ColorBotonActivado(lB);
             }
         }
-
-        private void btn_MouseEnter(object sender, EventArgs e)
+        private void btnSeccion_MouseEnter(object sender, EventArgs e)
         {
-            ((Button)sender).BackColor = Color.FromArgb(255, 153, 0);
-            ((Button)sender).ForeColor = Color.White;
+            ColorBotonResaltado((Button)sender);
+        }
+
+
+        private void ColorBotonDesactivado(Button aButton)
+        {
+            aButton.BackColor = Color.FromArgb(64, 64, 64);
+            aButton.ForeColor = Color.Silver;
+        }
+        private void ColorBotonActivado(Button aButton)
+        {
+            aButton.BackColor = Color.FromArgb(64, 64, 64);
+            aButton.ForeColor = Color.FromArgb(255, 153, 0);
+        }
+        private void ColorBotonResaltado(Button aButton)
+        {
+            aButton.BackColor = Color.FromArgb(255, 153, 0);
+            aButton.ForeColor = Color.White;
         }
 
         private void btnSeccion_Click(object sender, EventArgs e)
         {
             activarSeccion(((Button)sender).Name);
-            //this._Seccion = this.Name;
-            //btnSeccion_MouseLeave(sender, e);
-
-            //activarPanel();
         }
 
         private void activarSeccion(string asSeccion)

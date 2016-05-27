@@ -68,12 +68,7 @@ namespace TestsSGBD.Clases
         #region Constructores
         private EjecucionTest(List<Conector> aConectores, Test aTest)
         {
-            this._Conectores = aConectores;
-            this._Test = aTest;
-            this._Resultados = new List<ResultadoTest>();
-
-            this._PasosTotales = this.ContarRepeticionesTest() * this._Conectores.Count;
-            this._PasosActual = 0;
+            this.asignarConectoresYTest(aConectores, aTest);
         }
 
         //Metodo estático que devuelve una única instancia de "EjecucionTest" patron singleton
@@ -89,11 +84,24 @@ namespace TestsSGBD.Clases
                     }
                 }
             }
+            else
+            {
+                instance.asignarConectoresYTest(aConectores, aTest);
+            }
+
             return instance;
         }
 
+        private void asignarConectoresYTest(List<Conector> aConectores, Test aTest)
+        {
+            this._Conectores = aConectores;
+            this._Test = aTest;
+            this._Resultados = new List<ResultadoTest>();
 
-        private int ContarRepeticionesTest()
+            this._PasosActual = 0;
+            this._PasosTotales = this.ContarRepeticiones() * this._Conectores.Count;
+        }
+        private int ContarRepeticiones()
         {
             int liCantidad = 0;
             liCantidad += ContarRepeticionesListaBloques(this._Test.Creacion);
@@ -168,7 +176,6 @@ namespace TestsSGBD.Clases
         public void CancelarEjecucion()
         {
             this._TokenSource.Cancel();
-
         }
 
         private void ProcesarTest()
