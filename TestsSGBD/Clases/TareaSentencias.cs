@@ -96,14 +96,6 @@ namespace TestsSGBD.Clases
 
         public void LanzarConsultas()
         {
-            //try
-            //{
-            //    this._Datos.Open();
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
             int liErrores = 0;
             foreach (Sentencia lSentencia in this._Sentencias)
             {

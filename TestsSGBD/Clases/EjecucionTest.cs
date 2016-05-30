@@ -194,119 +194,20 @@ namespace TestsSGBD.Clases
                     this.MandaAccion("Seccion Creacion");
                     foreach (Bloque lBloqueCreacion in this._Test.Creacion.Bloque)
                     {
-                        foreach (Sentencia lSentencia in lBloqueCreacion.Sentencias)
-                        {
-
-                        }
+                        ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                        lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.BLOQUE;
+                        LanzarBloque(lBloqueCreacion, lResultadoConexion, lConector);
                     }
 
                     // Insercion
                     lNuevoResultadoTest.Insercion = new ResultadoSeccion();
-                    foreach (Bloque lBloque in this._Test.Insercion.Bloque)
-                    {
-                        //
-                        ResultadoBloque lResultadoBloque = new ResultadoBloque();
-                        lResultadoBloque.Nombre = lBloque.Nombre;
-                        lResultadoBloque.NumeroSentencias = lBloque.Sentencias.Count;
-
-                        if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
-                        {
-                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.BLOQUE;
-                            LanzarBloque(lBloque, lResultadoConexion, lConector);
-                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                        }
-
-                        if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
-                        {
-                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.HILO;
-                            LanzarBloque(lBloque, lResultadoConexion, lConector);
-                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                        }
-
-                        if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
-                        {
-                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.SENTENCIA;
-                            LanzarBloque(lBloque, lResultadoConexion, lConector);
-                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                        }
-
-                        lNuevoResultadoTest.Insercion.Bloque.Add(lResultadoBloque);
-                    }
-
+                    lNuevoResultadoTest.Insercion.Bloque = this.procesaSeccion(lConector, this._Test.Insercion);
                     // Consulta
                     lNuevoResultadoTest.Consulta = new ResultadoSeccion();
-                    foreach (Bloque lBloque in this._Test.Consulta.Bloque)
-                    {
-                        //
-                        ResultadoBloque lResultadoBloque = new ResultadoBloque();
-                        lResultadoBloque.Nombre = lBloque.Nombre;
-                        lResultadoBloque.NumeroSentencias = lBloque.Sentencias.Count;
-
-                        if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
-                        {
-                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.BLOQUE;
-                            LanzarBloque(lBloque, lResultadoConexion, lConector);
-                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                        }
-
-                        if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
-                        {
-                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.HILO;
-                            LanzarBloque(lBloque, lResultadoConexion, lConector);
-                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                        }
-
-                        if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
-                        {
-                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.SENTENCIA;
-                            LanzarBloque(lBloque, lResultadoConexion, lConector);
-                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                        }
-
-                        lNuevoResultadoTest.Consulta.Bloque.Add(lResultadoBloque);
-                    }
-
-                    // Borrado
+                    lNuevoResultadoTest.Consulta.Bloque = this.procesaSeccion(lConector, this._Test.Consulta);
+                    // Insercion
                     lNuevoResultadoTest.Borrado = new ResultadoSeccion();
-                    foreach (Bloque lBloque in this._Test.Borrado.Bloque)
-                    {
-                        //
-                        ResultadoBloque lResultadoBloque = new ResultadoBloque();
-                        lResultadoBloque.Nombre = lBloque.Nombre;
-                        lResultadoBloque.NumeroSentencias = lBloque.Sentencias.Count;
-
-                        if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
-                        {
-                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.BLOQUE;
-                            LanzarBloque(lBloque, lResultadoConexion, lConector);
-                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                        }
-
-                        if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
-                        {
-                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.HILO;
-                            LanzarBloque(lBloque, lResultadoConexion, lConector);
-                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                        }
-
-                        if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
-                        {
-                            ResultadoConexion lResultadoConexion = new ResultadoConexion();
-                            lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.SENTENCIA;
-                            LanzarBloque(lBloque, lResultadoConexion, lConector);
-                            lResultadoBloque.Conexiones.Add(lResultadoConexion);
-                        }
-
-                        lNuevoResultadoTest.Borrado.Bloque.Add(lResultadoBloque);
-                    }
+                    lNuevoResultadoTest.Borrado.Bloque = this.procesaSeccion(lConector, this._Test.Borrado);
 
                     lNuevoResultadoTest.SaveXML();
                 }
@@ -324,6 +225,47 @@ namespace TestsSGBD.Clases
                 this._EnProceso = false;
             }
         }
+        private List<ResultadoBloque> procesaSeccion(Conector aConector, Seccion aSeccion)
+        {
+            List<ResultadoBloque> lResultadosBloques = new List<ResultadoBloque>();
+            // Recorro los bloques
+            foreach (Bloque lBloque in aSeccion.Bloque)
+            {
+                //
+                ResultadoBloque lResultadoBloque = new ResultadoBloque();
+                lResultadoBloque.Nombre = lBloque.Nombre;
+                lResultadoBloque.NumeroSentencias = lBloque.Sentencias.Count;
+
+                if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
+                {
+                    ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                    lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.BLOQUE;
+                    LanzarBloque(lBloque, lResultadoConexion, aConector);
+                    lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                }
+
+                if ((lBloque.Conexion & Bloque.TipoConexion.HILO) == Bloque.TipoConexion.HILO)
+                {
+                    ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                    lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.HILO;
+                    LanzarBloque(lBloque, lResultadoConexion, aConector);
+                    lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                }
+
+                if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
+                {
+                    ResultadoConexion lResultadoConexion = new ResultadoConexion();
+                    lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.SENTENCIA;
+                    LanzarBloque(lBloque, lResultadoConexion, aConector);
+                    lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                }
+
+                lResultadosBloques.Add(lResultadoBloque);
+            }
+            return lResultadosBloques;
+        }
+        
+        
         private void LanzarBloque(Bloque aBloque, ResultadoConexion aResultadoConexion, Conector aConector)
         {
             for (int i = aBloque.Hilos_Inicio; i <= aBloque.Hilos_Fin; i += aBloque.Hilos_Step)
@@ -336,17 +278,12 @@ namespace TestsSGBD.Clases
                 }
 
                 LanzarInformacionComienzoBloque("Bloque: " + aBloque.Nombre + ", hilos: " + i + " por " + aResultadoConexion.Tipo);
-                Thread.Sleep(200);
+                Thread.Sleep(20);
 
                 ResultadoHilo lResultadoHilo = new ResultadoHilo();
                 lResultadoHilo.Cantidad = i;
 
-                //DatosBase lDatos = DatosBaseFactory.CreateInstance(aConector);
-                //lDatos.Open();
-
                 LanzarSentencias(aBloque.Sentencias, lResultadoHilo, aResultadoConexion.Tipo, aConector);
-
-                //lDatos.Close();
 
                 aResultadoConexion.Hilos.Add(lResultadoHilo);
             }
