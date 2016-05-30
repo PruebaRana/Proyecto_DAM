@@ -75,6 +75,7 @@
             this.btnAddBorrado = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.tabTest.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.tabCreacion.SuspendLayout();
@@ -94,11 +95,13 @@
             this.tabTest.Controls.Add(this.tabConsulta);
             this.tabTest.Controls.Add(this.tabBorrado);
             this.tabTest.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.helpProvider1.SetHelpString(this.tabTest, "Cada una de las secciones de las que se compone un test");
             this.tabTest.ItemSize = new System.Drawing.Size(200, 28);
             this.tabTest.Location = new System.Drawing.Point(12, 12);
             this.tabTest.Name = "tabTest";
             this.tabTest.Padding = new System.Drawing.Point(24, 3);
             this.tabTest.SelectedIndex = 0;
+            this.helpProvider1.SetShowHelp(this.tabTest, true);
             this.tabTest.Size = new System.Drawing.Size(509, 151);
             this.tabTest.TabIndex = 8;
             this.tabTest.SelectedIndexChanged += new System.EventHandler(this.tabTest_SelectedIndexChanged);
@@ -121,8 +124,10 @@
             this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.helpProvider1.SetHelpString(this.txtNombre, "Sera un nombre descriptivo para el test");
             this.txtNombre.Location = new System.Drawing.Point(6, 36);
             this.txtNombre.Name = "txtNombre";
+            this.helpProvider1.SetShowHelp(this.txtNombre, true);
             this.txtNombre.Size = new System.Drawing.Size(487, 23);
             this.txtNombre.TabIndex = 8;
             // 
@@ -164,10 +169,12 @@
             this.columnHeader5});
             this.lvCreacion.FullRowSelect = true;
             this.lvCreacion.GridLines = true;
+            this.helpProvider1.SetHelpString(this.lvCreacion, "Estos seran los datos de los bloques de la seccion de creacion");
             this.lvCreacion.Location = new System.Drawing.Point(5, 8);
             this.lvCreacion.MultiSelect = false;
             this.lvCreacion.Name = "lvCreacion";
             this.lvCreacion.ShowGroups = false;
+            this.helpProvider1.SetShowHelp(this.lvCreacion, true);
             this.lvCreacion.Size = new System.Drawing.Size(408, 100);
             this.lvCreacion.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvCreacion.TabIndex = 27;
@@ -209,8 +216,10 @@
             this.btnDelCreacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelCreacion.Enabled = false;
             this.btnDelCreacion.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnDelCreacion, "Pulse para eliminar el bloque que tenga seleccionado");
             this.btnDelCreacion.Location = new System.Drawing.Point(421, 69);
             this.btnDelCreacion.Name = "btnDelCreacion";
+            this.helpProvider1.SetShowHelp(this.btnDelCreacion, true);
             this.btnDelCreacion.Size = new System.Drawing.Size(75, 23);
             this.btnDelCreacion.TabIndex = 26;
             this.btnDelCreacion.Text = "Eliminar";
@@ -223,8 +232,10 @@
             this.btnUpdCreacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdCreacion.Enabled = false;
             this.btnUpdCreacion.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnUpdCreacion, "Pulse para modificar un bloque que tenga seleccionado");
             this.btnUpdCreacion.Location = new System.Drawing.Point(421, 42);
             this.btnUpdCreacion.Name = "btnUpdCreacion";
+            this.helpProvider1.SetShowHelp(this.btnUpdCreacion, true);
             this.btnUpdCreacion.Size = new System.Drawing.Size(75, 23);
             this.btnUpdCreacion.TabIndex = 25;
             this.btnUpdCreacion.Text = "Modificar";
@@ -236,8 +247,10 @@
             this.btnAddCreacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddCreacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddCreacion.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnAddCreacion, "Pulse para añadir un nuevo bloque");
             this.btnAddCreacion.Location = new System.Drawing.Point(421, 8);
             this.btnAddCreacion.Name = "btnAddCreacion";
+            this.helpProvider1.SetShowHelp(this.btnAddCreacion, true);
             this.btnAddCreacion.Size = new System.Drawing.Size(75, 23);
             this.btnAddCreacion.TabIndex = 24;
             this.btnAddCreacion.Text = "Añadir";
@@ -271,10 +284,12 @@
             this.columnHeader15});
             this.lvInsercion.FullRowSelect = true;
             this.lvInsercion.GridLines = true;
+            this.helpProvider1.SetHelpString(this.lvInsercion, "Estos seran los datos de los bloques de la seccion de insercion");
             this.lvInsercion.Location = new System.Drawing.Point(5, 8);
             this.lvInsercion.MultiSelect = false;
             this.lvInsercion.Name = "lvInsercion";
             this.lvInsercion.ShowGroups = false;
+            this.helpProvider1.SetShowHelp(this.lvInsercion, true);
             this.lvInsercion.Size = new System.Drawing.Size(408, 100);
             this.lvInsercion.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvInsercion.TabIndex = 24;
@@ -316,8 +331,10 @@
             this.btnDelInsercion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelInsercion.Enabled = false;
             this.btnDelInsercion.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnDelInsercion, "Pulse para eliminar el bloque que tenga seleccionado");
             this.btnDelInsercion.Location = new System.Drawing.Point(421, 69);
             this.btnDelInsercion.Name = "btnDelInsercion";
+            this.helpProvider1.SetShowHelp(this.btnDelInsercion, true);
             this.btnDelInsercion.Size = new System.Drawing.Size(75, 23);
             this.btnDelInsercion.TabIndex = 22;
             this.btnDelInsercion.Text = "Eliminar";
@@ -330,8 +347,10 @@
             this.btnUpdInsercion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdInsercion.Enabled = false;
             this.btnUpdInsercion.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnUpdInsercion, "Pulse para modificar un bloque que tenga seleccionado");
             this.btnUpdInsercion.Location = new System.Drawing.Point(421, 42);
             this.btnUpdInsercion.Name = "btnUpdInsercion";
+            this.helpProvider1.SetShowHelp(this.btnUpdInsercion, true);
             this.btnUpdInsercion.Size = new System.Drawing.Size(75, 23);
             this.btnUpdInsercion.TabIndex = 21;
             this.btnUpdInsercion.Text = "Modificar";
@@ -343,8 +362,10 @@
             this.btnAddInsercion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddInsercion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddInsercion.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnAddInsercion, "Pulse para añadir un nuevo bloque");
             this.btnAddInsercion.Location = new System.Drawing.Point(421, 8);
             this.btnAddInsercion.Name = "btnAddInsercion";
+            this.helpProvider1.SetShowHelp(this.btnAddInsercion, true);
             this.btnAddInsercion.Size = new System.Drawing.Size(75, 23);
             this.btnAddInsercion.TabIndex = 20;
             this.btnAddInsercion.Text = "Añadir";
@@ -371,8 +392,10 @@
             this.btnDelConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelConsulta.Enabled = false;
             this.btnDelConsulta.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnDelConsulta, "Pulse para eliminar el bloque que tenga seleccionado");
             this.btnDelConsulta.Location = new System.Drawing.Point(421, 69);
             this.btnDelConsulta.Name = "btnDelConsulta";
+            this.helpProvider1.SetShowHelp(this.btnDelConsulta, true);
             this.btnDelConsulta.Size = new System.Drawing.Size(75, 23);
             this.btnDelConsulta.TabIndex = 26;
             this.btnDelConsulta.Text = "Eliminar";
@@ -385,8 +408,10 @@
             this.btnUpdConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdConsulta.Enabled = false;
             this.btnUpdConsulta.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnUpdConsulta, "Pulse para modificar un bloque que tenga seleccionado");
             this.btnUpdConsulta.Location = new System.Drawing.Point(421, 42);
             this.btnUpdConsulta.Name = "btnUpdConsulta";
+            this.helpProvider1.SetShowHelp(this.btnUpdConsulta, true);
             this.btnUpdConsulta.Size = new System.Drawing.Size(75, 23);
             this.btnUpdConsulta.TabIndex = 25;
             this.btnUpdConsulta.Text = "Modificar";
@@ -398,8 +423,10 @@
             this.btnAddConsulta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddConsulta.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnAddConsulta, "Pulse para añadir un nuevo bloque");
             this.btnAddConsulta.Location = new System.Drawing.Point(421, 8);
             this.btnAddConsulta.Name = "btnAddConsulta";
+            this.helpProvider1.SetShowHelp(this.btnAddConsulta, true);
             this.btnAddConsulta.Size = new System.Drawing.Size(75, 23);
             this.btnAddConsulta.TabIndex = 24;
             this.btnAddConsulta.Text = "Añadir";
@@ -419,10 +446,12 @@
             this.columnHeader14});
             this.lvConsulta.FullRowSelect = true;
             this.lvConsulta.GridLines = true;
+            this.helpProvider1.SetHelpString(this.lvConsulta, "Estos seran los datos de los bloques de la seccion de consulta");
             this.lvConsulta.Location = new System.Drawing.Point(5, 8);
             this.lvConsulta.MultiSelect = false;
             this.lvConsulta.Name = "lvConsulta";
             this.lvConsulta.ShowGroups = false;
+            this.helpProvider1.SetShowHelp(this.lvConsulta, true);
             this.lvConsulta.Size = new System.Drawing.Size(408, 100);
             this.lvConsulta.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvConsulta.TabIndex = 23;
@@ -485,10 +514,12 @@
             this.columnHeader20});
             this.lvBorrado.FullRowSelect = true;
             this.lvBorrado.GridLines = true;
+            this.helpProvider1.SetHelpString(this.lvBorrado, "Estos seran los datos de los bloques de la seccion de borrado");
             this.lvBorrado.Location = new System.Drawing.Point(5, 8);
             this.lvBorrado.MultiSelect = false;
             this.lvBorrado.Name = "lvBorrado";
             this.lvBorrado.ShowGroups = false;
+            this.helpProvider1.SetShowHelp(this.lvBorrado, true);
             this.lvBorrado.Size = new System.Drawing.Size(408, 100);
             this.lvBorrado.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvBorrado.TabIndex = 27;
@@ -530,8 +561,10 @@
             this.btnDelBorrado.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelBorrado.Enabled = false;
             this.btnDelBorrado.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnDelBorrado, "Pulse para eliminar el bloque que tenga seleccionado");
             this.btnDelBorrado.Location = new System.Drawing.Point(421, 69);
             this.btnDelBorrado.Name = "btnDelBorrado";
+            this.helpProvider1.SetShowHelp(this.btnDelBorrado, true);
             this.btnDelBorrado.Size = new System.Drawing.Size(75, 23);
             this.btnDelBorrado.TabIndex = 26;
             this.btnDelBorrado.Text = "Eliminar";
@@ -544,8 +577,10 @@
             this.btnUpdBorrado.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdBorrado.Enabled = false;
             this.btnUpdBorrado.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnUpdBorrado, "Pulse para modificar un bloque que tenga seleccionado");
             this.btnUpdBorrado.Location = new System.Drawing.Point(421, 42);
             this.btnUpdBorrado.Name = "btnUpdBorrado";
+            this.helpProvider1.SetShowHelp(this.btnUpdBorrado, true);
             this.btnUpdBorrado.Size = new System.Drawing.Size(75, 23);
             this.btnUpdBorrado.TabIndex = 25;
             this.btnUpdBorrado.Text = "Modificar";
@@ -557,8 +592,10 @@
             this.btnAddBorrado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddBorrado.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddBorrado.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.helpProvider1.SetHelpString(this.btnAddBorrado, "Pulse para añadir un nuevo bloque");
             this.btnAddBorrado.Location = new System.Drawing.Point(421, 8);
             this.btnAddBorrado.Name = "btnAddBorrado";
+            this.helpProvider1.SetShowHelp(this.btnAddBorrado, true);
             this.btnAddBorrado.Size = new System.Drawing.Size(75, 23);
             this.btnAddBorrado.TabIndex = 24;
             this.btnAddBorrado.Text = "Añadir";
@@ -574,8 +611,10 @@
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAceptar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnAceptar.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.helpProvider1.SetHelpString(this.btnAceptar, "Pulse Aceptar, para guardar los datos y salir");
             this.btnAceptar.Location = new System.Drawing.Point(327, 175);
             this.btnAceptar.Name = "btnAceptar";
+            this.helpProvider1.SetShowHelp(this.btnAceptar, true);
             this.btnAceptar.Size = new System.Drawing.Size(89, 34);
             this.btnAceptar.TabIndex = 10;
             this.btnAceptar.Text = "Aceptar";
@@ -594,8 +633,10 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.helpProvider1.SetHelpString(this.btnCancelar, "Pulse cancelar para cerrar la ventana sin guardar");
             this.btnCancelar.Location = new System.Drawing.Point(432, 175);
             this.btnCancelar.Name = "btnCancelar";
+            this.helpProvider1.SetShowHelp(this.btnCancelar, true);
             this.btnCancelar.Size = new System.Drawing.Size(89, 34);
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
@@ -606,7 +647,6 @@
             // 
             // frmConfigurarTest
             // 
-            this.AcceptButton = this.btnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
@@ -683,5 +723,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader20;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

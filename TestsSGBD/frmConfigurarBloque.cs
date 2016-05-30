@@ -12,6 +12,7 @@ namespace TestsSGBD
         private Bloque _Item;
         private bool _Change;
         private bool _AllowClose;
+        private bool _CancelClose;
 
         private Test.TipoSeccion _Seccion;
         #endregion
@@ -82,7 +83,7 @@ namespace TestsSGBD
             foreach (string lsItem in lsSentencias)
             {
                 string lsSQL = lsItem.Replace("  ", " ").Trim();
-                if (lsSQL.Length > 10)
+                if (lsSQL.Length > 1)
                 {
                     lItem.Sentencias.Add(new Sentencia(lsSQL + ";"));
                 }
@@ -122,32 +123,50 @@ namespace TestsSGBD
 
         private void frm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!this._AllowClose)
+            if (this._CancelClose)
             {
-                this.actualizarEstado();
-                if (this._Change)
+                e.Cancel = true;
+                return;
+            }
+            else
+            {
+                if (!this._AllowClose)
                 {
-                    this._Change = false;
-                    if (MessageBox.Show("El bloque a sido modificado, esta seguro de querer salir sin guardar ?", "Bloque", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                    this.actualizarEstado();
+                    if (this._Change)
                     {
-                        e.Cancel = true;
-                        return;
+                        this._Change = false;
+                        if (MessageBox.Show("El bloque a sido modificado, esta seguro de querer salir sin guardar ?", "Bloque", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
                     }
                 }
             }
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            this._CancelClose = false;
             this.Close();
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            _AllowClose = true;
+            this._AllowClose = true;
+            this._CancelClose = false;
             this.actualizarEstado();
+
+            if (!this.validarSentencias())
+            {
+                _AllowClose = false;
+                this._CancelClose = true;
+                return;
+            }
+            
             if (!this.validar())
             {
                 _AllowClose = false;
-                MessageBox.Show("Faltan datos o no son validos, no se puede guardar.", "Bloque", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe especificar un nombre, no se puede guardar.", "Bloque", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             this.Close();
@@ -164,9 +183,10 @@ namespace TestsSGBD
             this._Change = !this._Item.Equals(lItem);
         }
 
-        private bool validar()
+        private bool validarSentencias()
         {
             bool lswRes = true;
+            string lsMensajeError = "";
             //Montar un obj con los datos del form.
             Bloque lItem = ObtenBloque();
 
@@ -174,15 +194,19 @@ namespace TestsSGBD
             switch (this._Seccion)
             {
                 case Test.TipoSeccion.CREACION:
+                    lsMensajeError = "En esta seccion debe escribir sentencias CREATE";
                     lsSentenciasPermitidas = "create";
                     break;
                 case Test.TipoSeccion.INSERCION:
+                    lsMensajeError = "En esta seccion debe escribir sentencias INSERT o UPDATE";
                     lsSentenciasPermitidas = "insertupdate";
                     break;
                 case Test.TipoSeccion.CONSULTA:
+                    lsMensajeError = "En esta seccion debe escribir sentencias SELECT";
                     lsSentenciasPermitidas = "select";
                     break;
                 case Test.TipoSeccion.BORRADO:
+                    lsMensajeError = "En esta seccion debe escribir sentencias DELETE";
                     lsSentenciasPermitidas = "delete";
                     break;
             }
@@ -193,16 +217,19 @@ namespace TestsSGBD
                 string lsSentencia = lSentencia.SQL.Substring(0, 6).ToLower();
                 if (!lsSentenciasPermitidas.Contains(lsSentencia))
                 {
+                    MessageBox.Show(lsMensajeError, "Bloque", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _AllowClose = false;
                     lswRes = false;
                     break;
                 }
             }
 
-            if (lswRes)
-            {
-                lswRes = lItem.Validar();
-            }
             return lswRes;
+        }
+        private bool validar()
+        {
+            Bloque lItem = ObtenBloque();
+            return lItem.Validar();
         }
         #endregion
 

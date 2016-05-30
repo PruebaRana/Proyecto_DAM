@@ -718,7 +718,7 @@ namespace TestsSGBD
         private void CargarComboInformes()
         {
             string[] filePaths = Directory.GetFiles(Config.RutaConfiguraciones, "Resultado_*.xml");
-
+            string lsNombresUsados = ",";
             cbInformes.Items.Clear();
 
             cbInformes.Items.Add(new ComboboxItem() { Text = "Todos", Value = "Todos"});
@@ -727,7 +727,11 @@ namespace TestsSGBD
                 string lsNombre = lItem.Replace(Config.RutaConfiguraciones + @"\Resultado_", "").Replace(".XML", "") ;
                 lsNombre = lsNombre.Substring(0, lsNombre.Length - 16);
 
-                cbInformes.Items.Add(new ComboboxItem() { Text = lsNombre, Value = lsNombre });
+                if (!lsNombresUsados.Contains("," + lsNombre + ","))
+                {
+                    lsNombresUsados += lsNombre + ",";
+                    cbInformes.Items.Add(new ComboboxItem() { Text = lsNombre, Value = lsNombre });
+                }
             }
             cbInformes.SelectedIndex = 0;
         }

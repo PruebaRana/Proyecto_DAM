@@ -47,6 +47,7 @@
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAsistente = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udHilosStep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udHilosFin)).BeginInit();
@@ -70,11 +71,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSentencias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpProvider1.SetHelpString(this.txtSentencias, "Este sera el listado de sentencias de tipo CREATE/INSERT/UPDATE/SELECT o DELETE, " +
+        "separadas por punto y coma");
             this.txtSentencias.Location = new System.Drawing.Point(15, 83);
             this.txtSentencias.MaxLength = 2147483646;
             this.txtSentencias.Multiline = true;
             this.txtSentencias.Name = "txtSentencias";
             this.txtSentencias.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.helpProvider1.SetShowHelp(this.txtSentencias, true);
             this.txtSentencias.Size = new System.Drawing.Size(429, 204);
             this.txtSentencias.TabIndex = 12;
             // 
@@ -93,8 +97,10 @@
             this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpProvider1.SetHelpString(this.txtNombre, "Nombre descriptivo para identificar al bloque");
             this.txtNombre.Location = new System.Drawing.Point(15, 29);
             this.txtNombre.Name = "txtNombre";
+            this.helpProvider1.SetShowHelp(this.txtNombre, true);
             this.txtNombre.Size = new System.Drawing.Size(561, 23);
             this.txtNombre.TabIndex = 14;
             // 
@@ -108,8 +114,10 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.udHilosInicio);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.helpProvider1.SetHelpString(this.groupBox1, "Este sera el bucle de repeticion de hilos");
             this.groupBox1.Location = new System.Drawing.Point(457, 76);
             this.groupBox1.Name = "groupBox1";
+            this.helpProvider1.SetShowHelp(this.groupBox1, true);
             this.groupBox1.Size = new System.Drawing.Size(119, 99);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
@@ -128,6 +136,7 @@
             // udHilosStep
             // 
             this.udHilosStep.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.helpProvider1.SetHelpString(this.udHilosStep, "La cantidad de hilos que se sumaran en cada ciclo del bucle");
             this.udHilosStep.Location = new System.Drawing.Point(59, 68);
             this.udHilosStep.Minimum = new decimal(new int[] {
             1,
@@ -135,6 +144,7 @@
             0,
             0});
             this.udHilosStep.Name = "udHilosStep";
+            this.helpProvider1.SetShowHelp(this.udHilosStep, true);
             this.udHilosStep.Size = new System.Drawing.Size(43, 22);
             this.udHilosStep.TabIndex = 4;
             this.udHilosStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -157,6 +167,7 @@
             // udHilosFin
             // 
             this.udHilosFin.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.helpProvider1.SetHelpString(this.udHilosFin, "El numero final de hilos para realizar el bucle");
             this.udHilosFin.Location = new System.Drawing.Point(59, 45);
             this.udHilosFin.Minimum = new decimal(new int[] {
             1,
@@ -164,6 +175,7 @@
             0,
             0});
             this.udHilosFin.Name = "udHilosFin";
+            this.helpProvider1.SetShowHelp(this.udHilosFin, true);
             this.udHilosFin.Size = new System.Drawing.Size(43, 22);
             this.udHilosFin.TabIndex = 2;
             this.udHilosFin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -186,6 +198,7 @@
             // udHilosInicio
             // 
             this.udHilosInicio.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.helpProvider1.SetHelpString(this.udHilosInicio, "El numero inicial de hilos para realizar el bucle");
             this.udHilosInicio.Location = new System.Drawing.Point(59, 22);
             this.udHilosInicio.Minimum = new decimal(new int[] {
             1,
@@ -193,6 +206,7 @@
             0,
             0});
             this.udHilosInicio.Name = "udHilosInicio";
+            this.helpProvider1.SetShowHelp(this.udHilosInicio, true);
             this.udHilosInicio.Size = new System.Drawing.Size(43, 22);
             this.udHilosInicio.TabIndex = 0;
             this.udHilosInicio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -209,8 +223,10 @@
             this.groupBox2.Controls.Add(this.chkHilo);
             this.groupBox2.Controls.Add(this.chkBloque);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.helpProvider1.SetHelpString(this.groupBox2, "Este sera el bloque de repeticion por tipo de apertura de conexion");
             this.groupBox2.Location = new System.Drawing.Point(457, 187);
             this.groupBox2.Name = "groupBox2";
+            this.helpProvider1.SetShowHelp(this.groupBox2, true);
             this.groupBox2.Size = new System.Drawing.Size(119, 100);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
@@ -220,8 +236,10 @@
             // 
             this.chkSentencia.AutoSize = true;
             this.chkSentencia.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.helpProvider1.SetHelpString(this.chkSentencia, "Cada sentencia se lanzara en su propia conexion con la base de datos.");
             this.chkSentencia.Location = new System.Drawing.Point(19, 70);
             this.chkSentencia.Name = "chkSentencia";
+            this.helpProvider1.SetShowHelp(this.chkSentencia, true);
             this.chkSentencia.Size = new System.Drawing.Size(77, 19);
             this.chkSentencia.TabIndex = 2;
             this.chkSentencia.Text = "Sentencia";
@@ -231,8 +249,11 @@
             // 
             this.chkHilo.AutoSize = true;
             this.chkHilo.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.helpProvider1.SetHelpString(this.chkHilo, "Cade hilo establecera su propia conexion con la base de datos para lanzar las sen" +
+        "tencias");
             this.chkHilo.Location = new System.Drawing.Point(19, 47);
             this.chkHilo.Name = "chkHilo";
+            this.helpProvider1.SetShowHelp(this.chkHilo, true);
             this.chkHilo.Size = new System.Drawing.Size(48, 19);
             this.chkHilo.TabIndex = 1;
             this.chkHilo.Text = "Hilo";
@@ -242,8 +263,11 @@
             // 
             this.chkBloque.AutoSize = true;
             this.chkBloque.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.helpProvider1.SetHelpString(this.chkBloque, "Solo se usara una conexion con la base de datos, para lanzar todas las sentencias" +
+        "");
             this.chkBloque.Location = new System.Drawing.Point(19, 24);
             this.chkBloque.Name = "chkBloque";
+            this.helpProvider1.SetShowHelp(this.chkBloque, true);
             this.chkBloque.Size = new System.Drawing.Size(63, 19);
             this.chkBloque.TabIndex = 0;
             this.chkBloque.Text = "Bloque";
@@ -258,8 +282,10 @@
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAceptar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnAceptar.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.helpProvider1.SetHelpString(this.btnAceptar, "Pulse Aceptar, para guardar los datos y salir");
             this.btnAceptar.Location = new System.Drawing.Point(383, 301);
             this.btnAceptar.Name = "btnAceptar";
+            this.helpProvider1.SetShowHelp(this.btnAceptar, true);
             this.btnAceptar.Size = new System.Drawing.Size(89, 34);
             this.btnAceptar.TabIndex = 19;
             this.btnAceptar.Text = "Aceptar";
@@ -278,8 +304,10 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.helpProvider1.SetHelpString(this.btnCancelar, "Pulse cancelar para cerrar la ventana sin guardar");
             this.btnCancelar.Location = new System.Drawing.Point(487, 301);
             this.btnCancelar.Name = "btnCancelar";
+            this.helpProvider1.SetShowHelp(this.btnCancelar, true);
             this.btnCancelar.Size = new System.Drawing.Size(89, 34);
             this.btnCancelar.TabIndex = 18;
             this.btnCancelar.Text = "Cancelar";
@@ -364,5 +392,6 @@
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAsistente;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

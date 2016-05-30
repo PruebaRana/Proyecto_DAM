@@ -9,6 +9,7 @@ namespace TestsSGBD
     public partial class frmConfigurarTest : Form
     {
         #region Propiedades
+        private Test _ItemOriginal;
         private Test _Item;
         private bool _Change;
         private bool _AllowClose;
@@ -24,11 +25,16 @@ namespace TestsSGBD
         public void CargarItem(Test aItem)
         {
             this._Item = aItem == null ? new Test() : aItem;
+            this._ItemOriginal = this._Item.Clone();
 
             if (aItem != null)
             {
                 // Nombre
                 txtNombre.Text = aItem.Nombre;
+                //CargarBloque(this._Item.Creacion.Bloque, lvCreacion);
+                //CargarBloque(this._Item.Insercion.Bloque, lvInsercion);
+                //CargarBloque(this._Item.Consulta.Bloque, lvConsulta);
+                //CargarBloque(this._Item.Borrado.Bloque, lvBorrado);
             }
 
         }
@@ -97,11 +103,11 @@ namespace TestsSGBD
             this._Change = false;
 
             //Montar un obj con los datos del form.
-            Test lItem = new Test();
+            Test lItem = this._Item.Clone();
             lItem.Nombre = txtNombre.Text;
-
+            
             //Comprobar si es distinto.
-            this._Change = !this._Item.Equals(lItem);
+            this._Change = !this._ItemOriginal.Equals(lItem);
         }
 
         private bool validar()

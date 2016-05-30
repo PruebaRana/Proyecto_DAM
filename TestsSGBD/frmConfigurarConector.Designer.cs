@@ -50,8 +50,10 @@
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAceptar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnAceptar.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.hpConector.SetHelpString(this.btnAceptar, "Pulse Aceptar, para guardar los datos y salir");
             this.btnAceptar.Location = new System.Drawing.Point(301, 209);
             this.btnAceptar.Name = "btnAceptar";
+            this.hpConector.SetShowHelp(this.btnAceptar, true);
             this.btnAceptar.Size = new System.Drawing.Size(89, 34);
             this.btnAceptar.TabIndex = 6;
             this.btnAceptar.Text = "Aceptar";
@@ -70,8 +72,10 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.hpConector.SetHelpString(this.btnCancelar, "Pulse cancelar para cerrar la ventana sin guardar");
             this.btnCancelar.Location = new System.Drawing.Point(406, 209);
             this.btnCancelar.Name = "btnCancelar";
+            this.hpConector.SetShowHelp(this.btnCancelar, true);
             this.btnCancelar.Size = new System.Drawing.Size(89, 34);
             this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
@@ -158,8 +162,10 @@
             this.btnComprobar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnComprobar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnComprobar.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.hpConector.SetHelpString(this.btnComprobar, "Servira para comprobar si se tiene acceso a la BD con dicha cadena de conexion");
             this.btnComprobar.Location = new System.Drawing.Point(149, 209);
             this.btnComprobar.Name = "btnComprobar";
+            this.hpConector.SetShowHelp(this.btnComprobar, true);
             this.btnComprobar.Size = new System.Drawing.Size(89, 34);
             this.btnComprobar.TabIndex = 15;
             this.btnComprobar.Text = "Comprobar";
