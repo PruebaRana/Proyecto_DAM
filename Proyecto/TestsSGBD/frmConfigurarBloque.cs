@@ -83,7 +83,7 @@ namespace TestsSGBD
             foreach (string lsItem in lsSentencias)
             {
                 string lsSQL = lsItem.Replace("  ", " ").Trim();
-                if (lsSQL.Length > 1)
+                if (lsSQL.Length > 2)
                 {
                     lItem.Sentencias.Add(new Sentencia(lsSQL + ";"));
                 }

@@ -60,7 +60,7 @@ namespace TestsSGBD.Clases
 			}
 			catch (OdbcException ex)
 			{
-				//Log.EscribeLog("SQL [" + asSQL + "] Error [" + ex.Message + "]", "Datos.ObtenerDataTable", Log.Tipo.ERROR);
+				Log.EscribeLog("SQL [" + asSQL + "] Error [" + ex.Message + "]", "Datos.ObtenerDataTable", Log.Tipo.ERROR);
 				throw ex;
 			}
 			finally

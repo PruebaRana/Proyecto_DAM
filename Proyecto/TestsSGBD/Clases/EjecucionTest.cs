@@ -169,7 +169,7 @@ namespace TestsSGBD.Clases
             this._TokenSource = new CancellationTokenSource();
             Task lTaskTest = new Task(ProcesarTest);
             lTaskTest.Start();
-
+            
             // Registrar la llamada a Dispose si alguien activa el token de cancelar.            
             //this._CT.Register(() => { this.Dispose(); });
         }
@@ -211,6 +211,7 @@ namespace TestsSGBD.Clases
 
                     lNuevoResultadoTest.SaveXML();
                 }
+                
             }
             catch (Exception ex)
             {
@@ -235,6 +236,7 @@ namespace TestsSGBD.Clases
                 ResultadoBloque lResultadoBloque = new ResultadoBloque();
                 lResultadoBloque.Nombre = lBloque.Nombre;
                 lResultadoBloque.NumeroSentencias = lBloque.Sentencias.Count;
+                Log.EscribeLog("Bloque: " + lBloque.Nombre + "[" + lBloque.Sentencias.Count + "]", "EjecucionTest.procesaSeccion", Log.Tipo.ERROR);
 
                 if ((lBloque.Conexion & Bloque.TipoConexion.BLOQUE) == Bloque.TipoConexion.BLOQUE)
                 {
@@ -250,6 +252,8 @@ namespace TestsSGBD.Clases
                     lResultadoConexion.Tipo = ResultadoConexion.TipoApertura.HILO;
                     LanzarBloque(lBloque, lResultadoConexion, aConector);
                     lResultadoBloque.Conexiones.Add(lResultadoConexion);
+                    
+                    Log.EscribeLog("4", "EjecucionTest.LanzarBloque", Log.Tipo.ERROR);
                 }
 
                 if ((lBloque.Conexion & Bloque.TipoConexion.SENTENCIA) == Bloque.TipoConexion.SENTENCIA)
@@ -261,6 +265,8 @@ namespace TestsSGBD.Clases
                 }
 
                 lResultadosBloques.Add(lResultadoBloque);
+
+                Log.EscribeLog("5", "EjecucionTest.LanzarBloque", Log.Tipo.ERROR);
             }
             return lResultadosBloques;
         }
@@ -277,15 +283,22 @@ namespace TestsSGBD.Clases
                     this._TokenSource.Token.ThrowIfCancellationRequested();
                 }
 
+                Log.EscribeLog("LanzarBloque. [b=" + aBloque.Nombre + "] [h=" + i + "] [p=" + aResultadoConexion.Tipo + "]", "EjecucionTest.LanzarBloque", Log.Tipo.ERROR);
                 LanzarInformacionComienzoBloque("Bloque: " + aBloque.Nombre + ", hilos: " + i + " por " + aResultadoConexion.Tipo);
                 Thread.Sleep(20);
 
                 ResultadoHilo lResultadoHilo = new ResultadoHilo();
                 lResultadoHilo.Cantidad = i;
 
+                Log.EscribeLog("1", "EjecucionTest.LanzarBloque", Log.Tipo.ERROR);
+                
                 LanzarSentencias(aBloque.Sentencias, lResultadoHilo, aResultadoConexion.Tipo, aConector);
 
+                Log.EscribeLog("2", "EjecucionTest.LanzarBloque", Log.Tipo.ERROR);
+
                 aResultadoConexion.Hilos.Add(lResultadoHilo);
+
+                Log.EscribeLog("3", "EjecucionTest.LanzarBloque", Log.Tipo.ERROR);
             }
             GC.GetTotalMemory(true);
         }
@@ -299,12 +312,14 @@ namespace TestsSGBD.Clases
             List<Sentencia>[] lSentencias = new List<Sentencia>[lsCantidadHilos];
             TareaSentencias[] lListaTareas = new TareaSentencias[lsCantidadHilos];
 
+            Log.EscribeLog("1 - h:" + lsCantidadHilos, "EjecucionTest.LanzarSentencias", Log.Tipo.ERROR);
             // Cargar las sentencias
             int j = 0;
             for (int i = 0; i < lsCantidadHilos; i++)
             {
                 lSentencias[i] = new List<Sentencia>();
             }
+            Log.EscribeLog("2 - n:" + aSentencias.Count, "EjecucionTest.LanzarSentencias", Log.Tipo.ERROR);
             for (int i = 0; i < aSentencias.Count; i++)
             {
                 lSentencias[j].Add(new Sentencia(aSentencias[i].SQL));
@@ -315,9 +330,11 @@ namespace TestsSGBD.Clases
                 }
             }
 
+            Log.EscribeLog("3 - c:" + aConector.Tipo, "EjecucionTest.LanzarSentencias", Log.Tipo.ERROR);
             DatosBase lDBGenerico = DatosBaseFactory.CreateInstance(aConector);
             for (int i = 0; i < lsCantidadHilos; i++)
             {
+                Log.EscribeLog("3-1 h:" + i + " T: " + aTipo + " - c:" + aConector.Tipo, "EjecucionTest.LanzarSentencias", Log.Tipo.ERROR);
                 DatosBase lDB;
                 if ((aTipo & ResultadoConexion.TipoApertura.BLOQUE) == ResultadoConexion.TipoApertura.BLOQUE)
                 {
@@ -329,7 +346,9 @@ namespace TestsSGBD.Clases
                 }
                 //DatosBase lDB = DatosBaseFactory.CreateInstance(aConector);
                 lListaTareas[i] = new TareaSentencias(lSentencias[i], aTipo, lDB, aConector, this._TokenSource.Token);
-                
+
+                Log.EscribeLog("3-1 h:" + i + " Se crea la tarea y se llama", "EjecucionTest.LanzarSentencias", Log.Tipo.ERROR);
+
                 Task lTarea = new Task(lListaTareas[i].LanzarConsultas);
                 lListaTareas[i].Task = lTarea;
                 lTask[i] = lTarea;
@@ -338,6 +357,7 @@ namespace TestsSGBD.Clases
 
             Task.WaitAll(lTask);
 
+            Log.EscribeLog("4 - c:" + aConector.Tipo, "EjecucionTest.LanzarSentencias", Log.Tipo.ERROR);
             //Liberar recursos
             int liNumeroErrores = 0;
             foreach (TareaSentencias lItem in lListaTareas)
@@ -353,6 +373,7 @@ namespace TestsSGBD.Clases
             lCrono.Stop();
             aResultadoHilo.Tiempo = lCrono.ElapsedMilliseconds;
             aResultadoHilo.Errores = liNumeroErrores;
+            Log.EscribeLog("EjecucionTest. [T=" + lCrono.ElapsedMilliseconds + "] [E=" + liNumeroErrores + "]", "EjecucionTest.LanzarSentencias", Log.Tipo.ERROR);
             GC.Collect();
             GC.GetTotalMemory(true);
         }

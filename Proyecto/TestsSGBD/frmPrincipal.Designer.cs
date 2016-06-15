@@ -48,6 +48,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lvInformes = new System.Windows.Forms.ListView();
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAbrirInforme = new System.Windows.Forms.Button();
             this.lblInformes = new System.Windows.Forms.Label();
@@ -83,7 +84,6 @@
             this.sysTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.timerRefresco = new System.Windows.Forms.Timer(this.components);
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PanelMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.pnlCentral.SuspendLayout();
@@ -242,9 +242,9 @@
             this.pnlCentral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlCentral.Controls.Add(this.pnlInformes);
             this.pnlCentral.Controls.Add(this.pnlTests);
             this.pnlCentral.Controls.Add(this.pnlConfiguracion);
+            this.pnlCentral.Controls.Add(this.pnlInformes);
             this.pnlCentral.Location = new System.Drawing.Point(150, 0);
             this.pnlCentral.Name = "pnlCentral";
             this.pnlCentral.Size = new System.Drawing.Size(614, 296);
@@ -321,6 +321,11 @@
             // 
             this.columnHeader9.Text = "Nombre";
             this.columnHeader9.Width = 200;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Tipo";
+            this.columnHeader11.Width = 80;
             // 
             // columnHeader10
             // 
@@ -713,11 +718,6 @@
             this.timerRefresco.Enabled = true;
             this.timerRefresco.Interval = 1000;
             this.timerRefresco.Tick += new System.EventHandler(this.timerRefresco_Tick);
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Tipo";
-            this.columnHeader11.Width = 80;
             // 
             // frmPrincipal
             // 

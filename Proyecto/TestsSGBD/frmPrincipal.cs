@@ -56,6 +56,9 @@ namespace TestsSGBD
 
         EjecucionTest _EjecutarTest;
         private string _sUltimoMensaje = "";
+
+        bool _swEnMarcha = false;
+        bool _swCancelado = false;
         #endregion
 
         public frmPrincipal()
@@ -670,6 +673,9 @@ namespace TestsSGBD
             this._EjecutarTest.Ejecutar();
             this._EjecutarTest.NotificarAccion += new EjecucionTest.MyEventHandler(OnNotificarAccion);
 
+            this._swCancelado = false;
+            this._swEnMarcha = true;
+
             btnEjecutar.Enabled = false;
             btnCancelar.Enabled = true;
         }
@@ -689,6 +695,8 @@ namespace TestsSGBD
         {
             if (this._EjecutarTest.EnProceso)
             {
+                this._swCancelado = true;
+                this._swEnMarcha = false;
                 this._EjecutarTest.CancelarEjecucion();
                 this._EjecutarTest.NotificarAccion -= new EjecucionTest.MyEventHandler(OnNotificarAccion);
                 this._EjecutarTest.Dispose();
@@ -817,6 +825,12 @@ namespace TestsSGBD
  
                 btnCancelar.Enabled = false;
                 btnEjecutar.Enabled = true;
+
+                if (this._swEnMarcha && !this._swCancelado)
+                {
+                    this._swEnMarcha = false;
+                    MessageBox.Show("Test finalizado", "Ejecucion test", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             /*
             if (this._CantidadTotal == 0)

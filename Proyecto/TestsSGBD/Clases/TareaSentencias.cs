@@ -97,61 +97,73 @@ namespace TestsSGBD.Clases
         public void LanzarConsultas()
         {
             int liErrores = 0;
-            foreach (Sentencia lSentencia in this._Sentencias)
-            {
-                try
-                {
-                    if (this._CT.IsCancellationRequested)
-                    {
-                        // Alguien ha cancelado la ejecucion salir
-                        this.Dispose();
-                        return;
-                    }
 
-                    string lTipo = lSentencia.SQL.Substring(0, 6);
-                    lTipo = lTipo.ToLower();
-                    if (lTipo == "insert")
+            Log.EscribeLog("3-1-a sqls__:" + this._Sentencias.Count, "TareaSentencia.LanzarConsultas", Log.Tipo.ERROR);
+
+            try
+            {
+                foreach (Sentencia lSentencia in this._Sentencias)
+                {
+                    try
                     {
-                        int liId = this._Datos.EjecutarNonQueryYObtenerLastId(lSentencia.SQL);
-                    }
-                    else if (lTipo == "update" || lTipo == "delete")
-                    {
-                        int lCantidadRegistros = this._Datos.EjecutarEscalar(lSentencia.SQL);
-                    }
-                    else
-                    {
-                        if (lSentencia.SQL.Contains(" count("))
+                        if (this._CT.IsCancellationRequested)
                         {
-                            int lCantidadRegistros = this._Datos.EjecutarCount(lSentencia.SQL);
+                            // Alguien ha cancelado la ejecucion salir
+                            this.Dispose();
+                            return;
+                        }
+
+                        string lTipo = lSentencia.SQL.Substring(0, 6);
+                        lTipo = lTipo.ToLower();
+                        if (lTipo == "insert")
+                        {
+                            int liId = this._Datos.EjecutarNonQueryYObtenerLastId(lSentencia.SQL);
+                        }
+                        else if (lTipo == "update" || lTipo == "delete")
+                        {
+                            int lCantidadRegistros = this._Datos.EjecutarEscalar(lSentencia.SQL);
                         }
                         else
                         {
-                            DataTable lDataTable = this._Datos.ObtenerDataTable(lSentencia.SQL);
-                            if (lDataTable == null)
+                            if (lSentencia.SQL.Contains(" count("))
                             {
-                                Log.EscribeLog("UPS !!!", "TareaSentencias.LanzarConsultas", Log.Tipo.ERROR);
+                                int lCantidadRegistros = this._Datos.EjecutarCount(lSentencia.SQL);
                             }
                             else
                             {
-                                int lCantidadRegistros = lDataTable.Rows.Count;
+                                DataTable lDataTable = this._Datos.ObtenerDataTable(lSentencia.SQL);
+                                if (lDataTable == null)
+                                {
+                                    Log.EscribeLog("UPS !!!", "TareaSentencias.LanzarConsultas", Log.Tipo.ERROR);
+                                }
+                                else
+                                {
+                                    int lCantidadRegistros = lDataTable.Rows.Count;
+                                }
                             }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    liErrores++;
-                    // Incrementar contador errores
-                    // Log.EscribeLog("Error [" + ex.Message + "]", "TareaSentencias.LanzarConsultas", Log.Tipo.ERROR);
-                }
-                
-                if ((this._Tipo & ResultadoConexion.TipoApertura.SENTENCIA) == ResultadoConexion.TipoApertura.SENTENCIA)
-                {
-                    this._Datos.Close();
-                    this._Datos = DatosBaseFactory.CreateInstance(this._Conector);
+                    catch (Exception ex)
+                    {
+                        Log.EscribeLog("UPS. Error [" + ex.Message + "]", "TareaSentencias.LanzarConsultas", Log.Tipo.ERROR);
+                        liErrores++;
+                        // Incrementar contador errores
+                    }
+
+                    if ((this._Tipo & ResultadoConexion.TipoApertura.SENTENCIA) == ResultadoConexion.TipoApertura.SENTENCIA)
+                    {
+                        this._Datos.Close();
+                        this._Datos = DatosBaseFactory.CreateInstance(this._Conector);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Log.EscribeLog("3-1-c Err:" + ex.Message, "TareaSentencia.LanzarConsultas", Log.Tipo.ERROR);
+                Log.EscribeLog("3-1-d _sen:" + this._Sentencias.Count, "TareaSentencia.LanzarConsultas", Log.Tipo.ERROR);
+            }
 
+            Log.EscribeLog("3-1-b errores:" + liErrores, "TareaSentencia.LanzarConsultas", Log.Tipo.ERROR);
             this._NumeroErrores = liErrores;
             //this._Datos.Close();
         }
